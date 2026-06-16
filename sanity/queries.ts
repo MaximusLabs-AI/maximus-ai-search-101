@@ -8,7 +8,8 @@ export const HUB_Q = groq`{
   "pillars": *[_type=="pillar"] | order(order asc){
     title, shortLabel, summary, category, "slug": slug.current,
     "clusterCount": count(*[_type=="cluster" && references(^._id)]),
-    "topClusters": *[_type=="cluster" && references(^._id)] | order(order asc)[0...4]{ title, "slug": slug.current }
+    "topClusters": *[_type=="cluster" && references(^._id)] | order(order asc)[0...4]{ title, "slug": slug.current },
+    "topArticles": *[_type=="article" && references(^._id)] | order(coalesce(order, 99) asc)[0...4]{ title, "slug": slug.current, "cluster": cluster->slug.current }
   },
   "latest": *[_type=="article" && defined(datePublished)] | order(datePublished desc)[0...8]{ ${ARTICLE_LINK} },
   "popular": *[_type=="article"] | order(readingTime desc)[0...8]{ ${ARTICLE_LINK} }
@@ -65,6 +66,17 @@ export const ALL_ARTICLES_Q = groq`*[_type=="article" && defined(slug.current) &
   "p": pillar->slug.current, "c": cluster->slug.current, "a": slug.current,
   "ts": coalesce(dateModified, datePublished, _updatedAt, _createdAt)
 }`
+
+/* Search across pillars, clusters, and articles by title/summary/excerpt. */
+export const SEARCH_Q = groq`*[
+  (_type=="pillar" || _type=="cluster" || _type=="article") && defined(slug.current) &&
+  (title match $term || summary match $term || excerpt match $term)
+]{
+  _type, title, "slug": slug.current,
+  "pillarSlug": select(_type=="pillar" => slug.current, pillar->slug.current),
+  "clusterSlug": select(_type=="cluster" => slug.current, _type=="article" => cluster->slug.current, null),
+  "summary": coalesce(summary, excerpt)
+} | order(_type asc)[0...60]`
 
 /* Lightweight metadata-only queries (no body) for generateMetadata. */
 export const META_PILLAR_Q = groq`*[_type=="pillar" && slug.current==$pillar][0]{

@@ -107,16 +107,23 @@ export function Breadcrumbs({ trail }: { trail: Crumb[] }) {
   )
 }
 
+/** Search box. A GET form to /ai-search-101/search?q=... (no client JS needed). */
+export function SearchBar({ defaultValue }: { defaultValue?: string }) {
+  return (
+    <form className="searchbar" action="/ai-search-101/search">
+      <MagnifierIcon />
+      <input type="search" name="q" defaultValue={defaultValue} placeholder="Search a topic..." aria-label="Search AI Search 101" />
+    </form>
+  )
+}
+
 export function HubHero({ title, sub }: { title: string; sub: string }) {
   return (
     <section className="hubhero">
       <div className="wrap">
         <h1>{title}</h1>
         <p className="sub">{sub}</p>
-        <div className="searchbar">
-          <MagnifierIcon />
-          <input type="search" placeholder="Search a topic..." aria-label="Search AI Search 101" />
-        </div>
+        <SearchBar />
       </div>
     </section>
   )
@@ -145,11 +152,30 @@ export function CardGrid({ children }: { children: React.ReactNode }) {
   return <div className="cardgrid">{children}</div>
 }
 
-/** Big image-top category card: cover title + sub-links + Explore. */
+/** Per-pillar outline icon for the category-card cover. */
+function IconFor({ slug }: { slug: string }) {
+  const a = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
+  const map: Record<string, React.ReactNode> = {
+    geo: <><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9z" /><path d="M18 14l.9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17z" /></>,
+    aeo: <><path d="M4 5h16v10H9l-4 4z" /><circle cx="9" cy="10" r="1" /><circle cx="12.5" cy="10" r="1" /><circle cx="16" cy="10" r="1" /></>,
+    seo: <><circle cx="11" cy="11" r="6" /><path d="M20 20l-3.5-3.5" /></>,
+    'agentic-seo': <><rect x="5" y="8" width="14" height="11" rx="2" /><path d="M12 8V4" /><circle cx="12" cy="3.2" r="1" /><path d="M9.5 13h.01M14.5 13h.01" /></>,
+    'agentic-commerce': <><circle cx="9" cy="20" r="1.4" /><circle cx="17" cy="20" r="1.4" /><path d="M3 4h2l2.2 11h10l2-7H6" /></>,
+    platforms: <><rect x="4" y="4" width="7" height="7" rx="1" /><rect x="13" y="4" width="7" height="7" rx="1" /><rect x="4" y="13" width="7" height="7" rx="1" /><rect x="13" y="13" width="7" height="7" rx="1" /></>,
+    technical: <><path d="M9 8l-4 4 4 4" /><path d="M15 8l4 4-4 4" /></>,
+    strategies: <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="1" /></>,
+    future: <><circle cx="12" cy="12" r="8" /><path d="M15 9l-2.2 5.2L8 16l2.2-5.2z" /></>,
+    glossary: <><path d="M5 5a2 2 0 012-2h11v16H7a2 2 0 00-2 2z" /><path d="M5 5v14" /></>,
+  }
+  return <span className="ic"><svg viewBox="0 0 24 24" {...a}>{map[slug] || map.seo}</svg></span>
+}
+
+/** Image-top category card: icon cover + title + sub-links (deep to articles) + Explore. */
 export function CategoryCard({
-  coverTitle, sublinks, exploreHref, exploreLabel,
+  slug, title, sublinks, exploreHref, exploreLabel,
 }: {
-  coverTitle: string
+  slug: string
+  title: string
   sublinks: { title: string; href: string }[]
   exploreHref: string
   exploreLabel: string
@@ -159,9 +185,10 @@ export function CategoryCard({
       <div className="cover">
         <span className="dotgrid" />
         <svg className="mark" viewBox="0 0 48 48"><use href="#ml-mark-w" /></svg>
-        <h3>{coverTitle}</h3>
+        <IconFor slug={slug} />
       </div>
       <div className="body">
+        <h3>{title}</h3>
         <div className="ct-sub">
           {sublinks.map((s) => <Link key={s.href} href={s.href}>{s.title}</Link>)}
         </div>

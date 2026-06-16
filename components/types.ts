@@ -21,9 +21,19 @@ export type HubData = {
     slug: string
     clusterCount: number
     topClusters?: { title: string; slug: string }[]
+    topArticles?: { title: string; slug: string; cluster: string }[]
   }[]
   latest?: ArticleLink[]
   popular?: ArticleLink[]
+}
+
+export type SearchResult = {
+  _type: 'pillar' | 'cluster' | 'article'
+  title: string
+  slug: string
+  pillarSlug?: string
+  clusterSlug?: string | null
+  summary?: string
 }
 
 export type PillarData = {

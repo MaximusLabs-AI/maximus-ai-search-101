@@ -66,11 +66,13 @@ a{color:var(--accent);text-decoration:none}
 /* ---------- Category card (image-top, sub-links + Explore) ---------- */
 .catcard{display:flex;flex-direction:column;height:100%;background:#fff;border-radius:0;box-shadow:var(--shadow-card);transition:box-shadow .25s ease,transform .25s ease;overflow:hidden}
 .catcard:hover{box-shadow:var(--shadow-pop);transform:translateY(-3px)}
-.catcard .cover{position:relative;overflow:hidden;background:var(--grad-cover);color:#fff;min-height:128px;padding:22px 24px;display:flex;align-items:flex-end}
+.catcard .cover{position:relative;overflow:hidden;background:var(--grad-cover);color:#fff;min-height:162px;display:grid;place-items:center}
 .catcard .cover .dotgrid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1px,transparent 1px);background-size:15px 15px;opacity:.5}
-.catcard .cover .mark{position:absolute;top:-14px;right:-14px;width:92px;height:92px;opacity:.16}
-.catcard .cover h3{position:relative;z-index:1;font-size:26px;font-weight:300;letter-spacing:-0.02em;line-height:1.08}
+.catcard .cover .mark{position:absolute;bottom:-22px;right:-16px;width:108px;height:108px;opacity:.13}
+.catcard .cover .ic{position:relative;z-index:1;width:52px;height:52px;color:#fff;opacity:.96}
+.catcard .cover .ic svg{width:100%;height:100%;display:block}
 .catcard .body{display:flex;flex-direction:column;height:100%;padding:22px 24px 24px}
+.catcard .body h3{font-size:21px;font-weight:600;letter-spacing:-0.01em;color:var(--navy);margin-bottom:14px;line-height:1.2}
 .catcard .body .ct-sub{display:flex;flex-direction:column;gap:2px}
 .catcard .body .ct-sub a{color:var(--slate-strong);font-size:15px;font-weight:400;padding:6px 0;border-bottom:1px solid var(--line)}
 .catcard .body .ct-sub a:first-child{border-top:1px solid var(--line)}

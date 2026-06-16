@@ -1,10 +1,10 @@
 import {
   SiteNav, SiteFooter, Breadcrumbs, HubHero, SectionHeader, HeroDark,
-  CardGrid, CategoryCard, ArticleCard, CtaBanner,
+  CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar,
 } from '@/components/chrome'
 import { PortableBody, headingsFromBody } from '@/components/PortableBody'
 import {
-  type HubData, type PillarData, type ClusterData, type ArticleData,
+  type HubData, type PillarData, type ClusterData, type ArticleData, type SearchResult,
   base, pillarPath, clusterPath, articlePath,
 } from '@/components/types'
 
@@ -33,15 +33,20 @@ export function Hub({ data }: { data: HubData }) {
             <div className="wrap">
               <SectionHeader title={cat} sub={sub} />
               <CardGrid>
-                {ps.map((p) => (
-                  <CategoryCard
-                    key={p.slug}
-                    coverTitle={p.shortLabel || p.title}
-                    sublinks={(p.topClusters || []).map((c) => ({ title: c.title, href: clusterPath(p.slug, c.slug) }))}
-                    exploreHref={pillarPath(p.slug)}
-                    exploreLabel={`Explore ${p.shortLabel || p.title}`}
-                  />
-                ))}
+                {ps.map((p) => {
+                  const arts = (p.topArticles || []).map((a) => ({ title: a.title, href: articlePath(p.slug, a.cluster, a.slug) }))
+                  const clus = (p.topClusters || []).map((c) => ({ title: c.title, href: clusterPath(p.slug, c.slug) }))
+                  return (
+                    <CategoryCard
+                      key={p.slug}
+                      slug={p.slug}
+                      title={p.shortLabel || p.title}
+                      sublinks={[...arts, ...clus].slice(0, 4)}
+                      exploreHref={pillarPath(p.slug)}
+                      exploreLabel={`Explore ${p.shortLabel || p.title}`}
+                    />
+                  )
+                })}
               </CardGrid>
             </div>
           </section>
@@ -265,6 +270,44 @@ export function Article({ data }: { data: ArticleData }) {
       ) : null}
 
       <CtaBanner />
+      <SiteFooter />
+    </>
+  )
+}
+
+/* ============================ SEARCH RESULTS ============================ */
+const TYPE_LABEL: Record<SearchResult['_type'], string> = { pillar: 'Pillar', cluster: 'Cluster', article: 'Guide' }
+
+function searchHref(r: SearchResult): string {
+  if (r._type === 'pillar') return pillarPath(r.pillarSlug || r.slug)
+  if (r._type === 'cluster') return clusterPath(r.pillarSlug || '', r.slug)
+  return articlePath(r.pillarSlug || '', r.clusterSlug || '', r.slug)
+}
+
+export function SearchResults({ q, results }: { q: string; results: SearchResult[] }) {
+  return (
+    <>
+      <SiteNav />
+      <section className="section" style={{ paddingTop: 48 }}>
+        <div className="wrap">
+          <SectionHeader
+            title={q ? `Results for "${q}"` : 'Search AI Search 101'}
+            sub={q ? `${results.length} result${results.length === 1 ? '' : 's'} across pillars, clusters, and guides.` : 'Search pillars, clusters, and guides.'}
+          />
+          <div style={{ maxWidth: 640, margin: '0 0 30px' }}><SearchBar defaultValue={q} /></div>
+          {results.length ? (
+            <CardGrid>
+              {results.map((r) => (
+                <ArticleCard key={`${r._type}-${r.slug}`} href={searchHref(r)} label={TYPE_LABEL[r._type]} title={r.title} excerpt={r.summary} />
+              ))}
+            </CardGrid>
+          ) : q ? (
+            <p style={{ color: 'var(--slate-strong)' }}>
+              No matches for &ldquo;{q}&rdquo;. Try a pillar (GEO, AEO, SEO), a cluster (fundamentals, strategy), or a topic.
+            </p>
+          ) : null}
+        </div>
+      </section>
       <SiteFooter />
     </>
   )
