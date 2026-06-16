@@ -27,19 +27,27 @@ a{color:var(--accent);text-decoration:none}
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 28px}
 
 /* ---------- Top nav ---------- */
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--bone)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:var(--wrap);margin:0 auto;padding:0 28px}
-.brand{display:flex;align-items:center;gap:9px}
-.brand svg{height:26px;width:26px}
-.brand .wordmark{color:var(--navy);font-weight:700;font-size:18px;letter-spacing:-0.02em}
-.brand .wordmark span{color:var(--accent)}
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{color:var(--ink);font-size:14.5px;font-weight:500;transition:color .15s}
-.nav-links a:hover,.nav-links a.is-active{color:var(--accent)}
-.btn-outline{border:1px solid var(--navy);color:var(--navy) !important;border-radius:40px;padding:9px 18px;font-size:14px;font-weight:600}
-.btn-outline:hover{background:var(--navy);color:#fff !important}
-.nav-cta{background:var(--accent);color:#fff !important;font-weight:700;font-size:14px;padding:10px 22px;border-radius:40px}
-.nav-cta:hover{filter:brightness(1.07)}
+.nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--bone)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1320px;margin:0 auto;padding:0 28px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{height:30px;width:30px}
+.brand .wordmark{color:var(--navy);font-weight:700;font-size:19px;letter-spacing:-0.01em}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-item{position:relative;height:68px;display:flex;align-items:center}
+.nav-trig{display:inline-flex;align-items:center;gap:6px;height:100%;padding:0 14px;color:var(--ink);font-size:14.5px;font-weight:500;cursor:pointer}
+.nav-trig svg{width:11px;height:11px;color:var(--slate);transition:transform .18s}
+.nav-item:hover .nav-trig{color:var(--accent)}
+.nav-item:hover .nav-trig svg{transform:rotate(180deg);color:var(--accent)}
+.nav-pop{position:absolute;top:100%;left:0;padding-top:8px;display:none;z-index:60}
+.nav-item:hover .nav-pop{display:block}
+.np-inner{background:#fff;border:1px solid var(--bone);border-radius:14px;box-shadow:var(--shadow-pop);padding:22px 26px;display:flex;gap:44px}
+.np-col h4{font-size:15px;font-weight:700;color:var(--navy);padding-bottom:11px;margin-bottom:6px;border-bottom:1px solid var(--line);min-width:172px}
+.np-col a{display:block;padding:9px 0;color:var(--slate-strong);font-size:14.5px;font-weight:500;white-space:nowrap}
+.np-col a:hover{color:var(--accent)}
+.nav-plain{padding:0 14px;color:var(--ink);font-size:14.5px;font-weight:500}
+.nav-plain:hover{color:var(--accent)}
+.nav-cta{margin-left:8px;background:var(--navy);color:#fff !important;font-weight:600;font-size:14.5px;padding:11px 24px;border-radius:40px;white-space:nowrap}
+.nav-cta:hover{filter:brightness(1.15)}
 
 /* ---------- Hub hero (centered, light) ---------- */
 .hubhero{padding:72px 0 40px;text-align:center}
@@ -152,18 +160,23 @@ a{color:var(--accent);text-decoration:none}
 .ctabanner .btn:hover{filter:brightness(1.07)}
 
 /* ---------- Footer (mega) ---------- */
-.mfooter{background:var(--navy-2);color:#9fc3f5;padding:54px 0 26px;margin-top:40px}
-.mf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:32px;border-bottom:1px solid rgba(159,195,245,.18)}
-.mf-top .brand .wordmark{color:#fff}
-.mf-top .brand .wordmark span{color:var(--sky)}
-.mf-intro{max-width:44ch;font-size:14px;color:#9fc3f5;margin-top:14px;line-height:1.6}
-.mf-actions .btn{display:inline-flex;background:#fff;color:var(--navy);font-weight:700;padding:11px 22px;border-radius:40px}
-.mf-cols{display:grid;grid-template-columns:repeat(6,1fr);gap:26px;padding:32px 0}
-.mf-col h4{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7fa8de;margin-bottom:14px}
-.mf-col a{display:block;font-size:13.5px;color:#c8dbf5;padding:5px 0}
-.mf-col a:hover{color:#fff}
-.mf-bar{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;border-top:1px solid rgba(159,195,245,.18);font-size:12.5px;color:#7fa8de}
-.mf-bar a{color:#9fc3f5}
+.mfooter{background:var(--bg);color:var(--slate-strong);padding:48px 0 22px;margin-top:40px;border-top:1px solid var(--bone)}
+.mf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:30px}
+.mf-brand .brand{display:inline-flex}
+.mf-brand .wordmark{color:var(--navy);font-weight:700;font-size:20px}
+.mf-intro{max-width:42ch;font-size:14.5px;color:var(--slate-strong);margin-top:16px;line-height:1.6}
+.mf-actions{display:flex;align-items:center;gap:14px}
+.mf-li{display:grid;place-items:center;width:36px;height:36px;border-radius:8px;color:var(--slate);background:var(--field)}
+.mf-li svg{width:19px;height:19px}
+.mf-li:hover{color:var(--accent)}
+.mf-cols{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;padding:30px 0;border-top:1px solid var(--bone);align-items:start}
+.mf-col h4{font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:var(--slate);padding-bottom:10px;margin-bottom:8px;border-bottom:1px solid var(--bone)}
+.mf-col h4.sub-h{margin-top:24px}
+.mf-col a{display:block;font-size:13.5px;color:var(--slate-strong);padding:6px 0}
+.mf-col a:hover{color:var(--accent)}
+.mf-bar{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--bone);font-size:13px;color:var(--slate)}
+.mf-bar a{color:var(--slate-strong)}
+.mf-bar a:hover{color:var(--accent)}
 
 /* ---------- Article reading layout ---------- */
 .article-wrap{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start;padding:40px 0 50px}
@@ -199,5 +212,6 @@ a{color:var(--accent);text-decoration:none}
 .faq details p{margin-top:10px;font-size:15.5px;color:var(--slate-strong)}
 
 /* ---------- Responsive ---------- */
+@media (max-width:1000px){.nav-item,.nav-plain{display:none}}
 @media (max-width:980px){.article-wrap{grid-template-columns:1fr}.toc{display:none}.mf-cols{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:620px){.nav-links{gap:14px}.nav-links a:not(.nav-cta):not(.btn-outline){display:none}.mf-cols{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.mf-cols{grid-template-columns:repeat(2,1fr)}}

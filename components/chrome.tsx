@@ -17,70 +17,142 @@ export function LogoSprite() {
   )
 }
 
+// ---- Maximus Labs site shell (matches the live nav + footer) ----
+const SITE = 'https://www.maximuslabs.ai'
+const PH = SITE // placeholder for real links the user will provide later
+const ASL = '/ai-search-101'
+
+/** Maximus pinwheel logo (approximation; swap exact asset when provided). */
+function Pinwheel({ size = 30 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M24 24 L24 4 L41 12 Z" fill="#0070e0" />
+      <path d="M24 24 L44 24 L36 41 Z" fill="#001c64" />
+      <path d="M24 24 L24 44 L7 36 Z" fill="#449afb" />
+      <path d="M24 24 L4 24 L12 7 Z" fill="#003087" />
+    </svg>
+  )
+}
+function Caret() {
+  return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+}
+function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M4.98 3.5A2.5 2.5 0 002.5 6 2.5 2.5 0 004.98 8.5 2.5 2.5 0 007.5 6 2.5 2.5 0 004.98 3.5zM3 9h4v12H3zM10 9h3.8v1.7h.06c.53-1 1.83-2.06 3.76-2.06 4.02 0 4.38 2.35 4.38 5.4V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z" />
+    </svg>
+  )
+}
+function NavLink({ label, href }: { label: string; href: string }) {
+  return href.startsWith('/') ? <Link href={href}>{label}</Link> : <a href={href}>{label}</a>
+}
+
+const SERVICES: { h: string; links: [string, string][] }[] = [
+  { h: 'Expertise', links: [['Generative Engine Optimisation', PH], ['Answer Engine Optimisation', PH], ['Agentic Commerce', PH], ['B2B SEO', PH]] },
+  { h: 'Platforms', links: [['ChatGPT', PH], ['Gemini', PH], ['Perplexity', PH], ['Google AI Mode', PH], ['Claude', PH]] },
+]
+const RESOURCES: { h: string; links: [string, string][] }[] = [
+  { h: 'Learn', links: [['AI Search 101', ASL], ['Blogs', PH], ['Industry Reports', PH]] },
+  { h: 'Tools', links: [['AI Content Humanizer', PH], ['AI Content Optimizer', PH], ['AI Crawlability Checker', PH], ['LLM Text Generator', PH]] },
+]
+const INDUSTRIES: [string, string][] = [['AI | SaaS', PH], ['Fintech', PH], ['Ecommerce', PH]]
+const COMPANY: [string, string][] = [['About Us', PH], ['Case Studies', PH], ['Career', PH]]
+
+function MegaItem({ label, cols }: { label: string; cols: { h: string; links: [string, string][] }[] }) {
+  return (
+    <div className="nav-item">
+      <span className="nav-trig">{label} <Caret /></span>
+      <div className="nav-pop">
+        <div className="np-inner">
+          {cols.map((c) => (
+            <div className="np-col" key={c.h}>
+              <h4>{c.h}</h4>
+              {c.links.map(([l, h]) => <NavLink key={l} label={l} href={h} />)}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+function SimpleItem({ label, links }: { label: string; links: [string, string][] }) {
+  return (
+    <div className="nav-item">
+      <span className="nav-trig">{label} <Caret /></span>
+      <div className="nav-pop">
+        <div className="np-inner">
+          <div className="np-col">{links.map(([l, h]) => <NavLink key={l} label={l} href={h} />)}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function SiteNav() {
   return (
     <header className="nav">
       <div className="nav-inner">
-        <Link className="brand" href="/ai-search-101">
-          <svg viewBox="0 0 48 48"><use href="#ml-mark" /></svg>
-          <span className="wordmark">Maximus<span>Labs</span></span>
-        </Link>
+        <a className="brand" href={`${SITE}/`}>
+          <Pinwheel />
+          <span className="wordmark">Maximus Labs</span>
+        </a>
         <nav className="nav-links">
-          <a href="https://www.maximuslabs.ai/">Services</a>
-          <a href="https://www.maximuslabs.ai/resources">Resources</a>
-          <a href="https://www.maximuslabs.ai/industries">Industries</a>
-          <Link href="/ai-search-101" className="is-active">AI Search 101</Link>
-          <a className="btn-outline" href="https://www.maximuslabs.ai/contact">Contact Us</a>
-          <a className="nav-cta" href="https://www.maximuslabs.ai/contact">Get Started</a>
+          <MegaItem label="Services" cols={SERVICES} />
+          <MegaItem label="Resources" cols={RESOURCES} />
+          <SimpleItem label="Industries" links={INDUSTRIES} />
+          <SimpleItem label="Company" links={COMPANY} />
+          <a className="nav-plain" href={`${SITE}/pricing`}>Pricing</a>
+          <a className="nav-cta" href={`${SITE}/contact`}>Contact Us</a>
         </nav>
       </div>
     </header>
   )
 }
 
-const FOOTER_COLS: { h: string; links: string[] }[] = [
-  { h: 'Services', links: ['Generative Engine Optimization', 'Answer Engine Optimization', 'Agentic Commerce', 'B2B SEO'] },
-  { h: 'Answer Engine Optimization', links: ['What is AEO?', 'AEO vs SEO', 'Best AEO Agencies', 'Enterprise AEO Agencies'] },
-  { h: 'Generative Engine Optimization', links: ['What is GEO?', 'GEO vs Traditional SEO', 'Best GEO Agencies', 'GEO Strategy Framework'] },
-  { h: 'Tools', links: ['AI Content Humanizer', 'AI Content Optimizer', 'AI Crawlability Checker', 'LLM Text Generator'] },
-  { h: 'Resources', links: ['Blogs', 'AI Search 101', 'ChatGPT SEO Guide', 'Perplexity SEO Guide'] },
-  { h: 'Company', links: ['Contact Us', 'FAQ'] },
+const FOOTER_COLS: { h: string; links: [string, string][] }[] = [
+  { h: 'Services', links: [['Generative Engine Optimization', PH], ['Answer Engine Optimization', PH], ['Agentic Commerce', PH], ['B2B SEO', PH]] },
+  { h: 'Answer Engine Optimization', links: [['What is AEO?', PH], ['AEO vs SEO', PH], ['Best AEO Agencies', PH], ['Enterprise AEO Agencies', PH], ['Ecommerce AEO Agencies', PH], ['Best AEO Tools', PH], ['AEO Implementation Checklist', PH], ['AI Search Tracking Tools', PH], ['Profound Alternatives', PH]] },
+  { h: 'Generative Engine Optimization', links: [['What is GEO?', PH], ['GEO vs Traditional SEO', PH], ['Best GEO Agencies', PH], ['GEO Strategy Framework', PH], ['GEO Case Studies', PH], ['GEO Market Analysis 2026', PH], ['Top GEO Tools', PH], ['Technical GEO Implementation', PH], ['Peec AI Alternatives', PH]] },
+  { h: 'Tools', links: [['AI Content Humanizer', PH], ['AI Content Optimizer', PH], ['AI Crawlability Checker', PH], ['LLM Text Generator', PH], ['Reddit Thread Transfer', PH]] },
+  { h: 'Resources', links: [['Blogs', PH], ['AI Search 101', ASL], ['Google Algorithm Updates', PH], ['ChatGPT SEO Guide', PH], ['Perplexity SEO Guide', PH], ['Gemini Guide', PH], ['Claude Guide', PH]] },
+  { h: 'Company', links: [['Contact Us', `${SITE}/contact`], ['FAQ', PH]] },
 ]
+const FOOTER_INDUSTRIES: [string, string][] = [['SaaS | AI', PH], ['Ecommerce', PH], ['Fintech', PH]]
 
 export function SiteFooter() {
   return (
     <footer className="mfooter">
       <div className="wrap">
         <div className="mf-top">
-          <div>
-            <Link className="brand" href="/ai-search-101">
-              <svg viewBox="0 0 48 48" style={{ height: 26, width: 26 }}><use href="#ml-mark-w" /></svg>
-              <span className="wordmark">Maximus<span>Labs</span></span>
-            </Link>
+          <div className="mf-brand">
+            <a className="brand" href={`${SITE}/`}><Pinwheel size={34} /><span className="wordmark">Maximus Labs</span></a>
             <p className="mf-intro">
               Maximus Labs helps you rank on Google, ChatGPT, and beyond. Reach out today to build
               your AI-first, SEO-strong growth engine.
             </p>
           </div>
           <div className="mf-actions">
-            <a className="btn" href="https://www.maximuslabs.ai/contact">Contact Us &rarr;</a>
+            <a className="nav-cta" href={`${SITE}/contact`}>Contact Us &rarr;</a>
+            <a className="mf-li" href="https://www.linkedin.com/company/maximuslabs" aria-label="LinkedIn"><LinkedInIcon /></a>
           </div>
         </div>
         <div className="mf-cols">
           {FOOTER_COLS.map((c) => (
             <div className="mf-col" key={c.h}>
               <h4>{c.h}</h4>
-              {c.links.map((l) =>
-                l === 'AI Search 101'
-                  ? <Link key={l} href="/ai-search-101">{l}</Link>
-                  : <a key={l} href="https://www.maximuslabs.ai/">{l}</a>,
+              {c.links.map(([l, h]) => <NavLink key={l} label={l} href={h} />)}
+              {c.h === 'Services' && (
+                <>
+                  <h4 className="sub-h">Industries</h4>
+                  {FOOTER_INDUSTRIES.map(([l, h]) => <NavLink key={l} label={l} href={h} />)}
+                </>
               )}
             </div>
           ))}
         </div>
         <div className="mf-bar">
-          <span>Copyright &copy; 2026 Maximus Labs. All rights reserved.</span>
-          <span><a href="https://www.maximuslabs.ai/privacy">Privacy Policy</a> &nbsp; <a href="https://www.maximuslabs.ai/terms">Terms of Service</a></span>
+          <span>Copyright &copy; 2025 Maximus Labs. All rights reserved.</span>
+          <span><a href={`${SITE}/privacy`}>Privacy Policy</a> &nbsp;&nbsp; <a href={`${SITE}/terms`}>Terms of Service</a></span>
         </div>
       </div>
     </footer>
