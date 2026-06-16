@@ -1,11 +1,17 @@
 import { groq } from 'next-sanity'
 
 /** L1 — Hub: list all pillars with their cluster counts. */
+const ARTICLE_LINK = `title, excerpt, "slug": slug.current,
+  "pillar": pillar->slug.current, "cluster": cluster->slug.current, "label": pillar->shortLabel`
+
 export const HUB_Q = groq`{
   "pillars": *[_type=="pillar"] | order(order asc){
     title, shortLabel, summary, category, "slug": slug.current,
-    "clusterCount": count(*[_type=="cluster" && references(^._id)])
-  }
+    "clusterCount": count(*[_type=="cluster" && references(^._id)]),
+    "topClusters": *[_type=="cluster" && references(^._id)] | order(order asc)[0...4]{ title, "slug": slug.current }
+  },
+  "latest": *[_type=="article" && defined(datePublished)] | order(datePublished desc)[0...8]{ ${ARTICLE_LINK} },
+  "popular": *[_type=="article"] | order(readingTime desc)[0...8]{ ${ARTICLE_LINK} }
 }`
 
 /** L2 — Pillar by slug, with its clusters and each cluster's article links. */
@@ -38,9 +44,14 @@ export const ARTICLE_Q = groq`*[_type=="article"
   "pillar": pillar->{title, shortLabel, "slug": slug.current},
   "cluster": cluster->{title, "slug": slug.current},
   "related": relatedArticles[]->{
-    title, "slug": slug.current,
-    "cluster": cluster->slug.current, "pillar": pillar->slug.current
-  }
+    title, excerpt, "slug": slug.current,
+    "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel
+  },
+  "siblings": *[_type=="article" && cluster->slug.current==$cluster && pillar->slug.current==$pillar && slug.current != $article]
+    | order(order asc)[0...3]{
+      title, excerpt, "slug": slug.current,
+      "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel
+    }
 }`
 
 /** For generateStaticParams + sitemap: every renderable path component. */

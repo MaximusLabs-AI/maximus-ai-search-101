@@ -3,6 +3,15 @@ import type { PortableTextBlock } from '@portabletext/react'
 export type PillarRef = { title: string; shortLabel?: string; slug: string }
 export type FaqItem = { question: string; answer: string }
 
+export type ArticleLink = {
+  title: string
+  excerpt?: string
+  slug: string
+  pillar: string
+  cluster: string
+  label?: string
+}
+
 export type HubData = {
   pillars: {
     title: string
@@ -11,7 +20,10 @@ export type HubData = {
     category?: string
     slug: string
     clusterCount: number
+    topClusters?: { title: string; slug: string }[]
   }[]
+  latest?: ArticleLink[]
+  popular?: ArticleLink[]
 }
 
 export type PillarData = {
@@ -52,7 +64,8 @@ export type ArticleData = {
   seo?: { metaTitle?: string; metaDescription?: string; schemaType?: string }
   pillar: PillarRef
   cluster: { title: string; slug: string }
-  related?: { title: string; slug: string; cluster: string; pillar: string }[]
+  related?: ArticleLink[]
+  siblings?: ArticleLink[]
 }
 
 /** Shared path helper so every component builds the same canonical URLs. */
