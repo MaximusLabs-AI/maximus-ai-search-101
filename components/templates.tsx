@@ -1,6 +1,6 @@
 import {
   SiteNav, SiteFooter, Breadcrumbs, HubHero, SectionHeader, HeroDark,
-  CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar,
+  CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard,
 } from '@/components/chrome'
 import { PortableBody, headingsFromBody } from '@/components/PortableBody'
 import {
@@ -89,6 +89,9 @@ export function Hub({ data }: { data: HubData }) {
 export function Pillar({ data }: { data: PillarData }) {
   const label = data.shortLabel || data.title
   const guideCount = data.clusters.reduce((n, c) => n + (c.articles?.length || 0), 0)
+  const featured = data.clusters
+    .flatMap((c) => (c.articles || []).map((a) => ({ title: a.title, href: articlePath(data.slug, c.slug, a.slug) })))
+    .slice(0, 5)
   return (
     <>
       <SiteNav />
@@ -98,6 +101,11 @@ export function Pillar({ data }: { data: PillarData }) {
         {data.summary && <p className="sub">{data.summary}</p>}
         <div className="ameta"><b>{data.clusters.length} clusters</b><span className="sep">&middot;</span><span>{guideCount} guides</span></div>
       </HeroDark>
+      {featured.length ? (
+        <div className="wrap" style={{ paddingTop: 36 }}>
+          <FeatureCard slug={data.slug} title={data.title} summary={data.summary} links={featured} />
+        </div>
+      ) : null}
       <section className="section">
         <div className="wrap">
           <SectionHeader title={`Explore ${label}`} sub="Pick a cluster to dive into its guides." />
@@ -123,6 +131,7 @@ export function Pillar({ data }: { data: PillarData }) {
 /* ============================ L3 — CLUSTER ============================ */
 export function Cluster({ data }: { data: ClusterData }) {
   const pillarLabel = data.pillar.shortLabel || data.pillar.title
+  const featured = data.articles.slice(0, 5).map((a) => ({ title: a.title, href: articlePath(data.pillar.slug, data.slug, a.slug) }))
   return (
     <>
       <SiteNav />
@@ -136,6 +145,11 @@ export function Cluster({ data }: { data: ClusterData }) {
         {data.summary && <p className="sub">{data.summary}</p>}
         <div className="ameta"><b>{data.articles.length} guides</b>{data.level ? <><span className="sep">&middot;</span><span>{data.level}</span></> : null}</div>
       </HeroDark>
+      {featured.length ? (
+        <div className="wrap" style={{ paddingTop: 36 }}>
+          <FeatureCard slug={data.pillar.slug} title={data.title} summary={data.summary} links={featured} />
+        </div>
+      ) : null}
       <section className="section">
         <div className="wrap">
           {data.articles.length > 0 ? (

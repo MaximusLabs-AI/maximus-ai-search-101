@@ -198,6 +198,39 @@ export function CategoryCard({
   )
 }
 
+/** Big representative card at the top of a pillar/cluster: title + summary +
+ *  up to 5 article direct-links. */
+export function FeatureCard({
+  slug, title, summary, links,
+}: {
+  slug: string
+  title: string
+  summary?: string
+  links: { title: string; href: string }[]
+}) {
+  return (
+    <article className="featurecard">
+      <div className="fc-head">
+        <span className="dotgrid" />
+        <svg className="mark" viewBox="0 0 48 48"><use href="#ml-mark-w" /></svg>
+        <IconFor slug={slug} />
+        <h2>{title}</h2>
+        {summary && <p>{summary}</p>}
+      </div>
+      <div className="fc-links">
+        <span className="fl-lab">Start with these</span>
+        {links.map((l, i) => (
+          <Link key={l.href} href={l.href}>
+            <span className="n">{String(i + 1).padStart(2, '0')}</span>
+            {l.title}
+            <span className="arr">&rarr;</span>
+          </Link>
+        ))}
+      </div>
+    </article>
+  )
+}
+
 /** Bordered, whole-card-clickable article card with a clamped excerpt. */
 export function ArticleCard({
   href, label, title, excerpt,

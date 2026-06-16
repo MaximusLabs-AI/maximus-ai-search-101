@@ -9,7 +9,7 @@ export const HUB_Q = groq`{
     title, shortLabel, summary, category, "slug": slug.current,
     "clusterCount": count(*[_type=="cluster" && references(^._id)]),
     "topClusters": *[_type=="cluster" && references(^._id)] | order(order asc)[0...4]{ title, "slug": slug.current },
-    "topArticles": *[_type=="article" && references(^._id)] | order(coalesce(order, 99) asc)[0...4]{ title, "slug": slug.current, "cluster": cluster->slug.current }
+    "topArticles": *[_type=="article" && references(^._id)] | order(cluster->order asc, coalesce(order, 99) asc)[0...4]{ title, "slug": slug.current, "cluster": cluster->slug.current }
   },
   "latest": *[_type=="article" && defined(datePublished)] | order(datePublished desc)[0...8]{ ${ARTICLE_LINK} },
   "popular": *[_type=="article"] | order(readingTime desc)[0...8]{ ${ARTICLE_LINK} }
