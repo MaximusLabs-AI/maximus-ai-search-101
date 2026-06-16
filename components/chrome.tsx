@@ -22,17 +22,6 @@ const SITE = 'https://www.maximuslabs.ai'
 const PH = SITE // placeholder for real links the user will provide later
 const ASL = '/ai-search-101'
 
-/** Maximus pinwheel logo (approximation; swap exact asset when provided). */
-function Pinwheel({ size = 30 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M24 24 L24 4 L41 12 Z" fill="#0070e0" />
-      <path d="M24 24 L44 24 L36 41 Z" fill="#001c64" />
-      <path d="M24 24 L24 44 L7 36 Z" fill="#449afb" />
-      <path d="M24 24 L4 24 L12 7 Z" fill="#003087" />
-    </svg>
-  )
-}
 function Caret() {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
 }
@@ -92,18 +81,22 @@ export function SiteNav() {
   return (
     <header className="nav">
       <div className="nav-inner">
-        <a className="brand" href={`${SITE}/`}>
-          <Pinwheel />
-          <span className="wordmark">Maximus Labs</span>
-        </a>
-        <nav className="nav-links">
-          <MegaItem label="Services" cols={SERVICES} />
-          <MegaItem label="Resources" cols={RESOURCES} />
-          <SimpleItem label="Industries" links={INDUSTRIES} />
-          <SimpleItem label="Company" links={COMPANY} />
+        <div className="nav-left">
+          <a className="brand" href={`${SITE}/`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="brand-logo" src="/brand/maximus-wordmark.svg" alt="Maximus Labs" width={196} height={35} />
+          </a>
+          <nav className="nav-links">
+            <MegaItem label="Services" cols={SERVICES} />
+            <MegaItem label="Resources" cols={RESOURCES} />
+            <SimpleItem label="Industries" links={INDUSTRIES} />
+            <SimpleItem label="Company" links={COMPANY} />
+          </nav>
+        </div>
+        <div className="nav-right">
           <a className="nav-plain" href={`${SITE}/pricing`}>Pricing</a>
           <a className="nav-cta" href={`${SITE}/contact`}>Contact Us</a>
-        </nav>
+        </div>
       </div>
     </header>
   )
@@ -125,7 +118,8 @@ export function SiteFooter() {
       <div className="wrap">
         <div className="mf-top">
           <div className="mf-brand">
-            <a className="brand" href={`${SITE}/`}><Pinwheel size={34} /><span className="wordmark">Maximus Labs</span></a>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <a className="brand" href={`${SITE}/`}><img className="brand-logo" src="/brand/maximus-wordmark.svg" alt="Maximus Labs" width={210} height={38} /></a>
             <p className="mf-intro">
               Maximus Labs helps you rank on Google, ChatGPT, and beyond. Reach out today to build
               your AI-first, SEO-strong growth engine.
