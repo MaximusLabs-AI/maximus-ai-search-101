@@ -1,0 +1,151 @@
+{
+  "id": "article-aeo-fundamentals-aeo-platforms-beyond-chatgpt-perplexity",
+  "title": "Which Platforms and AI Systems Does AEO Apply To Beyond ChatGPT and Perplexity?",
+  "slug": "aeo-platforms-beyond-chatgpt-perplexity",
+  "pillar": "aeo",
+  "cluster": "fundamentals",
+  "answer": "AEO applies to every surface that synthesizes or extracts a direct answer, not just ChatGPT and Perplexity. That includes Google AI Overviews and AI Mode, Gemini, Microsoft Copilot and Bing, Anthropic Claude, featured snippets and People Also Ask, voice assistants like Alexa and Siri, and vertical surfaces such as Amazon Rufus.",
+  "excerpt": "AEO extends beyond ChatGPT and Perplexity to Google AI Overviews, Gemini, Copilot, Claude, snippets, voice assistants, and shopping AI.",
+  "readingTime": 11,
+  "datePublished": "2026-03-01",
+  "sections": [
+    {
+      "h2": "Does AEO Only Apply to ChatGPT and Perplexity?",
+      "blocks": [
+        { "t": "p", "text": "No. AEO applies to any surface that returns a single synthesized or extracted answer instead of a list of links. ChatGPT and Perplexity are the most visible examples, but they are a small slice of where your buyers actually get answers." },
+        { "t": "p", "text": "If a system reads content, picks the most relevant passage, and presents it as the answer, AEO applies. That covers Google AI Overviews and AI Mode, Gemini, Microsoft Copilot and Bing, Anthropic Claude, classic answer features like featured snippets and People Also Ask, voice assistants, and emerging vertical tools like Amazon Rufus for shopping." },
+        { "t": "p", "text": "The common thread is the answer itself. The moment a surface commits to one response, you are no longer competing for a ranking position. You are competing to be the source that response is built from." },
+        { "t": "callout", "text": "In our work at MaximusLabs, we have found that teams who scope AEO to ChatGPT and Perplexity alone miss the majority of their answer-engine exposure. Most buyers touch a Google answer surface long before they open a standalone chatbot." }
+      ]
+    },
+    {
+      "h2": "Why Does the List of Platforms Matter So Much?",
+      "blocks": [
+        { "t": "p", "text": "Coverage matters because different engines pull from different sources. Optimizing for one platform leaves real gaps on the others, even when buyers ask nearly identical questions." },
+        { "t": "p", "text": "Each engine has its own retrieval index, its own quality filters, and its own preferences for the kinds of pages it trusts. One engine may lean on encyclopedic and editorial sources. Another may favor community discussion and user reviews. A third may weight its own web index and structured data. The result is that only a small fraction of cited sources tend to overlap across AI engines for the same query." },
+        { "t": "h3", "text": "What single-platform optimization misses" },
+        { "t": "ul", "items": [
+          "Engines that index different parts of the web, so your page is retrieved in one and invisible in another",
+          "Surfaces that reward different formats, such as a 40 to 60 word snippet versus a multi-paragraph synthesis",
+          "Buyers who never open a chatbot but see an AI answer at the top of a normal search",
+          "Voice and shopping surfaces that read a single answer aloud or place a single product, with no room for second place"
+        ] },
+        { "t": "p", "text": "If you only track mentions on one engine, you can look like you are winning while being entirely absent from where most of your category's questions get answered." },
+        { "t": "quote", "text": "Optimizing for one answer engine is like advertising in one city and assuming you have national reach. The audience is everywhere the answer appears." }
+      ]
+    },
+    {
+      "h2": "How Do the Major AI Chat Platforms Answer, and How Do You Optimize for Them?",
+      "blocks": [
+        { "t": "p", "text": "The major conversational platforms (ChatGPT, Perplexity, Gemini, Copilot, and Claude) all synthesize answers from retrieved sources, but they differ in which index they search and how aggressively they cite." },
+        { "t": "h3", "text": "ChatGPT" },
+        { "t": "p", "text": "ChatGPT with browsing retrieves live web results, leans on its search partner's index, and tends to favor established, editorially reviewed sources. To optimize, give it clean, self-contained passages it can quote, with clear attribution and concrete facts. Strong entity clarity (an unambiguous definition of who you are and what you do) helps it associate your brand with your category." },
+        { "t": "h3", "text": "Perplexity" },
+        { "t": "p", "text": "Perplexity is built around citations and surfaces multiple sources per answer, often including community and discussion content alongside publishers. To optimize, earn presence beyond your own domain (reviews, forums, and reputable third-party mentions) and make your pages easy to extract and cite directly." },
+        { "t": "h3", "text": "Google Gemini" },
+        { "t": "p", "text": "Gemini draws on Google's understanding of the web and integrates tightly with Google's ecosystem. Optimize the same way you would for Google answer surfaces: strong topical depth, structured data, clear entities, and content that demonstrates real expertise and trust signals." },
+        { "t": "h3", "text": "Microsoft Copilot" },
+        { "t": "p", "text": "Copilot is grounded in Bing's index and synthesizes cited answers across web and, in work contexts, internal data. Optimize by making sure you are well indexed in Bing, not just Google, and by structuring content so a single passage cleanly answers a specific question." },
+        { "t": "h3", "text": "Anthropic Claude" },
+        { "t": "p", "text": "Claude answers from its training plus retrieved context when connected to web or document sources. It rewards clear, well-structured, trustworthy writing. Optimize by being the kind of source a careful reader would cite: precise, factual, and free of fluff, with claims that are easy to verify." },
+        { "t": "callout", "text": "Our MaximusLabs view: these five platforms reward the same underlying discipline. Write self-contained, factual, attributable passages, and the format that wins on one engine usually travels well to the others." }
+      ]
+    },
+    {
+      "h2": "What About Google's Answer Surfaces Specifically?",
+      "blocks": [
+        { "t": "p", "text": "Google is the single most important AEO battleground because it runs several answer surfaces at once, and most buyers encounter at least one of them before they ever open a chatbot." },
+        { "t": "h3", "text": "AI Overviews" },
+        { "t": "p", "text": "AI Overviews generate a synthesized answer at the top of a normal search results page, drawing from multiple sources in Google's index and linking out to a handful of them. To optimize, cover the topic comprehensively, structure each section to answer one clear question, and earn the trust signals Google uses to filter sources before its model ever assembles the answer." },
+        { "t": "h3", "text": "AI Mode" },
+        { "t": "p", "text": "AI Mode is Google's conversational search experience. It breaks a question into many sub-queries, runs them in parallel, and stitches the results into a single response. This rewards semantically rich content and topic clusters, because your pages need to match reformulated versions of a question, not just the exact words a user typed." },
+        { "t": "h3", "text": "Featured snippets, People Also Ask, and knowledge panels" },
+        { "t": "p", "text": "These are the original answer engines and they still matter. Featured snippets extract a concise direct answer (often a 40 to 60 word paragraph, a list, or a table) and place it above the standard results. People Also Ask surfaces related questions with extractable answers. Knowledge panels pull structured facts about entities. To win them, put a crisp, literal answer to a specific question near the top of the relevant section, then expand below it." },
+        { "t": "p", "text": "These classic surfaces are the most predictable AEO wins available, and the habits that earn them (answer-first writing, clean structure, schema markup) also strengthen your performance on the newer generative surfaces." }
+      ]
+    },
+    {
+      "h2": "How Do Voice Assistants Fit Into AEO?",
+      "blocks": [
+        { "t": "p", "text": "Voice assistants are pure answer engines. Google Assistant, Alexa, and Siri read back a single response, which makes them the most unforgiving AEO surface of all. There is no page two when an assistant speaks." },
+        { "t": "p", "text": "Voice answers are typically short, conversational, and pulled from a source the assistant already trusts. Google Assistant often draws on the same logic that powers featured snippets. Alexa and Siri blend their own knowledge sources with licensed and web data depending on the question." },
+        { "t": "h3", "text": "How to optimize for voice" },
+        { "t": "ul", "items": [
+          "Write a direct, spoken-friendly answer in one or two sentences, then expand for readers",
+          "Target natural-language questions the way people actually ask them out loud",
+          "Keep core answers concise, since assistants rarely read more than a short passage",
+          "Reinforce entity and local data (business name, hours, location) so assistants can answer factual queries about you"
+        ] },
+        { "t": "p", "text": "The good news: the answer-first, snippet-friendly structure that wins featured snippets is most of the work for voice too." }
+      ]
+    },
+    {
+      "h2": "What Are the Emerging and Vertical Answer Surfaces?",
+      "blocks": [
+        { "t": "p", "text": "AEO is spreading into specialized, in-context answer engines that live inside the products where decisions actually happen. Shopping is the clearest example, but it will not be the last." },
+        { "t": "h3", "text": "Amazon Rufus and shopping AI" },
+        { "t": "p", "text": "Amazon Rufus is a shopping assistant that answers product questions and recommends items directly inside the Amazon experience. It synthesizes from product listings, attributes, reviews, and Q and A. To optimize, treat your product detail content like answer content: complete and accurate attributes, clear descriptions that address real buyer questions, and healthy review and Q and A signals." },
+        { "t": "h3", "text": "Other vertical surfaces to watch" },
+        { "t": "ul", "items": [
+          "In-app assistants inside SaaS tools that answer questions from documentation and help content",
+          "Marketplace and travel assistants that recommend a single best option from structured listings",
+          "Maps and local discovery answers that surface one business in response to a need",
+          "Industry-specific research assistants that summarize from trade publications and primary sources"
+        ] },
+        { "t": "p", "text": "The pattern is consistent across every vertical surface: the engine reads structured, trustworthy content about a narrow domain and returns one synthesized recommendation. Whoever supplies the clearest, most credible source becomes the answer." }
+      ]
+    },
+    {
+      "h2": "Which Platform Pulls From What, and How Do You Optimize for Each?",
+      "blocks": [
+        { "t": "p", "text": "Here is the full landscape in one view. Use it to audit where you currently appear and where you have gaps. The optimization column shows the highest-leverage move for each surface." },
+        { "t": "table", "header": ["Platform / Surface", "How it answers", "How to optimize"], "rows": [
+          ["ChatGPT", "Synthesizes from a web index plus model knowledge, favoring established sources", "Self-contained, quotable passages with clear attribution and strong entity clarity"],
+          ["Perplexity", "Citation-first synthesis across publishers and community content", "Earn third-party mentions and reviews; make pages easy to extract and cite"],
+          ["Google AI Overviews", "Synthesized answer above search results, drawn from Google's index", "Comprehensive topical coverage, answer-first sections, and trust signals"],
+          ["Google AI Mode", "Breaks the query into sub-queries and stitches a conversational answer", "Semantically rich topic clusters that match reformulated questions"],
+          ["Google Gemini", "Answers from Google's web understanding and ecosystem", "Structured data, clear entities, demonstrated expertise and trust"],
+          ["Microsoft Copilot / Bing", "Cited synthesis grounded in Bing's index", "Ensure strong Bing indexing; one clean passage per specific question"],
+          ["Anthropic Claude", "Answers from training plus retrieved context when connected", "Precise, factual, verifiable writing a careful reader would cite"],
+          ["Featured snippets / PAA", "Extracts a concise direct answer from a single page", "Put a crisp 40 to 60 word answer near the top, then expand"],
+          ["Knowledge panels", "Pulls structured facts about an entity", "Consistent entity data and schema markup across the web"],
+          ["Voice (Assistant, Alexa, Siri)", "Reads back one short, trusted answer aloud", "Concise spoken answers to natural-language questions; strong local data"],
+          ["Amazon Rufus / shopping AI", "Synthesizes from listings, attributes, and reviews", "Complete product attributes, buyer-question-led descriptions, review signals"]
+        ] },
+        { "t": "p", "text": "Notice how often the same moves repeat. Answer-first structure, clear entities, trust signals, and extractable passages show up in almost every row. That overlap is what makes a multi-platform strategy practical rather than overwhelming." }
+      ]
+    },
+    {
+      "h2": "What Does a Multi-Platform AEO Strategy Actually Look Like?",
+      "blocks": [
+        { "t": "p", "text": "A multi-platform AEO strategy means building content that any answer engine can retrieve, extract, and trust, then deliberately closing the gaps that are specific to individual surfaces. You start with shared fundamentals and layer on platform-specific reach." },
+        { "t": "h3", "text": "Step 1: Build the shared foundation" },
+        { "t": "ul", "items": [
+          "Write answer-first: lead each section with a direct answer, then expand",
+          "Make every paragraph self-contained so it can be extracted in isolation",
+          "Add specifics: concrete facts, plain definitions, and clear attribution",
+          "Establish entity clarity so engines unambiguously know who you are",
+          "Use clean structure and schema so machines can parse your pages"
+        ] },
+        { "t": "h3", "text": "Step 2: Close the platform-specific gaps" },
+        { "t": "ul", "items": [
+          "Confirm you are well indexed in both Google and Bing, since different engines depend on each",
+          "Earn presence off your own domain (reviews, forums, reputable publications) for engines that favor third-party signals",
+          "Format crisp 40 to 60 word answers for snippets and voice, alongside deeper passages for generative synthesis",
+          "Strengthen product, local, and review data for shopping and voice surfaces"
+        ] },
+        { "t": "h3", "text": "Step 3: Measure across surfaces, not one" },
+        { "t": "p", "text": "Track share of voice and citations across multiple engines, not a single favorite. Because only a small fraction of sources tend to overlap between engines, you cannot infer your Perplexity presence from your ChatGPT presence, or your AI Overviews presence from either. Watch AI referral traffic as its own channel, and expect cited sources to shift meaningfully over time, which makes ongoing monitoring more useful than one-time audits." },
+        { "t": "quote", "text": "Build once for the fundamentals, then close the gaps surface by surface. That is how you go from being the answer on one engine to being the answer everywhere your buyers ask." },
+        { "t": "callout", "text": "Our MaximusLabs view: the highest-leverage AEO work is the shared foundation. Get answer-first structure, entity clarity, and trust signals right, and you are already competitive on most surfaces before you optimize for a single one of them." }
+      ]
+    }
+  ],
+  "faq": [
+    { "q": "Is AEO only relevant for ChatGPT and Perplexity?", "a": "No. AEO applies to any surface that returns a synthesized or extracted answer instead of a list of links. That includes Google AI Overviews and AI Mode, Gemini, Microsoft Copilot, Claude, featured snippets, People Also Ask, voice assistants, and shopping tools like Amazon Rufus. Scoping AEO to just two chatbots leaves most of your answer-engine exposure uncovered." },
+    { "q": "Why can't I just optimize for one AI platform?", "a": "Because different engines pull from different indexes and trust different kinds of sources, only a small fraction of cited sources tend to overlap across engines for the same query. You can look like you are winning on one platform while being completely absent on another. Single-platform optimization leaves real gaps where your buyers are getting answers." },
+    { "q": "Do featured snippets and voice search still count as AEO?", "a": "Yes. Featured snippets, People Also Ask, knowledge panels, and voice assistants are the original answer engines and they still matter. They reward the same answer-first, concise, well-structured content that the newer generative surfaces favor, so optimizing for them strengthens your whole AEO program." },
+    { "q": "How is optimizing for Google AI Overviews different from optimizing for ChatGPT?", "a": "The underlying discipline is similar (self-contained, factual, trustworthy passages), but the details differ. AI Overviews draws from Google's index and rewards comprehensive topical coverage and Google's trust signals, while ChatGPT relies on its own search partner's index and favors established sources. The safest approach is to nail the shared fundamentals first, then close platform-specific gaps." },
+    { "q": "What is the first step toward a multi-platform AEO strategy?", "a": "Start with the shared foundation: write answer-first, make every paragraph self-contained and extractable, add concrete facts with clear attribution, and establish strong entity clarity with clean structure and schema. Those moves make your content retrievable and trustworthy across nearly every engine before you optimize for any single surface." }
+  ]
+}

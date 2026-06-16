@@ -19,8 +19,7 @@ export function LogoSprite() {
 
 // ---- Maximus Labs site shell (matches the live nav + footer) ----
 const SITE = 'https://www.maximuslabs.ai'
-const PH = SITE // placeholder for real links the user will provide later
-const ASL = '/ai-search-101'
+const ASL = '/ai-search-101' // internal: keeps in-app navigation within the hub
 
 function Caret() {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -37,15 +36,43 @@ function NavLink({ label, href }: { label: string; href: string }) {
 }
 
 const SERVICES: { h: string; links: [string, string][] }[] = [
-  { h: 'Expertise', links: [['Generative Engine Optimisation', PH], ['Answer Engine Optimisation', PH], ['Agentic Commerce', PH], ['B2B SEO', PH]] },
-  { h: 'Platforms', links: [['ChatGPT', PH], ['Gemini', PH], ['Perplexity', PH], ['Google AI Mode', PH], ['Claude', PH]] },
+  { h: 'Expertise', links: [
+    ['Generative Engine Optimisation', `${SITE}/services/geo`],
+    ['Answer Engine Optimisation', `${SITE}/services/aeo`],
+    ['Agentic Commerce', `${SITE}/services/agentic-commerce`],
+    ['B2B SEO', `${SITE}/services/b2b-seo`],
+  ] },
+  { h: 'Platforms', links: [
+    ['ChatGPT', `${SITE}/services/platforms/chatgpt`],
+    ['Gemini', `${SITE}/services/platforms/google-ai-gemini`],
+    ['Perplexity', `${SITE}/services/platforms/perplexity`],
+    ['Google AI Mode', `${SITE}/services/platforms/best-google-ai-optimization-agency---built-for-revenue-not-vanity-metrics-2026`],
+    ['Claude', `${SITE}/services/platforms/anthropic-claude`],
+  ] },
 ]
 const RESOURCES: { h: string; links: [string, string][] }[] = [
-  { h: 'Learn', links: [['AI Search 101', ASL], ['Blogs', PH], ['Industry Reports', PH]] },
-  { h: 'Tools', links: [['AI Content Humanizer', PH], ['AI Content Optimizer', PH], ['AI Crawlability Checker', PH], ['LLM Text Generator', PH]] },
+  { h: 'Learn', links: [
+    ['AI Search 101', ASL],
+    ['Blogs', `${SITE}/blog`],
+    ['Industry Reports', `${SITE}/resources/reports`],
+  ] },
+  { h: 'Tools', links: [
+    ['AI Content Humanizer', `${SITE}/tools/ai-content-humanizer`],
+    ['AI Content Optimizer', `${SITE}/tools/ai-content-optimizer`],
+    ['AI Crawlability Checker', `${SITE}/tools/ai-crawlability-checker`],
+    ['LLM Text Generator', `${SITE}/tools/llms-txt-generator`],
+  ] },
 ]
-const INDUSTRIES: [string, string][] = [['AI | SaaS', PH], ['Fintech', PH], ['Ecommerce', PH]]
-const COMPANY: [string, string][] = [['About Us', PH], ['Case Studies', PH], ['Career', PH]]
+const INDUSTRIES: [string, string][] = [
+  ['AI | SaaS', `${SITE}/services/industries/ai-saas`],
+  ['Fintech', `${SITE}/services/industries/financial`],
+  ['Ecommerce', `${SITE}/services/industries/ecommerce`],
+]
+const COMPANY: [string, string][] = [
+  ['About Us', `${SITE}/company/about-us`],
+  ['Case Studies', `${SITE}/company/case-studies/case-studies-collection`],
+  ['Career', `${SITE}/company/careers`],
+]
 
 function MegaItem({ label, cols }: { label: string; cols: { h: string; links: [string, string][] }[] }) {
   return (
@@ -94,22 +121,73 @@ export function SiteNav() {
         </div>
         <div className="nav-right">
           <a className="nav-plain" href={`${SITE}/pricing`}>Pricing</a>
-          <a className="nav-cta" href={`${SITE}/contact`}>Contact Us</a>
+          <a className="nav-cta" href={`${SITE}/contact-us`}>Contact Us</a>
         </div>
       </div>
     </header>
   )
 }
 
+const AEO = `${SITE}/answer-engine-optimizations`
+const GEO = `${SITE}/generative-engine-optimization`
+const PLAT = `${SITE}/services/platforms`
+const TOOL = `${SITE}/tools`
+
 const FOOTER_COLS: { h: string; links: [string, string][] }[] = [
-  { h: 'Services', links: [['Generative Engine Optimization', PH], ['Answer Engine Optimization', PH], ['Agentic Commerce', PH], ['B2B SEO', PH]] },
-  { h: 'Answer Engine Optimization', links: [['What is AEO?', PH], ['AEO vs SEO', PH], ['Best AEO Agencies', PH], ['Enterprise AEO Agencies', PH], ['Ecommerce AEO Agencies', PH], ['Best AEO Tools', PH], ['AEO Implementation Checklist', PH], ['AI Search Tracking Tools', PH], ['Profound Alternatives', PH]] },
-  { h: 'Generative Engine Optimization', links: [['What is GEO?', PH], ['GEO vs Traditional SEO', PH], ['Best GEO Agencies', PH], ['GEO Strategy Framework', PH], ['GEO Case Studies', PH], ['GEO Market Analysis 2026', PH], ['Top GEO Tools', PH], ['Technical GEO Implementation', PH], ['Peec AI Alternatives', PH]] },
-  { h: 'Tools', links: [['AI Content Humanizer', PH], ['AI Content Optimizer', PH], ['AI Crawlability Checker', PH], ['LLM Text Generator', PH], ['Reddit Thread Transfer', PH]] },
-  { h: 'Resources', links: [['Blogs', PH], ['AI Search 101', ASL], ['Google Algorithm Updates', PH], ['ChatGPT SEO Guide', PH], ['Perplexity SEO Guide', PH], ['Gemini Guide', PH], ['Claude Guide', PH]] },
-  { h: 'Company', links: [['Contact Us', `${SITE}/contact`], ['FAQ', PH]] },
+  { h: 'Services', links: [
+    ['Generative Engine Optimization', `${SITE}/services/geo`],
+    ['Answer Engine Optimization', `${SITE}/services/aeo`],
+    ['Agentic Commerce', `${SITE}/services/agentic-commerce`],
+    ['B2B SEO', `${SITE}/services/b2b-seo`],
+  ] },
+  { h: 'Answer Engine Optimization', links: [
+    ['What is AEO?', `${AEO}/aeo`],
+    ['AEO vs SEO', `${AEO}/aeo-vs-seo`],
+    ['Best AEO Agencies', `${AEO}/best-aeo-agencies`],
+    ['Enterprise AEO Agencies', `${AEO}/enterprise-aeo-agencies`],
+    ['Ecommerce AEO Agencies', `${AEO}/ecommerce-aeo-geo-agencies`],
+    ['Best AEO Tools', `${AEO}/aeo-tools-comparison`],
+    ['AEO Implementation Checklist', `${AEO}/aeo-implementation-checklist-50-best-practices-ai-search`],
+    ['AI Search Tracking Tools', `${AEO}/ai-search-visibility-brand-mentions-tracking-tools`],
+    ['Profound Alternatives', `${SITE}/#`],
+    ['Peec AI Alternatives', `${AEO}/top-peec-ai-alternatives-competitors`],
+  ] },
+  { h: 'Generative Engine Optimization', links: [
+    ['What is GEO?', `${SITE}/blog/what-is-generative-engine-optimization-geo`],
+    ['GEO vs Traditional SEO', `${GEO}/geo-vs-traditional-seo-comparison`],
+    ['Best GEO Agencies', `${GEO}/best-geo-agency-services`],
+    ['GEO Strategy Framework', `${GEO}/geo-strategy-framework`],
+    ['GEO Case Studies', `${GEO}/geo-case-studies-success-stories`],
+    ['GEO Market Analysis 2026', `${GEO}/geo-market-analysis`],
+    ['Top GEO Tools', `${GEO}/top-geo-tools-platforms`],
+    ['Technical GEO Implementation', `${GEO}/technical-geo-implementation`],
+  ] },
+  { h: 'Tools', links: [
+    ['AI Content Humanizer', `${TOOL}/ai-content-humanizer`],
+    ['AI Content Optimizer', `${TOOL}/ai-content-optimizer`],
+    ['AI Crawlability Checker', `${TOOL}/ai-crawlability-checker`],
+    ['LLM Text Generator', `${TOOL}/llms-txt-generator`],
+    ['Reddit Thread Transfer', `${TOOL}/reddit-threads-finder`],
+  ] },
+  { h: 'Resources', links: [
+    ['Blogs', `${SITE}/blog`],
+    ['AI Search 101', ASL],
+    ['Google Algorithm Updates', `${PLAT}/best-google-ai-optimization-agency---built-for-revenue-not-vanity-metrics-2026`],
+    ['ChatGPT SEO Guide', `${PLAT}/chatgpt`],
+    ['Perplexity SEO Guide', `${PLAT}/perplexity`],
+    ['Gemini Guide', `${PLAT}/google-ai-gemini`],
+    ['Claude Guide', `${PLAT}/anthropic-claude`],
+  ] },
+  { h: 'Company', links: [
+    ['Contact Us', `${SITE}/contact-us`],
+    ['FAQ', `${SITE}/company/careers`],
+  ] },
 ]
-const FOOTER_INDUSTRIES: [string, string][] = [['SaaS | AI', PH], ['Ecommerce', PH], ['Fintech', PH]]
+const FOOTER_INDUSTRIES: [string, string][] = [
+  ['SaaS | AI', `${SITE}/services/industries/ai-saas`],
+  ['Ecommerce', `${SITE}/services/industries/ecommerce`],
+  ['Fintech', `${SITE}/services/industries/financial`],
+]
 
 export function SiteFooter() {
   return (
@@ -125,8 +203,8 @@ export function SiteFooter() {
             </p>
           </div>
           <div className="mf-actions">
-            <a className="nav-cta" href={`${SITE}/contact`}>Contact Us &rarr;</a>
-            <a className="mf-li" href="https://www.linkedin.com/company/maximuslabs" aria-label="LinkedIn"><LinkedInIcon /></a>
+            <a className="nav-cta" href={`${SITE}/contact-us`}>Contact Us &rarr;</a>
+            <a className="mf-li" href="https://www.linkedin.com/company/maximus-labs-ai/" aria-label="LinkedIn"><LinkedInIcon /></a>
           </div>
         </div>
         <div className="mf-cols">
@@ -145,7 +223,7 @@ export function SiteFooter() {
         </div>
         <div className="mf-bar">
           <span>Copyright &copy; 2025 Maximus Labs. All rights reserved.</span>
-          <span><a href={`${SITE}/privacy`}>Privacy Policy</a> &nbsp;&nbsp; <a href={`${SITE}/terms`}>Terms of Service</a></span>
+          <span><a href={`${SITE}/others/privacy-policy`}>Privacy Policy</a> &nbsp;&nbsp; <a href={`${SITE}/others/terms-of-service`}>Terms of Service</a></span>
         </div>
       </div>
     </footer>
@@ -197,8 +275,8 @@ export function HeroDark({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function CardGrid({ children }: { children: React.ReactNode }) {
-  return <div className="cardgrid">{children}</div>
+export function CardGrid({ children, row = false }: { children: React.ReactNode; row?: boolean }) {
+  return <div className={row ? 'cardrow' : 'cardgrid'}>{children}</div>
 }
 
 /** Per-pillar outline icon for the category-card cover. */
@@ -219,13 +297,13 @@ function IconFor({ slug }: { slug: string }) {
   return <span className="ic"><svg viewBox="0 0 24 24" {...a}>{map[slug] || map.seo}</svg></span>
 }
 
-/** Image-top category card: icon cover + title + sub-links (deep to articles) + Explore. */
+/** Image-top category card: icon cover + title + description + Explore (uniform). */
 export function CategoryCard({
-  slug, title, sublinks, exploreHref, exploreLabel,
+  slug, title, description, exploreHref, exploreLabel,
 }: {
   slug: string
   title: string
-  sublinks: { title: string; href: string }[]
+  description?: string
   exploreHref: string
   exploreLabel: string
 }) {
@@ -238,12 +316,30 @@ export function CategoryCard({
       </div>
       <div className="body">
         <h3>{title}</h3>
-        <div className="ct-sub">
-          {sublinks.map((s) => <Link key={s.href} href={s.href}>{s.title}</Link>)}
-        </div>
+        {description && <p className="ct-desc">{description}</p>}
         <Link className="explore" href={exploreHref}>{exploreLabel} <span className="arr">&rarr;</span></Link>
       </div>
     </article>
+  )
+}
+
+/** Sticky author-perspective rail shown on the right of article pages. */
+const AUTHOR_BIO = "I'm KK. Over the years, I've experimented and built systems that drive growth through AEO and GEO. Today, I help brands turn AI search into revenue engines, not vanity metrics, delivering AI visibility and getting brands cited and chosen across ChatGPT, Perplexity, and Google, where real buying decisions happen. Let's talk."
+export function AuthorRail() {
+  return (
+    <aside className="author-rail">
+      <div className="author-card">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="au-photo" src="/team/krishna-kaanth.png" alt="Krishna Kaanth" width={96} height={96} />
+        <div className="au-name">
+          <span>Krishna Kaanth</span>
+          <a className="au-li" href="https://www.linkedin.com/in/krishna-kaanth-kk/" aria-label="Krishna Kaanth on LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>
+        </div>
+        <span className="au-role">Founder, MaximusLabs</span>
+        <p className="au-bio">{AUTHOR_BIO}</p>
+        <a className="au-cta" href={`${SITE}/contact-us`}>Book a 15 min Chat &rarr;</a>
+      </div>
+    </aside>
   )
 }
 
@@ -303,7 +399,7 @@ export function CtaBanner({
   title = 'Ready to turn AI search into a revenue engine?',
   text = 'See how MaximusLabs gets your brand cited and chosen across ChatGPT, Perplexity, Gemini, and Google AI. Book a call for a tailored plan.',
   ctaLabel = 'Book a call',
-  href = 'https://www.maximuslabs.ai/contact',
+  href = `${SITE}/contact-us`,
 }: {
   title?: string; text?: string; ctaLabel?: string; href?: string
 }) {

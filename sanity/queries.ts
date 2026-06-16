@@ -8,11 +8,12 @@ export const HUB_Q = groq`{
   "pillars": *[_type=="pillar"] | order(order asc){
     title, shortLabel, summary, category, "slug": slug.current,
     "clusterCount": count(*[_type=="cluster" && references(^._id)]),
+    "articleCount": count(*[_type=="article" && references(^._id) && count(body) > 0]),
     "topClusters": *[_type=="cluster" && references(^._id)] | order(order asc)[0...4]{ title, "slug": slug.current },
-    "topArticles": *[_type=="article" && references(^._id)] | order(cluster->order asc, coalesce(order, 99) asc)[0...4]{ title, "slug": slug.current, "cluster": cluster->slug.current }
+    "topArticles": *[_type=="article" && references(^._id) && count(body) > 0] | order(cluster->order asc, coalesce(order, 99) asc)[0...5]{ title, "slug": slug.current, "cluster": cluster->slug.current }
   },
-  "latest": *[_type=="article" && defined(datePublished)] | order(datePublished desc)[0...8]{ ${ARTICLE_LINK} },
-  "popular": *[_type=="article"] | order(readingTime desc)[0...8]{ ${ARTICLE_LINK} }
+  "latest": *[_type=="article" && defined(datePublished) && count(body) > 0] | order(datePublished desc)[0...8]{ ${ARTICLE_LINK} },
+  "popular": *[_type=="article" && count(body) > 0] | order(readingTime desc)[0...8]{ ${ARTICLE_LINK} }
 }`
 
 /** L2 — Pillar by slug, with its clusters and each cluster's article links. */
@@ -20,7 +21,7 @@ export const PILLAR_Q = groq`*[_type=="pillar" && slug.current==$pillar][0]{
   title, shortLabel, summary, body, "slug": slug.current,
   "clusters": *[_type=="cluster" && references(^._id)] | order(order asc){
     title, summary, level, "slug": slug.current,
-    "articles": *[_type=="article" && references(^._id)] | order(order asc){
+    "articles": *[_type=="article" && references(^._id) && count(body) > 0] | order(order asc){
       title, "slug": slug.current
     }
   }
@@ -31,7 +32,7 @@ export const CLUSTER_Q = groq`*[_type=="cluster"
   && slug.current==$cluster && pillar->slug.current==$pillar][0]{
   title, "slug": slug.current, summary, body, level,
   "pillar": pillar->{title, shortLabel, "slug": slug.current},
-  "articles": *[_type=="article" && references(^._id)] | order(order asc){
+  "articles": *[_type=="article" && references(^._id) && count(body) > 0] | order(order asc){
     title, excerpt, readingTime, "slug": slug.current
   }
 }`
@@ -48,7 +49,7 @@ export const ARTICLE_Q = groq`*[_type=="article"
     title, excerpt, "slug": slug.current,
     "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel
   },
-  "siblings": *[_type=="article" && cluster->slug.current==$cluster && pillar->slug.current==$pillar && slug.current != $article]
+  "siblings": *[_type=="article" && cluster->slug.current==$cluster && pillar->slug.current==$pillar && slug.current != $article && count(body) > 0]
     | order(order asc)[0...3]{
       title, excerpt, "slug": slug.current,
       "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel

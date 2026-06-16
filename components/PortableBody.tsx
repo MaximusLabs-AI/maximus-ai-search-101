@@ -1,4 +1,5 @@
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react'
+import { urlFor } from '@/sanity/client'
 
 /** Slugify heading text so the article TOC anchors line up with the H2 ids. */
 export function slugifyHeading(value: { children?: { text?: string }[] }): string {
@@ -34,6 +35,17 @@ const components: PortableTextComponents = {
     normal: ({ children }) => <p>{children}</p>,
   },
   types: {
+    image: ({ value }: { value: { asset?: { _ref?: string }; alt?: string; caption?: string } }) => {
+      if (!value?.asset?._ref) return null
+      const url = urlFor(value as Parameters<typeof urlFor>[0]).width(1600).fit('max').auto('format').url()
+      return (
+        <figure className="post-figure">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={url} alt={value.alt || ''} loading="lazy" />
+          {value.caption ? <figcaption>{value.caption}</figcaption> : null}
+        </figure>
+      )
+    },
     callout: ({ value }: { value: { label?: string; text?: string } }) => (
       <div className="callout">
         <svg className="ml-mark" viewBox="0 0 48 48"><use href="#ml-mark" /></svg>

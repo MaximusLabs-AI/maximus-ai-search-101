@@ -1,6 +1,6 @@
 import {
   SiteNav, SiteFooter, Breadcrumbs, HubHero, SectionHeader, HeroDark,
-  CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard,
+  CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard, AuthorRail,
 } from '@/components/chrome'
 import { PortableBody, headingsFromBody } from '@/components/PortableBody'
 import {
@@ -26,27 +26,24 @@ export function Hub({ data }: { data: HubData }) {
       />
 
       {HUB_SECTIONS.map(({ cat, sub }) => {
-        const ps = data.pillars.filter((p) => (p.category || 'Core Disciplines') === cat)
+        // Only show pillars that actually have published articles (hide empty cards).
+        const ps = data.pillars.filter((p) => (p.category || 'Core Disciplines') === cat && (p.articleCount || 0) > 0)
         if (!ps.length) return null
         return (
           <section className="section" key={cat}>
             <div className="wrap">
               <SectionHeader title={cat} sub={sub} />
-              <CardGrid>
-                {ps.map((p) => {
-                  const arts = (p.topArticles || []).map((a) => ({ title: a.title, href: articlePath(p.slug, a.cluster, a.slug) }))
-                  const clus = (p.topClusters || []).map((c) => ({ title: c.title, href: clusterPath(p.slug, c.slug) }))
-                  return (
-                    <CategoryCard
-                      key={p.slug}
-                      slug={p.slug}
-                      title={p.shortLabel || p.title}
-                      sublinks={[...arts, ...clus].slice(0, 4)}
-                      exploreHref={pillarPath(p.slug)}
-                      exploreLabel={`Explore ${p.shortLabel || p.title}`}
-                    />
-                  )
-                })}
+              <CardGrid row>
+                {ps.map((p) => (
+                  <CategoryCard
+                    key={p.slug}
+                    slug={p.slug}
+                    title={p.shortLabel || p.title}
+                    description={p.summary}
+                    exploreHref={pillarPath(p.slug)}
+                    exploreLabel={`Explore ${p.shortLabel || p.title}`}
+                  />
+                ))}
               </CardGrid>
             </div>
           </section>
@@ -88,8 +85,10 @@ export function Hub({ data }: { data: HubData }) {
 /* ============================ L2 — PILLAR ============================ */
 export function Pillar({ data }: { data: PillarData }) {
   const label = data.shortLabel || data.title
-  const guideCount = data.clusters.reduce((n, c) => n + (c.articles?.length || 0), 0)
-  const featured = data.clusters
+  // Only show clusters that have published articles (hide empty cards).
+  const clusters = data.clusters.filter((c) => (c.articles?.length || 0) > 0)
+  const guideCount = clusters.reduce((n, c) => n + (c.articles?.length || 0), 0)
+  const featured = clusters
     .flatMap((c) => (c.articles || []).map((a) => ({ title: a.title, href: articlePath(data.slug, c.slug, a.slug) })))
     .slice(0, 5)
   return (
@@ -99,7 +98,7 @@ export function Pillar({ data }: { data: PillarData }) {
         <Breadcrumbs trail={[{ label: 'AI Search 101', href: base }, { label }]} />
         <h1>{data.title}</h1>
         {data.summary && <p className="sub">{data.summary}</p>}
-        <div className="ameta"><b>{data.clusters.length} clusters</b><span className="sep">&middot;</span><span>{guideCount} guides</span></div>
+        <div className="ameta"><b>{clusters.length} clusters</b><span className="sep">&middot;</span><span>{guideCount} guides</span></div>
       </HeroDark>
       {featured.length ? (
         <div className="wrap" style={{ paddingTop: 36 }}>
@@ -110,7 +109,7 @@ export function Pillar({ data }: { data: PillarData }) {
         <div className="wrap">
           <SectionHeader title={`Explore ${label}`} sub="Pick a cluster to dive into its guides." />
           <CardGrid>
-            {data.clusters.map((c) => (
+            {clusters.map((c) => (
               <ArticleCard
                 key={c.slug}
                 href={clusterPath(data.slug, c.slug)}
@@ -229,7 +228,8 @@ export function Article({ data }: { data: ArticleData }) {
         <h1>{data.title}</h1>
         {data.excerpt && <p className="sub">{data.excerpt}</p>}
         <div className="ameta">
-          <span className="avatar">KK</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="avatar-photo" src="/team/krishna-kaanth.png" alt="Krishna Kaanth" width={38} height={38} />
           <b>Krishna Kaanth</b>
           {dateLabel && <><span className="sep">&middot;</span><span>{dateLabel}</span></>}
           {data.readingTime ? <><span className="sep">&middot;</span><span>{data.readingTime} min read</span></> : null}
@@ -267,6 +267,7 @@ export function Article({ data }: { data: ArticleData }) {
               </>
             ) : null}
           </article>
+          <AuthorRail />
         </div>
       </div>
 

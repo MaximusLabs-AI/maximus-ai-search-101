@@ -37,6 +37,17 @@ export default defineType({
         ],
       },
     }),
+    // Inline content image with alt text + caption
+    defineArrayMember({
+      type: 'image',
+      name: 'image',
+      title: 'Image',
+      options: {hotspot: true},
+      fields: [
+        {name: 'alt', type: 'string', title: 'Alt text'},
+        {name: 'caption', type: 'string', title: 'Caption'},
+      ],
+    }),
     // Inline "MaximusLabs view" callout block
     defineArrayMember({
       type: 'object',

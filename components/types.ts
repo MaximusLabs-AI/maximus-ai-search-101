@@ -20,6 +20,7 @@ export type HubData = {
     category?: string
     slug: string
     clusterCount: number
+    articleCount: number
     topClusters?: { title: string; slug: string }[]
     topArticles?: { title: string; slug: string; cluster: string }[]
   }[]

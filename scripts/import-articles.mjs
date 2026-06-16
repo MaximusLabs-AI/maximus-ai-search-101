@@ -2,6 +2,10 @@
  * Converts the drafted article JSON files in sanity/seed/articles/*.json into
  * Sanity article documents (Portable Text body) and upserts them. Idempotent.
  *
+ * Content images (block type "image" with a remote `url`) are downloaded and
+ * uploaded to Sanity as assets, then referenced from the body. Sanity dedupes
+ * identical assets by content hash, so re-runs reuse the same asset ids.
+ *
  *   node --env-file=.env.local scripts/import-articles.mjs
  */
 import { createClient } from '@sanity/client'
@@ -24,6 +28,41 @@ const key = () => `k${k++}`
 const span = (text) => ({ _type: 'span', _key: key(), text: String(text ?? '') })
 const para = (style, text) => ({ _type: 'block', _key: key(), style, markDefs: [], children: [span(text)] })
 
+// ---- Image assets: download remote URL -> upload to Sanity (cached per run) ----
+const assetCache = new Map() // url -> assetId | null
+function filenameFromUrl(url) {
+  try {
+    const p = decodeURIComponent(new URL(url).pathname.split('/').pop() || 'image')
+    return p.replace(/[^a-zA-Z0-9._-]/g, '-').slice(-80) || 'image.png'
+  } catch { return 'image.png' }
+}
+async function uploadImage(url) {
+  if (!url) return null
+  if (assetCache.has(url)) return assetCache.get(url)
+  try {
+    const res = await fetch(url)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const buf = Buffer.from(await res.arrayBuffer())
+    const asset = await client.assets.upload('image', buf, { filename: filenameFromUrl(url) })
+    assetCache.set(url, asset._id)
+    console.log(`  · uploaded ${filenameFromUrl(url)} -> ${asset._id}`)
+    return asset._id
+  } catch (e) {
+    console.warn(`  ! image failed (${url}): ${e.message}`)
+    assetCache.set(url, null)
+    return null
+  }
+}
+
+// Pre-upload every image URL referenced across all sections, return url->assetId map.
+async function preloadImages(sections = []) {
+  const urls = new Set()
+  for (const s of sections) for (const b of s.blocks || []) {
+    if (b.t === 'image' && b.url) urls.add(b.url)
+  }
+  for (const url of urls) await uploadImage(url)
+}
+
 function toPortableText(sections = []) {
   const blocks = []
   for (const s of sections) {
@@ -34,6 +73,14 @@ function toPortableText(sections = []) {
       else if (b.t === 'quote') blocks.push(para('blockquote', b.text))
       else if (b.t === 'ul') for (const it of b.items || []) {
         blocks.push({ _type: 'block', _key: key(), style: 'normal', listItem: 'bullet', level: 1, markDefs: [], children: [span(it)] })
+      }
+      else if (b.t === 'image') {
+        const assetId = assetCache.get(b.url)
+        if (assetId) blocks.push({
+          _type: 'image', _key: key(),
+          asset: { _type: 'reference', _ref: assetId },
+          alt: b.alt || '', caption: b.caption || '',
+        })
       }
       else if (b.t === 'callout') blocks.push({ _type: 'callout', _key: key(), label: 'The MaximusLabs view', text: b.text })
       else if (b.t === 'table') blocks.push({
@@ -53,11 +100,14 @@ const isoDate = (d) => (d && /T/.test(d) ? d : `${d || '2026-06-16'}T09:00:00.00
 const files = readdirSync(dir).filter((f) => f.endsWith('.json'))
 if (!files.length) { console.error('No .json article files found in', dir.pathname); process.exit(1) }
 
-const docs = files.map((f) => {
+const docs = []
+for (const f of files) {
   let raw = readFileSync(new URL(f, dir), 'utf8').trim()
   if (raw.startsWith('```')) raw = raw.replace(/^```[a-z]*\n?/i, '').replace(/```$/, '').trim()
   const a = JSON.parse(raw)
-  return {
+  console.log(`Processing ${a.id} (${a.pillar}/${a.cluster}/${a.slug})`)
+  await preloadImages(a.sections)
+  docs.push({
     _id: a.id,
     _type: 'article',
     title: a.title,
@@ -72,10 +122,10 @@ const docs = files.map((f) => {
     body: toPortableText(a.sections),
     faq: (a.faq || []).map((q) => ({ _type: 'qa', _key: key(), question: q.q, answer: q.a })),
     seo: { metaTitle: a.title, metaDescription: a.excerpt, schemaType: 'Article' },
-    order: 1,
-  }
-})
+    order: a.order || 1,
+  })
+}
 
 const tx = docs.reduce((t, d) => t.createOrReplace(d), client.transaction())
 const res = await tx.commit()
-console.log(`Imported ${docs.length} articles: ${docs.map((d) => d._id.replace('article-', '')).join(', ')}. Tx ${res.transactionId}.`)
+console.log(`\nImported ${docs.length} articles: ${docs.map((d) => d._id.replace('article-', '')).join(', ')}.\nTx ${res.transactionId}.`)
