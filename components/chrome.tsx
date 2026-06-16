@@ -82,9 +82,8 @@ export function SiteNav() {
     <header className="nav">
       <div className="nav-inner">
         <div className="nav-left">
-          <a className="brand" href={`${SITE}/`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="brand-logo" src="/brand/maximus-wordmark.svg" alt="Maximus Labs" width={196} height={35} />
+          <a className="brand" href={`${SITE}/`} aria-label="Maximus Labs">
+            <svg className="brand-icon" viewBox="0 0 48 48"><use href="#ml-mark" /></svg>
           </a>
           <nav className="nav-links">
             <MegaItem label="Services" cols={SERVICES} />
