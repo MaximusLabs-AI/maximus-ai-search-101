@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Search 101 — Next.js + Sanity
 
-## Getting Started
+The MaximusLabs AI Search 101 educational hub: a 4-level content tree
+(hub > pillar > cluster > article) rendered by Next.js, with content in Sanity.
 
-First, run the development server:
+## Stack
+- **Next.js 16** (App Router) — one catch-all route `app/ai-search-101/[[...slug]]`
+  resolves all four levels and renders the matching template.
+- **Sanity** — content (pillars, clusters, articles) + embedded Studio at `/studio`.
+- Reverse-proxied under `maximuslabs.ai/ai-search-101/*` in production (see DEPLOY.md).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Local dev
+```
+npm install
+# create .env.local from .env.example (add your write token for content scripts)
+npm run dev   # http://localhost:3000  (hub at /ai-search-101, Studio at /studio)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content scripts (need SANITY_API_WRITE_TOKEN in .env.local)
+```
+node --env-file=.env.local scripts/generate-taxonomy.mjs   # all pillars + clusters
+node --env-file=.env.local scripts/import-articles.mjs     # articles from sanity/seed/articles/*.json
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Key files
+- `sanity/schemaTypes/` — pillar, cluster, article, blockContent schemas
+- `sanity/queries.ts` — GROQ; `sanity/client.ts` — client + cached fetch
+- `components/templates.tsx` — Hub / Pillar / Cluster / Article
+- `components/chrome.tsx` — nav, footer, report cards, hero parts
+- `app/hub.css` — the navy/Satoshi design system
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See **DEPLOY.md** for deployment + how Vercel connects to Sanity.

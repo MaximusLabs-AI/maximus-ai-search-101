@@ -1,0 +1,120 @@
+{
+  "id": "article-agentic-commerce-fundamentals-what-is-agentic-commerce",
+  "title": "What is Agentic Commerce? How AI Agents Buy on Your Behalf",
+  "slug": "what-is-agentic-commerce",
+  "pillar": "agentic-commerce",
+  "cluster": "fundamentals",
+  "answer": "Agentic commerce is shopping done by autonomous AI agents that research, compare, and buy products on a person's behalf. Tools like OpenAI Operator, Amazon Rufus, and Google's shopping agents read structured product data, weigh trust signals, and complete checkout with little human input. To be chosen, your product must be machine readable, verifiably trustworthy, and ready to transact.",
+  "excerpt": "How AI shopping agents discover, compare, and buy products, and what brands must do to be the one an agent chooses.",
+  "readingTime": 8,
+  "datePublished": "2026-06-16",
+  "sections": [
+    {
+      "h2": "What is agentic commerce?",
+      "blocks": [
+        {"t": "p", "text": "Agentic commerce is a buying process where an autonomous AI agent does the shopping for a person. The agent takes a goal, like \"find me a quiet office chair under 400 dollars,\" then researches options, compares them, and often completes the purchase. The human sets intent. The agent does the work."},
+        {"t": "p", "text": "An AI agent here means software that can act on its own across multiple steps. It reads product data, calls tools, fills carts, and transacts. This is different from a chatbot that just answers a question. The agent finishes the job."},
+        {"t": "p", "text": "In our work we have found that most brands still optimize for a human who reads a page. Agentic commerce removes that human from the middle. The reader is now a machine, and it decides in milliseconds whether your product clears the bar."},
+        {"t": "callout", "text": "Agentic commerce is not a future trend you can wait out. The first agent that shortlists products for your buyer becomes the new shelf, and brands that are unreadable to it simply do not make the list."}
+      ]
+    },
+    {
+      "h2": "How do AI shopping agents discover and buy products?",
+      "blocks": [
+        {"t": "p", "text": "AI shopping agents discover products by reading structured data, retrieving live information from the web and merchant feeds, then ranking candidates against the buyer's stated constraints. They buy by passing checkout-ready data through a secure transaction flow. The cleaner your data, the higher you rank."},
+        {"t": "p", "text": "The flow runs in four steps. Each step is a filter. If your product fails one, it never reaches the next."},
+        {"t": "h3", "text": "The four stages of an agent purchase"},
+        {"t": "ul", "items": [
+          "Interpret: the agent turns a loose request into hard constraints like price, size, availability, and return policy.",
+          "Discover: it pulls candidates from product feeds, retailer APIs, and indexed content the engine trusts.",
+          "Evaluate: it scores each candidate on fit, price, reviews, and trust signals, then shortlists a few.",
+          "Transact: it confirms stock and price, then completes checkout using structured payment and shipping data."
+        ]},
+        {"t": "p", "text": "Different platforms run this loop in different ways. OpenAI Operator drives a real browser and clicks through sites like a person would. Amazon Rufus works inside Amazon and leans on Amazon's own catalog and review data. Google's shopping agents draw on the Shopping Graph and Merchant Center feeds. The pattern is shared even when the plumbing is not."},
+        {"t": "quote", "text": "The agent does not reward the best marketing. It rewards the cleanest, most verifiable data."}
+      ]
+    },
+    {
+      "h2": "Which platforms run AI shopping agents today?",
+      "blocks": [
+        {"t": "p", "text": "The agents that matter most today are OpenAI Operator, Amazon Rufus, Google's Gemini shopping experiences, Perplexity's buying features, and assistant agents like Microsoft Copilot. Each reaches a different buyer and reads product data through a different door. You must show up in all of them."},
+        {"t": "p", "text": "Treat each as a distinct surface, not one channel. A feed that satisfies Google's Merchant Center will not automatically satisfy an Operator session browsing your own site. Coverage is the work."},
+        {"t": "table", "header": ["Agent", "Where it shops", "What it reads first"], "rows": [
+          ["OpenAI Operator", "The open web, in a live browser", "Your live pages, structured data, and on-page trust signals"],
+          ["Amazon Rufus", "Inside Amazon", "Amazon catalog data, A+ content, and verified reviews"],
+          ["Google (Gemini, AI Overviews)", "Shopping Graph and the web", "Merchant Center feeds, Product schema, and reviews"],
+          ["Perplexity", "The web, with cited sources", "Crawlable product content and trusted third-party sources"],
+          ["Microsoft Copilot", "Bing index and connected apps", "Structured feeds, schema, and retailer integrations"]
+        ]},
+        {"t": "callout", "text": "My take: if you only prepare for one agent, prepare for the one that browses the open web. A site an agent can read and transact on is the foundation every other surface borrows from."}
+      ]
+    },
+    {
+      "h2": "What are A2A protocols and why do they matter?",
+      "blocks": [
+        {"t": "p", "text": "A2A, or agent to agent protocols, are the shared rules that let one agent talk to another agent or system to complete a task. In commerce, they let a buyer's shopping agent securely query a merchant's agent, confirm price and stock, and pass payment data to finish a purchase. They are the rails agentic checkout runs on."},
+        {"t": "p", "text": "Two efforts are shaping this layer. Google's Agent2Agent protocol defines how independent agents discover and call each other. Anthropic's Model Context Protocol, or MCP, standardizes how an agent connects to external tools and data sources, including a store's catalog and checkout. Payment players are adding agent-ready checkout on top."},
+        {"t": "p", "text": "Why this matters for you is simple. When checkout becomes a protocol call rather than a human filling a form, the merchants who expose clean, agent-ready endpoints get transacted with. The ones who do not force the agent to scrape, guess, or give up."},
+        {"t": "ul", "items": [
+          "Agent2Agent (Google): how agents find and delegate work to other agents.",
+          "Model Context Protocol (Anthropic): how an agent connects to your data, catalog, and tools.",
+          "Agentic checkout standards: how payment and order data move securely once a product is chosen."
+        ]},
+        {"t": "quote", "text": "When checkout becomes an API call between agents, the brands without a clean endpoint are not slow. They are absent."}
+      ]
+    },
+    {
+      "h2": "How do you become the product an agent chooses?",
+      "blocks": [
+        {"t": "p", "text": "You become the chosen product by making your data machine readable, your trust verifiable, and your checkout ready to transact. Agents reward clarity and completeness, not persuasion. Give the agent everything it needs to say yes with confidence, and remove every reason for it to move on."},
+        {"t": "p", "text": "There are three levers. Get all three right and you become the easy, safe choice."},
+        {"t": "h3", "text": "1. Structured, complete product feeds"},
+        {"t": "p", "text": "Publish Product schema with price, availability, GTIN, specifications, and shipping. Keep feeds live and accurate. A missing price or stale stock status is enough to drop you from the shortlist, because the agent will not risk a bad purchase."},
+        {"t": "h3", "text": "2. Trust signals an agent can verify"},
+        {"t": "p", "text": "Surface genuine reviews, ratings, return policy, and warranty in structured form. Agents weigh trust heavily because they are spending someone else's money. Verifiable signals beat marketing claims every time."},
+        {"t": "h3", "text": "3. Checkout-ready data and access"},
+        {"t": "p", "text": "Make sure an agent can confirm price and stock and complete a purchase without friction. That means accessible pages, no bot-blocking on legitimate agents, and clean, structured order data. If the agent cannot finish the buy, it picks a competitor that lets it."},
+        {"t": "callout", "text": "In our work we have found the winning move is boring on purpose: accurate feeds, verifiable trust, and a checkout an agent can actually complete. Brands lose to gaps in their data far more often than to a better competitor."}
+      ]
+    },
+    {
+      "h2": "How do you prepare for agentic commerce now?",
+      "blocks": [
+        {"t": "p", "text": "Prepare by auditing what an agent can actually read and act on today, then closing the gaps in feeds, trust signals, and checkout access. Start with a readiness check across the four things agents need: discoverability, structured data, trust, and transactability. Fix the red rows first."},
+        {"t": "p", "text": "Use the table below as a fast diagnostic. Score each row honestly. Anywhere you are not ready is a place an agent is already skipping you."},
+        {"t": "table", "header": ["Readiness area", "What the agent needs", "Your status to check"], "rows": [
+          ["Discoverability", "Crawlable pages and feeds the agent can find", "Are your products in Merchant Center and indexable to AI crawlers?"],
+          ["Structured data", "Product schema with price, stock, GTIN, specs", "Is every key attribute present and valid on every product?"],
+          ["Data freshness", "Live price and availability", "Do feeds update in near real time, with no stale stock?"],
+          ["Trust signals", "Verifiable reviews, ratings, returns, warranty", "Are these published in structured, machine-readable form?"],
+          ["Checkout readiness", "A purchase flow an agent can complete", "Can an agent confirm price and complete a buy without being blocked?"],
+          ["Agent access", "No blocking of legitimate shopping agents", "Does your bot policy allow Operator, Rufus, and Google agents?"]
+        ]},
+        {"t": "p", "text": "Treat this as the same discipline as GEO and agentic SEO, applied to the moment of purchase. The brands that win agentic commerce are the ones that made themselves easy to choose before their category did."},
+        {"t": "quote", "text": "Optimize to be cited and chosen by the agent, not to rank on a page no agent reads."}
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is agentic commerce the same as conversational shopping?",
+      "a": "No. Conversational shopping is a chatbot that answers questions and hands the buyer back a link to act on. Agentic commerce goes further: the agent completes the steps itself, including comparison and checkout. The defining difference is autonomous action, not just dialogue."
+    },
+    {
+      "q": "Will AI agents replace my product pages and brand site?",
+      "a": "Not exactly, but they change the job of your site. Agents like OpenAI Operator still read your live pages, so they must be clean, structured, and transactable. Your site becomes a data source an agent consumes rather than only a destination a human browses. Both audiences now matter."
+    },
+    {
+      "q": "What is the single biggest reason an agent skips a product?",
+      "a": "Incomplete or stale structured data. If price, availability, or key specs are missing or wrong, the agent cannot safely recommend or buy the product, so it moves on. Verifiable trust signals are the close second. Agents avoid risk because they are spending someone else's money."
+    },
+    {
+      "q": "Do I need to support A2A protocols and MCP right now?",
+      "a": "You do not need to wait for full standardization to start. Clean Product schema, accurate feeds, and an accessible checkout already make you readable to today's agents. As Agent2Agent and Model Context Protocol mature, brands with clean data will adopt agent-ready checkout fastest. Build the data foundation now."
+    },
+    {
+      "q": "How is preparing for agentic commerce different from SEO?",
+      "a": "SEO optimizes for a human clicking a ranked link. Agentic commerce optimizes for a machine that reads structured data and transacts. The currency shifts from rankings and clicks to being the verifiable, checkout-ready product an agent chooses. Strong technical SEO foundations help, but the goal is different."
+    }
+  ]
+}

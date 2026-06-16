@@ -1,0 +1,249 @@
+{
+  "id": "article-geo-fundamentals-what-is-geo",
+  "title": "What is GEO? Generative Engine Optimization Explained",
+  "slug": "what-is-geo",
+  "pillar": "geo",
+  "cluster": "fundamentals",
+  "answer": "Generative Engine Optimization, or GEO, is the practice of optimizing content so AI engines like ChatGPT, Perplexity, Google AI Overviews, and Gemini cite it and recommend it inside their generated answers. Instead of chasing blue-link rankings, GEO works to make your brand the source the model quotes and the option it puts in front of buyers.",
+  "excerpt": "GEO is how you get cited and chosen by AI engines like ChatGPT, Perplexity, and Google AI Overviews, not just ranked on a results page.",
+  "readingTime": 9,
+  "datePublished": "2026-06-16",
+  "sections": [
+    {
+      "h2": "What is Generative Engine Optimization (GEO)?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Generative Engine Optimization is the practice of shaping your content, data, and brand presence so AI engines cite you and recommend you inside their answers. The engines are tools like ChatGPT, Perplexity, Google AI Overviews, Gemini, Claude, and Microsoft Copilot. GEO optimizes for two outcomes: being cited as a source, and being chosen as the recommendation."
+        },
+        {
+          "t": "p",
+          "text": "Traditional search returns a list of links. Generative engines return a single synthesized answer. That answer pulls from many sources, names a few brands, and often skips the rest. GEO is the work of becoming one of the named brands."
+        },
+        {
+          "t": "p",
+          "text": "A generative engine is any AI system that reads a question and writes an original answer in plain language. It does not just point you to pages. It reads the pages, decides what is true, and speaks for itself. Your job in GEO is to be the source it trusts when it speaks."
+        },
+        {
+          "t": "callout",
+          "text": "GEO is not a new traffic channel bolted onto SEO. It is a shift in who decides what the buyer sees. The model is now the gatekeeper, and you are optimizing to win its citation, not a search engine's ranking slot."
+        }
+      ]
+    },
+    {
+      "h2": "Why does GEO exist now?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "GEO exists because buyers stopped clicking through ten blue links and started asking one question to one AI engine. The answer arrives complete, with two or three brands named inside it. If you are not in that answer, you are invisible at the exact moment a buyer is forming a decision."
+        },
+        {
+          "t": "p",
+          "text": "Three things changed at once. AI engines went mainstream. Google put AI Overviews above its own search results. And buyers learned that a generative answer is faster than reading a page. That combination moved real demand off the results page and into the model."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Buyers now ask ChatGPT and Perplexity questions they used to type into Google.",
+            "Google AI Overviews answers many queries directly, so fewer people scroll to the links.",
+            "Generative answers name a short list of brands, not a long list of pages.",
+            "The brand the model recommends often gets the click, the trial, and the deal."
+          ]
+        },
+        {
+          "t": "p",
+          "text": "In our work we have found that the brands winning AI citations are rarely the ones with the most pages. They are the ones with the clearest, most quotable, most trustworthy answers to specific buyer questions. That is a different game than ranking, and it rewards a different kind of content."
+        },
+        {
+          "t": "quote",
+          "text": "The results page used to be the battlefield. Now the battlefield is the answer itself."
+        }
+      ]
+    },
+    {
+      "h2": "How is GEO different from SEO?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "SEO optimizes for ranking on a results page. GEO optimizes for being cited inside an AI-generated answer. SEO wins clicks by placement. GEO wins influence by being the source the model quotes and the option it recommends. The goals overlap, but the mechanics and the metrics are different."
+        },
+        {
+          "t": "p",
+          "text": "SEO rewards keywords, backlinks, and page authority so a human chooses your link from a list. GEO rewards clear answers, structured facts, and trust signals so a model chooses your content as truth. You can rank number one and still never appear in an AI answer. You can also get cited constantly while ranking on page two."
+        },
+        {
+          "t": "table",
+          "header": ["Dimension", "SEO", "GEO"],
+          "rows": [
+            ["Target system", "Search engines ranking links", "Generative engines writing answers"],
+            ["Primary goal", "Rank high on the results page", "Get cited and recommended in the answer"],
+            ["Unit of success", "A blue-link ranking position", "A citation or brand mention inside a response"],
+            ["What it rewards", "Keywords, backlinks, page authority", "Clear answers, structured facts, trust signals"],
+            ["User behavior", "User scans links and clicks one", "User reads one synthesized answer"],
+            ["Content shape", "Pages built around keywords", "Answer-first content built around questions"],
+            ["Key metric", "Rankings, organic clicks, impressions", "Citation share, brand mentions, referral from AI"],
+            ["Time to result", "Months of compounding authority", "Faster, since models re-read content often"]
+          ]
+        },
+        {
+          "t": "p",
+          "text": "My take: GEO does not replace SEO. Strong SEO content is still some of the best raw material a model can cite. But you have to format and frame that content so a machine can lift the answer cleanly, attribute it to you, and trust it. SEO gets you read. GEO gets you quoted."
+        }
+      ]
+    },
+    {
+      "h2": "How is GEO different from AEO?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "AEO, or Answer Engine Optimization, focuses on winning the single direct answer to a question, such as a featured snippet or a voice answer. GEO is broader. GEO covers the full generative response, including which sources get cited, which brands get named, and which option gets recommended across many AI engines."
+        },
+        {
+          "t": "p",
+          "text": "Think of it as nested scope. AEO asks: can I own the one-line answer? GEO asks: can I be the trusted source and the recommended choice across every generative engine and every long, synthesized response? AEO is a tactic that lives inside the larger GEO strategy."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "AEO targets the direct answer to one question, often a snippet or voice result.",
+            "GEO targets citations and recommendations across full generative answers.",
+            "AEO is mostly about phrasing and structure for one query.",
+            "GEO adds brand trust, source authority, and being the chosen option."
+          ]
+        },
+        {
+          "t": "callout",
+          "text": "Treat AEO as a subset of GEO, not a competitor to it. If you only optimize for the one-line answer, you will win snippets and still lose the recommendation. The recommendation is where the revenue is."
+        }
+      ]
+    },
+    {
+      "h2": "What do generative engines reward?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Generative engines reward content that is clear, factual, well structured, and trustworthy. They lift answers that state a point directly, back it with specifics, and come from a source the model already trusts. They reward content that reads like a confident expert wrote it, not content padded with keywords."
+        },
+        {
+          "t": "h3",
+          "text": "Answer-first structure"
+        },
+        {
+          "t": "p",
+          "text": "Open every page and every section with the direct answer. Models lift the first clean sentence that resolves the question. If your answer is buried under three paragraphs of throat-clearing, the model will quote a competitor who got to the point faster."
+        },
+        {
+          "t": "h3",
+          "text": "Specific, verifiable facts"
+        },
+        {
+          "t": "p",
+          "text": "Use real numbers, named examples, and concrete claims. Models prefer sources that commit to specifics because specifics are easier to verify and cite. Vague, hedged copy gets skipped."
+        },
+        {
+          "t": "h3",
+          "text": "Trust and authority signals"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Clear authorship and a credible brand behind the content.",
+            "Consistent facts about your brand across the web and third-party sites.",
+            "Structured data and clean formatting the model can parse.",
+            "Citations, sources, and quotable lines the model can attribute to you.",
+            "Coverage in places the model already reads, like reputable publications and forums."
+          ]
+        },
+        {
+          "t": "quote",
+          "text": "Models do not reward the loudest page. They reward the clearest, most trustworthy answer."
+        }
+      ]
+    },
+    {
+      "h2": "How do you start with GEO?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Start by finding the questions your buyers ask AI engines, then build the clearest, most quotable answer to each one. Test what the engines currently say about your category, see who they cite, and write content engineered to take that citation. GEO is less about volume and more about owning the answers that drive decisions."
+        },
+        {
+          "t": "p",
+          "text": "Here is the practical sequence we use."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Ask ChatGPT, Perplexity, Gemini, and Google AI Overviews the questions your buyers ask, and record who gets cited.",
+            "Pick the high-intent questions where a recommendation drives revenue, not vanity topics.",
+            "Write answer-first content: lead with a 40 to 80 word answer, then expand with specifics.",
+            "Add structure the model can parse, including clear headings, tables, FAQs, and structured data.",
+            "Build trust signals: real authorship, consistent brand facts, and third-party coverage.",
+            "Re-test the same questions over time and track whether your citations grow."
+          ]
+        },
+        {
+          "t": "p",
+          "text": "Do not try to be cited for everything. Pick the questions where being the recommended option turns into pipeline. One well-built answer that ChatGPT recommends can outperform a hundred pages that rank but never get quoted."
+        },
+        {
+          "t": "callout",
+          "text": "Optimize for being chosen, not for being everywhere. A single citation on a buying-decision question beats a thousand impressions on a question nobody acts on."
+        }
+      ]
+    },
+    {
+      "h2": "How do you measure GEO?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Measure GEO by how often AI engines cite and recommend you, not by rankings. Track your citation share across ChatGPT, Perplexity, Gemini, and Google AI Overviews, monitor brand mentions inside answers, and watch referral traffic from AI engines. The north star is simple: when a buyer asks, does the model name you and recommend you?"
+        },
+        {
+          "t": "p",
+          "text": "The metrics that matter are different from SEO dashboards. You are not counting positions. You are counting presence and recommendation inside generated answers."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Citation share: how often you are cited versus competitors for your key questions.",
+            "Brand mentions: how often engines name you, even without a link.",
+            "Recommendation rate: how often the model presents you as the option to choose.",
+            "AI referral traffic: visits arriving from ChatGPT, Perplexity, and AI Overviews.",
+            "Sentiment and accuracy: whether the model describes you correctly and favorably."
+          ]
+        },
+        {
+          "t": "p",
+          "text": "In our work we have found that AI referral traffic is small but unusually high intent. The person arrives already informed and already nudged toward you by a trusted answer. That is why we judge GEO on revenue-shaped outcomes, like recommendation rate on buying questions, not on raw visit counts."
+        },
+        {
+          "t": "quote",
+          "text": "Stop counting rankings. Start counting how often the answer names you."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is GEO replacing SEO?",
+      "a": "No. GEO sits alongside SEO and often depends on it. Strong, well-structured content is still some of the best material a generative engine can cite. The shift is in the goal: SEO aims to rank a link, while GEO aims to be the source the AI quotes and the option it recommends. Smart teams run both."
+    },
+    {
+      "q": "Which AI engines should GEO target?",
+      "a": "Start with the engines your buyers actually use: ChatGPT, Perplexity, Google AI Overviews, and Gemini, plus Claude and Microsoft Copilot where relevant. Each engine cites sources differently, so test your key questions in each one. Prioritize the engines that already drive informed visitors and recommendations in your category."
+    },
+    {
+      "q": "How long does GEO take to show results?",
+      "a": "GEO can move faster than traditional SEO because generative engines re-read and re-rank content frequently. A clear, well-structured answer can start getting cited within weeks rather than months. That said, the trust signals that earn consistent citations, like authorship and third-party coverage, still compound over time."
+    },
+    {
+      "q": "Do I need new content for GEO, or can I reuse SEO content?",
+      "a": "You can often reuse your best SEO content, but you usually need to reframe it. Lead with a direct 40 to 80 word answer, add structure like tables and FAQs, and make claims specific and verifiable. The goal is to let a model lift a clean, quotable answer and attribute it to you."
+    },
+    {
+      "q": "What is the difference between GEO and AEO?",
+      "a": "AEO, or Answer Engine Optimization, focuses on winning the single direct answer to a question, like a featured snippet. GEO is broader: it covers citations, brand mentions, and recommendations across full generative answers and many AI engines. AEO is best understood as a tactic inside the larger GEO strategy."
+    }
+  ]
+}

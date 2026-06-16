@@ -1,0 +1,213 @@
+{
+  "id": "article-seo-fundamentals-what-is-seo",
+  "title": "What is SEO in the AI Era? A Modern Definition",
+  "slug": "what-is-seo",
+  "pillar": "seo",
+  "cluster": "fundamentals",
+  "answer": "SEO in the AI era is the practice of making your content easy for search engines and AI systems to find, understand, trust, and reuse. The goal has shifted from ranking a link to being cited and chosen inside answers from Google AI Overviews, ChatGPT, Perplexity, and Gemini. You still earn relevance, authority, and a crawlable site. You now also earn inclusion in the synthesized response.",
+  "excerpt": "A modern definition of SEO: how search engines work, what still matters in an AI-first SERP, and how SEO now connects to GEO and AEO.",
+  "readingTime": 8,
+  "datePublished": "2026-06-16",
+  "sections": [
+    {
+      "h2": "What is SEO today?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "SEO today is the practice of making your content easy for search engines and AI systems to find, understand, trust, and reuse. It is no longer only about ranking a blue link. It is about being the source an engine pulls from when it writes an answer."
+        },
+        {
+          "t": "p",
+          "text": "Search engine optimization, or SEO, used to have one target: a ranked position on a page of links. That target still exists. But a growing share of searches now end with a generated answer, often with no click at all. So the definition has widened."
+        },
+        {
+          "t": "p",
+          "text": "Here is the modern version. SEO is the work of earning relevance, authority, and technical accessibility so that both classic search results and AI-generated answers surface, cite, and recommend your brand. Relevance means your content matches the intent behind a query. Authority means other trusted sources vouch for you. Technical accessibility means a crawler can reach and read your pages."
+        },
+        {
+          "t": "callout",
+          "text": "My take: SEO did not die when AI Overviews arrived. It expanded. The teams that win treat ranking and citation as one connected discipline, not two competing ones."
+        }
+      ]
+    },
+    {
+      "h2": "How do search engines work?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Search engines work in three steps: crawling, indexing, and ranking. AI search adds a fourth: synthesis. Understanding all four tells you where your content can win or get dropped."
+        },
+        {
+          "t": "p",
+          "text": "Crawling is when a bot, like Googlebot, follows links to discover your pages. Indexing is when the engine stores and organizes what it found. Ranking is when it orders results for a query. Synthesis is the newer step, where an AI system reads several sources and writes a single answer that may cite a few of them."
+        },
+        {
+          "t": "h3",
+          "text": "The four steps, in plain terms"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Crawl: the engine finds your page through links and sitemaps.",
+            "Index: the engine reads and stores the content so it can be retrieved.",
+            "Rank: the engine sorts candidate pages by relevance and quality.",
+            "Synthesize: an AI layer like Google AI Overviews, ChatGPT, Perplexity, or Gemini drafts an answer and cites selected sources."
+          ]
+        },
+        {
+          "t": "p",
+          "text": "If you fail step one or two, nothing downstream matters. A page that cannot be crawled or indexed cannot rank, and it cannot be cited. In our work we have found that broken technical basics quietly cap results long before content quality is the problem."
+        }
+      ]
+    },
+    {
+      "h2": "What still matters in an AI-first SERP?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Most of the fundamentals still matter. Relevance, authority, content quality, and a fast, crawlable site carry over directly. What changed is the prize. You are now competing to be the cited, chosen source inside an answer, not just a link below it."
+        },
+        {
+          "t": "p",
+          "text": "The SERP, or search engine results page, used to be a ranked list. Today it often opens with an AI-generated summary that answers the query directly. The classic links sit beneath it. So your content has two jobs: earn a strong ranked position, and earn a place inside the generated summary."
+        },
+        {
+          "t": "p",
+          "text": "The signals that drive both jobs overlap heavily. Clear structure, original information, and demonstrated expertise help you rank and help an engine quote you with confidence. That overlap is good news. The same foundational work compounds across classic search and AI answers."
+        },
+        {
+          "t": "quote",
+          "text": "In an AI-first SERP, the question is no longer just can they find you. It is will they quote you and recommend you."
+        }
+      ]
+    },
+    {
+      "h2": "What changed with AI Overviews?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "AI Overviews changed where the answer lives and who gets credit for it. Google now generates a summary at the top of many results and cites a small set of sources. That means fewer clicks for some queries and a new contest: being one of the cited sources rather than the tenth link."
+        },
+        {
+          "t": "p",
+          "text": "Before AI Overviews, a user clicked through to find their answer. Now Google, and parallel systems like ChatGPT, Perplexity, Gemini, and Copilot, often deliver the answer in place. The user may never visit your page. But if your brand is the cited source, you still earn visibility, trust, and qualified demand."
+        },
+        {
+          "t": "p",
+          "text": "This shifts the revenue logic. Vanity metrics like raw rankings and total impressions matter less. What matters is whether you are cited at the moment of intent and whether you are the brand the engine recommends. That is a different goal, and it rewards different work."
+        },
+        {
+          "t": "callout",
+          "text": "Optimize for being cited and chosen, not for vanity rankings. A page that ranks third but never gets quoted in the AI answer is losing the search that actually matters now."
+        }
+      ]
+    },
+    {
+      "h2": "How does SEO relate to GEO and AEO?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "SEO is the foundation. GEO and AEO are specializations built on top of it. GEO, Generative Engine Optimization, targets inclusion inside AI-generated answers. AEO, Answer Engine Optimization, targets direct answers to specific questions. All three rely on the same crawlable, authoritative, well-structured content."
+        },
+        {
+          "t": "p",
+          "text": "Think of it as one discipline with three lenses. SEO makes sure engines can find, read, and trust you. GEO makes sure generative systems like ChatGPT, Perplexity, and Google AI Overviews pull you into their synthesized responses. AEO makes sure your content cleanly answers the precise question a user or engine is asking."
+        },
+        {
+          "t": "table",
+          "header": ["Discipline", "Primary goal", "Where the win shows up"],
+          "rows": [
+            ["SEO", "Be found, understood, and trusted", "Ranked positions and crawlable, indexed pages"],
+            ["GEO", "Be cited inside generated answers", "Citations in ChatGPT, Perplexity, Gemini, and AI Overviews"],
+            ["AEO", "Directly answer a specific question", "Featured answers, snippets, and voice or assistant responses"]
+          ]
+        },
+        {
+          "t": "p",
+          "text": "You do not choose one. You do the SEO foundations once, then apply the GEO and AEO lenses to the content where they pay off. Skipping the foundation to chase GEO is like decorating a house with no plumbing."
+        }
+      ]
+    },
+    {
+      "h2": "Which ranking signal categories matter most?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Ranking signals fall into four broad categories: relevance, authority, technical health, and user experience. AI answers add a fifth lens: how easy your content is to extract and reuse. Get these right and you compete in both classic search and AI answers."
+        },
+        {
+          "t": "p",
+          "text": "No engine publishes its exact formula. But the categories below are stable, well documented, and consistent with what we see drive results across client programs. Treat them as the foundations to get right before anything advanced."
+        },
+        {
+          "t": "table",
+          "header": ["Signal category", "What it covers", "Why it matters in the AI era"],
+          "rows": [
+            ["Relevance", "Intent match, topic depth, semantic coverage", "Engines must see your page as the right answer to quote"],
+            ["Authority", "Backlinks, brand mentions, demonstrated expertise", "AI systems prefer sources they can trust enough to cite"],
+            ["Technical health", "Crawlability, indexing, speed, structured data", "If a bot cannot read it, it cannot rank or cite it"],
+            ["User experience", "Mobile usability, clarity, low friction", "Engaged users and clean pages signal a quality source"],
+            ["Extractability", "Clear structure, direct answers, scannable format", "Makes it easy for an AI layer to pull and reuse your content"]
+          ]
+        },
+        {
+          "t": "p",
+          "text": "Extractability is the newest of the five. A page can be relevant and authoritative yet still get skipped if its key points are buried. Lead with a direct answer, use clear headings, and state facts plainly. That structure helps Google AI Overviews, ChatGPT, and Perplexity lift your content cleanly."
+        }
+      ]
+    },
+    {
+      "h2": "What are the foundations to get right first?",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Get four foundations right before anything else: a crawlable and indexable site, content that matches real intent, genuine authority signals, and a clear answer-first structure. These compound. They make every later GEO and AEO effort work harder."
+        },
+        {
+          "t": "h3",
+          "text": "The non-negotiable starting list"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Technical accessibility: clean crawling, fast load, a working sitemap, and no accidental noindex.",
+            "Intent-matched content: write to the actual question behind the query, not just the keyword.",
+            "Authority: earn links, mentions, and proof of expertise so engines trust your source.",
+            "Answer-first structure: open each page with a direct, quotable answer, then expand.",
+            "Structured data: use schema markup so engines understand what your content is."
+          ]
+        },
+        {
+          "t": "p",
+          "text": "In our work we have found that most underperformance traces back to these basics, not to some exotic tactic. Fix the foundation first. Then layer GEO and AEO on a site that engines can already find, read, and trust."
+        },
+        {
+          "t": "callout",
+          "text": "The fastest SEO win in the AI era is usually unglamorous: make your best content crawlable, clearly structured, and answer-first. That alone moves you from ignored to cited."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is SEO dead now that AI answers the query?",
+      "a": "No. SEO is the foundation that AI answers are built on. Engines still crawl, index, and rank pages, then synthesize answers from the sources they trust. The goal has shifted from ranking a link to being cited and chosen, but the underlying work still matters."
+    },
+    {
+      "q": "What is the difference between SEO and GEO?",
+      "a": "SEO makes your content findable, understandable, and trusted across search engines. GEO, Generative Engine Optimization, focuses on getting cited inside AI-generated answers from systems like ChatGPT, Perplexity, and Google AI Overviews. They share the same foundations, but GEO competes for inclusion in the response rather than a ranked link."
+    },
+    {
+      "q": "How do AI Overviews affect my traffic?",
+      "a": "AI Overviews can reduce clicks for queries that get answered in place. But they also create a new opportunity: being the cited source in the summary. If your brand is quoted there, you earn visibility and trust at the moment of intent, even without a click."
+    },
+    {
+      "q": "Do I still need keywords and backlinks?",
+      "a": "Yes, but think of them as inputs to relevance and authority, not goals in themselves. Keywords help engines understand what your page answers, and backlinks plus brand mentions signal that your source is trustworthy. Both still help you rank and help AI systems decide whether to cite you."
+    },
+    {
+      "q": "Where should a beginner start with SEO in the AI era?",
+      "a": "Start with the foundations: a crawlable, fast, indexable site and content that genuinely matches user intent. Then add answer-first structure so each page opens with a direct, quotable answer. Once those basics are solid, apply GEO and AEO to the pages where citation and direct answers matter most."
+    }
+  ]
+}

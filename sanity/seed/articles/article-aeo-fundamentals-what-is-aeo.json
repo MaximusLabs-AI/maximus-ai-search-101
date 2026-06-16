@@ -1,0 +1,135 @@
+{
+  "id": "article-aeo-fundamentals-what-is-aeo",
+  "title": "What is AEO? Answer Engine Optimization Explained",
+  "slug": "what-is-aeo",
+  "pillar": "aeo",
+  "cluster": "fundamentals",
+  "answer": "Answer Engine Optimization (AEO) is the practice of structuring content so answer engines like Perplexity, Google AI Overviews, ChatGPT, and voice assistants extract it and cite it as the direct answer to a question. Unlike classic SEO, which competes for ranked links, AEO competes to be the single quoted response. The goal is to be cited and chosen, not merely listed.",
+  "excerpt": "A founder's plain-language definition of Answer Engine Optimization: how answer engines work, how AEO differs from SEO and GEO, the formats that win the answer, and how to measure it.",
+  "readingTime": 11,
+  "datePublished": "2026-06-16",
+  "sections": [
+    {
+      "h2": "What is Answer Engine Optimization (AEO)?",
+      "blocks": [
+        {"t":"p","text":"Answer Engine Optimization is the discipline of formatting and structuring content so answer engines pull it directly into their response and name you as the source. An answer engine is any system that returns a synthesized answer instead of a list of links. Perplexity, Google AI Overviews, ChatGPT, Gemini, Copilot, and voice assistants all qualify. AEO optimizes for the citation, not the click."},
+        {"t":"p","text":"The shift is simple to state. Classic search returns ten blue links and asks the reader to choose. An answer engine reads those sources, writes one paragraph, and hands it to the reader with a small set of citations. If you are not in that paragraph or its citation list, you do not exist for that query."},
+        {"t":"p","text":"In our work at MaximusLabs we define AEO by the outcome it serves: being the quoted answer. A first-place ranking that the AI overview summarizes without crediting you is a loss. A third-place source the engine quotes by name is a win. AEO inverts what most teams have measured for a decade."},
+        {"t":"callout","text":"My take: stop optimizing to rank and start optimizing to be the answer. A ranked link no one clicks is a vanity metric. A citation inside the AI answer is a revenue surface."}
+      ]
+    },
+    {
+      "h2": "How do answer engines actually work?",
+      "blocks": [
+        {"t":"p","text":"Answer engines work by retrieval then generation. The engine reads your question, retrieves a small set of trusted passages from the live web or its index, and feeds those passages to a language model that writes one synthesized answer. This pattern is called retrieval-augmented generation, or RAG. The passages it retrieves decide what the answer says and who gets cited."},
+        {"t":"h3","text":"The four answer surfaces you compete on"},
+        {"t":"p","text":"Different engines surface answers differently, but four formats dominate. Each rewards slightly different structure, so it helps to know which one you are writing for."},
+        {"t":"ul","items":[
+          "Perplexity and conversational engines: retrieve a handful of sources, synthesize a cited answer, and list the URLs. Clear, self-contained passages win.",
+          "Google AI Overviews: generate a summary above the classic results, drawing from pages that already cleanly answer the query. Concise definitions and steps win.",
+          "Featured snippets: the older, pre-LLM answer box. A 40 to 60 word direct answer near a matching heading still wins these.",
+          "Voice assistants: read one answer aloud. They strongly favor a single short spoken sentence pulled from structured content."
+        ]},
+        {"t":"p","text":"The mechanism matters for tactics. Because retrieval happens at the passage level, the engine does not grade your whole page. It grades the chunk nearest the question. That is why a clear answer placed directly under a matching heading outperforms a brilliant argument buried in paragraph nine."},
+        {"t":"quote","text":"Answer engines do not read your page. They read the paragraph closest to the question and quote it. Write that paragraph on purpose."}
+      ]
+    },
+    {
+      "h2": "AEO vs SEO vs GEO: what is the difference?",
+      "blocks": [
+        {"t":"p","text":"SEO, AEO, and GEO are three layers of the same goal: being found. SEO optimizes web pages to rank in classic search results. AEO optimizes content to be extracted as the direct answer by an answer engine. GEO, Generative Engine Optimization, optimizes how your brand is represented across generative AI answers broadly. They overlap heavily and share a foundation, but they are scored on different outcomes."},
+        {"t":"p","text":"Here is the cleanest way I explain it to founders. SEO wins a ranked position. AEO wins the quoted answer to a specific question. GEO wins your brand's overall presence and framing inside generative answers, including answers with no clickable link at all. Strong SEO fundamentals feed all three. None of them replaces the others."},
+        {"t":"table","header":["Dimension","SEO","AEO","GEO"],"rows":[
+          ["Primary goal","Rank in the link list","Be the cited answer to a question","Shape brand presence across AI answers"],
+          ["Surface","Classic search results","Answer boxes, AI Overviews, Perplexity","ChatGPT, Gemini, Claude, Copilot answers"],
+          ["Unit optimized","The page","The passage near a question","The brand entity and its associations"],
+          ["Win condition","Position one to three","Quoted and cited by name","Recommended or named favorably"],
+          ["Core metric","Rankings and organic clicks","Citation share and answer inclusion","Share of voice in AI answers"],
+          ["Content shape","Comprehensive page","Direct answer plus structured proof","Consistent, authoritative entity signals"]
+        ]},
+        {"t":"callout","text":"Do not treat these as competing strategies. Treat them as one stack: clean SEO foundations, answer-first structure for AEO, and a consistent brand entity for GEO. The teams that separate them duplicate work and lose all three."}
+      ]
+    },
+    {
+      "h2": "Why does AEO matter for revenue, not just traffic?",
+      "blocks": [
+        {"t":"p","text":"AEO matters because buying decisions now start inside the AI answer, where there may be no link to click. When a buyer asks ChatGPT or Perplexity which vendor solves their problem, the engine names a short list. If you are on that list, you enter the deal. If you are not, you never get the chance to compete, no matter how well your page would have ranked."},
+        {"t":"p","text":"This is why we frame AEO around being cited and chosen, not around vanity rankings. A page can rank first and still lose the customer to the brand the AI overview quoted in its summary. The answer is the new homepage. The citation is the new click."},
+        {"t":"h3","text":"The high-intent question is where money moves"},
+        {"t":"p","text":"Consider Maya, head of marketing at a mid-size SaaS company. She asks Perplexity for the best approach to get cited in AI search. The engine returns one synthesized answer and three sources. Maya reads the answer, trusts the named sources, and books a call with one of them. The vendor that won was not the highest ranked. It was the one the engine quoted."},
+        {"t":"quote","text":"In the AI answer there is often no second result. You are the source, or you are invisible. There is little middle ground left."}
+      ]
+    },
+    {
+      "h2": "What content formats win the answer?",
+      "blocks": [
+        {"t":"p","text":"The formats that win are the ones an engine can lift cleanly into its answer. That means a direct answer of 40 to 80 words placed right under a question heading, then proof underneath. Question-shaped headings, short self-contained paragraphs, comparison tables, step lists, and FAQ blocks all extract well. Dense walls of prose do not, because the engine cannot isolate the relevant chunk."},
+        {"t":"h3","text":"The formats answer engines reach for"},
+        {"t":"ul","items":[
+          "Answer-first paragraphs: lead each section with a standalone 40 to 80 word answer the engine can quote out of context.",
+          "Question headings: write headings the way people ask, so retrieval matches the query to your passage.",
+          "Comparison tables: structured rows make differences trivially extractable, which is why this article uses one.",
+          "Numbered steps: for how-to queries, ordered lists map directly to the answer the engine wants to give.",
+          "FAQ blocks: short self-contained question and answer pairs are among the most reliably cited formats.",
+          "Schema markup: Article and FAQ structured data helps engines parse roles, dates, and answers correctly."
+        ]},
+        {"t":"p","text":"I tested this pattern across our own guides at MaximusLabs. The pages that opened each section with a tight, quotable answer were cited far more often than equally researched pages that buried the point. The research was the same. The structure decided who got quoted."},
+        {"t":"callout","text":"Write the sentence you want the AI to read aloud, then put it first. Everything else on the page is proof that earns the right to be quoted."}
+      ]
+    },
+    {
+      "h2": "How do you measure AEO success?",
+      "blocks": [
+        {"t":"p","text":"You measure AEO by citation and inclusion, not by rankings alone. The core question is simple: when buyers ask the questions that matter, does the answer engine name you? Track how often you are cited, across which engines, for which queries, and whether that presence drives qualified visits and pipeline. Rankings become a supporting signal, not the scoreboard."},
+        {"t":"h3","text":"The metrics that actually count"},
+        {"t":"ul","items":[
+          "Citation share: how often you appear as a named source versus competitors for your priority questions.",
+          "Answer inclusion rate: the percentage of target queries where your content shows up in the synthesized answer.",
+          "Engine coverage: presence across ChatGPT, Perplexity, Google AI Overviews, Gemini, and Copilot, since each retrieves differently.",
+          "Referral and assisted pipeline: visits and deals traced back to AI answer surfaces, where attribution is available.",
+          "Brand mention sentiment: whether you are named favorably, neutrally, or as a cautionary example."
+        ]},
+        {"t":"p","text":"My honest position: AEO measurement is still maturing, and anyone claiming perfect attribution is overselling. We run a panel of priority questions on a fixed cadence, log which engine cites whom, and watch the trend. Imperfect but directional beats a precise rankings report that no longer predicts revenue."},
+        {"t":"quote","text":"Stop asking where you rank. Start asking whether the AI names you when it matters. That single change reorders every priority."}
+      ]
+    },
+    {
+      "h2": "How do you start with AEO today?",
+      "blocks": [
+        {"t":"p","text":"Start with your highest-intent questions, not your highest-volume keywords. List the questions a ready-to-buy customer asks an answer engine, then make each one its own answer-first section. Lead with a 40 to 80 word answer, support it with structured proof, add FAQ and schema, and check whether the major engines begin to cite you. Expand outward from there."},
+        {"t":"h3","text":"A simple first sprint"},
+        {"t":"ul","items":[
+          "Pick ten high-intent questions where being the answer would influence a real buying decision.",
+          "Rewrite each target section answer-first, with a quotable 40 to 80 word opener under a question heading.",
+          "Add comparison tables, steps, FAQ blocks, and Article plus FAQ schema where they genuinely help.",
+          "Ask ChatGPT, Perplexity, and Google AI Overviews those ten questions, and record who gets cited.",
+          "Fix the gaps, re-check on a fixed cadence, and scale the format to your next set of questions."
+        ]},
+        {"t":"p","text":"This is BOFU-first by design. We deliberately start at the bottom of the funnel, where intent and revenue concentrate, before working up. It is the same hub-and-spoke approach we use across MaximusLabs, applied to the questions that move deals rather than the ones that move only traffic."},
+        {"t":"callout","text":"You do not need a massive budget to start. You need the right ten questions, answered first and structured well. Be the source, not just a result."}
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is AEO replacing SEO?",
+      "a": "No. AEO builds on SEO rather than replacing it. Answer engines still retrieve from crawlable, well-structured, authoritative pages, which are SEO fundamentals. AEO adds answer-first structure on top so engines can extract and cite your content. Treat them as one stack, not as rivals."
+    },
+    {
+      "q": "What is the difference between AEO and GEO?",
+      "a": "AEO optimizes content to be extracted as the direct, cited answer to a specific question on engines like Perplexity and Google AI Overviews. GEO, Generative Engine Optimization, is broader: it shapes how your brand entity is represented and recommended across generative AI answers overall. AEO wins the quoted answer. GEO wins the brand's wider presence inside AI responses."
+    },
+    {
+      "q": "Which answer engines should I optimize for first?",
+      "a": "Start with the engines your buyers actually use to make decisions, which for most B2B teams means ChatGPT, Perplexity, and Google AI Overviews. Each retrieves content differently, so check your priority questions on all three. Expand to Gemini and Copilot once your answer-first structure is in place and you can measure citations."
+    },
+    {
+      "q": "How long does AEO take to show results?",
+      "a": "It varies by engine and by how often it refreshes its sources. Featured snippets and AI Overviews can update within days to weeks of a content change, while conversational engines depend on their retrieval and indexing cadence. In our experience, answer-first rewrites on high-intent questions show citation movement faster than traditional ranking gains because the format change is so direct."
+    },
+    {
+      "q": "Do I need schema markup for AEO?",
+      "a": "Schema is not strictly required, but it helps. Article and FAQ structured data lets engines parse your headings, answers, authorship, and dates correctly, which makes clean extraction more likely. Schema is a strong supporting signal, not a substitute for a genuinely clear, answer-first page. Get the writing right first, then add schema to reinforce it."
+    }
+  ]
+}

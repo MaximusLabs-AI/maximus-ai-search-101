@@ -1,0 +1,108 @@
+{
+  "id": "article-geo-content-optimization-guide",
+  "title": "GEO Content: A Complete Framework to Get Cited by AI Search Engines",
+  "slug": "optimization-guide",
+  "pillar": "geo",
+  "cluster": "content",
+  "answer": "GEO content is content engineered to be cited inside AI search answers, not just ranked as a link. The framework has six parts: lead with a standalone answer, back claims with citation-worthy evidence, format for easy extraction, add schema markup, build topical authority across a cluster, and audit against a citation checklist. Optimize to be cited and chosen, not for vanity rankings.",
+  "excerpt": "The six-part framework MaximusLabs uses to make content that ChatGPT, Perplexity, and Google AI Overviews quote by name.",
+  "readingTime": 11,
+  "datePublished": "2026-06-16",
+  "sections": [
+    {
+      "h2": "What makes content citation-worthy for AI search engines?",
+      "blocks": [
+        {"t":"p","text":"Citation-worthy content gives an AI engine a clean, verifiable, self-contained answer it can lift without risk. ChatGPT, Perplexity, Google AI Overviews, Gemini, Claude, and Copilot retrieve passages, then synthesize a response and credit a few sources. Your job is to be the passage that is easiest to quote and hardest to doubt. That means clear answers, named evidence, and structure a machine can parse."},
+        {"t":"p","text":"Ranking and being cited are different games. A page can sit at position three in classic search and never appear in an AI answer. Generative engines do not reward the same signals. They reward passages that resolve the question fully, in one place, with support a model can trust."},
+        {"t":"p","text":"In our work at MaximusLabs we have found the deciding factor is rarely domain authority alone. It is passage-level clarity. A mid-size brand with a crisp, evidence-backed answer often beats a larger competitor whose answer is buried three scrolls down a 3,000 word page."},
+        {"t":"callout","text":"My take: stop writing pages and start writing answers. An AI engine never reads your page top to bottom. It grabs the cleanest 60 words that settle the question, and that fragment is what carries your brand into the response."},
+        {"t":"p","text":"Research backs the structural angle. The GEO study by Aggarwal et al. (2024), the paper that named the field, found that adding cited sources, statistics, and quotations lifted source visibility in generative answers by up to 40 percent versus plain prose. The lesson is direct: evidence and structure are not polish, they are the mechanism."}
+      ]
+    },
+    {
+      "h2": "How does answer-first structure work?",
+      "blocks": [
+        {"t":"p","text":"Answer-first structure means the first 40 to 80 words after any heading fully answer that heading, even when quoted alone. Lead with the conclusion, then expand with reasoning and evidence. AI engines extract passages near the top of a section, so front-loading the answer is the single highest-leverage move. If your opening lines cannot stand alone out of context, rewrite them until they can."},
+        {"t":"h3","text":"Write the nugget first, the page second"},
+        {"t":"p","text":"Draft the standalone answer before anything else. Keep it 40 to 80 words. Make it complete: define the term, state the position, give the shape of the how. Then build the rest of the section to support that nugget. This inverts the classic essay, where the payoff arrives last. Generative engines do not wait for your payoff."},
+        {"t":"ul","items":["Open every H2 with a direct answer to that exact heading.","Define any term on first use, in the same sentence.","Keep sentences 8 to 20 words so each clause is quotable.","Lead with the conclusion, then the why, then the proof."]},
+        {"t":"quote","text":"If the first sentence of a section needs the previous section to make sense, an AI engine will skip it. Write every passage like it might be the only thing quoted."},
+        {"t":"p","text":"We tested this on a client cluster by rewriting section openers into standalone nuggets while leaving the rest untouched. Citations in Perplexity and Google AI Overviews rose within two crawl cycles. Same facts, same authority, different packaging. The packaging was the product."}
+      ]
+    },
+    {
+      "h2": "What counts as citation-worthy evidence?",
+      "blocks": [
+        {"t":"p","text":"Citation-worthy evidence is specific, attributable, and verifiable. Name the study, author, and year. Use exact numbers with units and dates. Quote primary sources, not recycled blog stats. AI engines lean toward content that signals expertise and reduces hallucination risk, so a passage carrying a named figure and a real source is safer to cite than a vague claim. Specificity is trust made machine-readable."},
+        {"t":"h3","text":"The evidence hierarchy"},
+        {"t":"p","text":"Not all proof is equal. Order your support from strongest to weakest and lead with the strongest you have. Primary research outranks a vendor's marketing page every time, both for human readers and for the model deciding whom to trust."},
+        {"t":"ul","items":["Peer-reviewed papers and academic studies, cited by author and year.","Patents and official technical documentation.","Original data: your own experiments, surveys, and benchmarks.","First-party expert quotes from named practitioners.","Reputable secondary sources, used last and sparingly."]},
+        {"t":"p","text":"Original data is your unfair advantage. Aggarwal et al. (2024) showed that quotation and statistic density correlated with higher generative visibility across most query categories. If you run a test and publish the numbers, you become the primary source other pages cite, which compounds your authority over time."},
+        {"t":"callout","text":"At MaximusLabs we treat one proprietary benchmark as worth more than ten paraphrased industry stats. The model can find the industry stat in a hundred places. It can only find your number on your page."}
+      ]
+    },
+    {
+      "h2": "How should you format content for extraction?",
+      "blocks": [
+        {"t":"p","text":"Format content so a machine can lift discrete, complete units. Use descriptive H2 and H3 headings phrased as the questions people ask. Keep paragraphs to two to four sentences. Use lists for steps and options, and tables for comparisons. Put the key fact in the first sentence of each chunk. Clean, semantic HTML beats clever layout, because AI crawlers parse markup, not visual design."},
+        {"t":"p","text":"Think in extractable units. Every list item, table row, and short paragraph is a candidate quote. The more self-contained units you provide, the more surface area you give an engine to cite. Walls of text offer none of this."},
+        {"t":"table","header":["Format element","Why AI engines like it","How to do it"],"rows":[["Question headings","Match the user query directly","Phrase H2s as real questions people type"],["Short paragraphs","Each chunk is a liftable unit","Cap at 2 to 4 sentences, key fact first"],["Lists","Clean structure for steps and options","Use for processes, criteria, options"],["Tables","Comparisons extract as rows","Compare options, criteria, or tools"],["Semantic HTML","Crawlers parse markup, not visuals","Real headings and lists, not styled divs"]]},
+        {"t":"p","text":"Place content in server-rendered HTML, not in script that loads after the fact. Many AI crawlers do not execute heavy client-side rendering. If the answer only appears after JavaScript runs, the crawler may never see it. This is exactly why the AI Search 101 hub renders pages on the server."},
+        {"t":"quote","text":"Beautiful design that hides your answer behind a render step is invisible to the crawler. Plain HTML that states the answer wins the citation."}
+      ]
+    },
+    {
+      "h2": "What role does schema markup play?",
+      "blocks": [
+        {"t":"p","text":"Schema markup is structured data that labels your content so engines understand it without guessing. Article, FAQPage, HowTo, and Author schema tell ChatGPT, Gemini, and Google AI Overviews what a passage is, who wrote it, and when it was published. It does not force a citation, but it removes ambiguity and strengthens the E-E-A-T signals that influence whether your answer is trusted enough to quote."},
+        {"t":"h3","text":"The schema types that matter most"},
+        {"t":"ul","items":["Article: title, author, datePublished, publisher. The baseline for any guide.","FAQPage: marks each question and answer as a discrete, extractable unit.","HowTo: labels step-by-step instructions for process queries.","Author: ties content to a named, credentialed person for E-E-A-T."]},
+        {"t":"p","text":"Author schema carries weight that surprises most teams. E-E-A-T, Google's framework for Experience, Expertise, Authoritativeness, and Trust, leans on knowing who is behind a claim. A named author with real credentials is a safer source than an anonymous page. Schema makes that link explicit and machine-readable."},
+        {"t":"callout","text":"Schema is the cheapest trust signal you can ship. It is a one-time engineering task that quietly raises the floor on every page's citation odds. Skipping it is leaving free credibility on the table."}
+      ]
+    },
+    {
+      "h2": "How do you build topical authority?",
+      "blocks": [
+        {"t":"p","text":"Topical authority is earned by covering a subject so completely that engines treat your site as a reference for it. Build a hub-and-spoke cluster: one pillar page giving the strategic overview, linked to many spoke articles answering specific questions. Interlink them so each reinforces the others. AI engines favor sources with demonstrated depth, because depth signals genuine expertise rather than a one-off post chasing a keyword."},
+        {"t":"h3","text":"Hub and spoke, applied"},
+        {"t":"p","text":"This very hub is the pattern in action: a GEO pillar, a content cluster, and articles like this one underneath it. The pillar introduces each spoke with a deep-dive link. The spokes answer one question each and link back up. No page competes with another for the same query, so nothing cannibalizes."},
+        {"t":"ul","items":["One pillar per topic, covering the strategic picture.","One spoke per specific question, answered fully and once.","Internal links from pillar to spokes and spokes back to pillar.","No two pages targeting the same query, to avoid cannibalization."]},
+        {"t":"p","text":"Depth also helps retrieval mechanically. When a model retrieves passages for a query, a site with twenty interlinked articles on GEO offers more relevant, mutually reinforcing context than a single page. You are not writing one answer. You are building the corpus the engine reaches into."},
+        {"t":"quote","text":"Do not be a search result. Be the source the whole topic points back to."}
+      ]
+    },
+    {
+      "h2": "What does a GEO content audit checklist look like?",
+      "blocks": [
+        {"t":"p","text":"A GEO content audit scores each page against the factors that drive citation. Check it on six dimensions: answer-first structure, evidence quality, extraction formatting, schema, topical authority, and freshness. Score each from zero to two, sum to a total out of twelve, and fix anything below full marks. The point is not a perfect score, it is finding the specific gap keeping a strong page out of AI answers."},
+        {"t":"table","header":["Audit criterion","What to check","Score (0 to 2)"],"rows":[["Answer-first","Does each H2 open with a standalone 40 to 80 word answer?","0 to 2"],["Evidence","Are claims backed by named, dated, verifiable sources?","0 to 2"],["Formatting","Question headings, short chunks, lists, tables, semantic HTML?","0 to 2"],["Schema","Article, FAQ, HowTo, and Author markup present and valid?","0 to 2"],["Topical authority","Linked into a complete pillar-and-cluster on the topic?","0 to 2"],["Freshness","Updated dates, current data, no stale claims?","0 to 2"]]},
+        {"t":"p","text":"Run this on your highest-intent pages first, the ones tied to revenue, not the ones with the most traffic. A page that gets cited for a buying-stage question is worth more than one cited for a definition. Optimize for being chosen at the moment of decision."},
+        {"t":"callout","text":"Most pages we audit fail on two axes: the answer is buried, and the evidence is vague. Fix those two and citation rates move before you touch anything else. Start where the leverage is."},
+        {"t":"p","text":"Freshness is the criterion teams forget. Generative engines favor current information, especially in fast-moving fields. A genuine update with a new date and refreshed data signals the page is maintained, which raises trust. Re-audit the cluster on a quarterly cadence."}
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How is GEO content different from SEO content?",
+      "a": "SEO content competes for a ranked link on a results page. GEO content competes for inclusion inside the AI-generated answer itself. They share foundations like clean structure and quality, but GEO weights standalone answers, named evidence, and extractable formatting far more heavily. You optimize to be quoted and credited, not merely to rank."
+    },
+    {
+      "q": "Does schema markup guarantee my content gets cited?",
+      "a": "No. Schema does not force any engine to cite you. It removes ambiguity about what your content is, who wrote it, and when it was published. That clarity strengthens trust signals like E-E-A-T, which makes your answer safer to quote. Treat schema as raising your odds, not guaranteeing the outcome."
+    },
+    {
+      "q": "How long should a GEO answer nugget be?",
+      "a": "Aim for 40 to 80 words. That is long enough to fully resolve a question and short enough for an engine to lift cleanly into a response. Front-load the conclusion, define any term inline, and make sure the passage stands alone without the surrounding context. If it needs the rest of the page to make sense, shorten and sharpen it."
+    },
+    {
+      "q": "Which AI engines should I optimize for first?",
+      "a": "Start with the engines your buyers actually use: ChatGPT, Perplexity, and Google AI Overviews tend to drive the most high-intent discovery today, with Gemini, Claude, and Copilot close behind. The good news is that the framework is shared. Answer-first structure, strong evidence, and clean formatting earn citations across all of them, so you rarely optimize for just one."
+    },
+    {
+      "q": "How often should I run a GEO content audit?",
+      "a": "Audit high-intent revenue pages quarterly, and any time a major platform changes how it cites sources. Freshness is itself a ranking factor for generative engines, so a quarterly pass that updates data and dates does double duty. Re-score each page on the six-dimension checklist and fix whatever dropped below full marks."
+    }
+  ]
+}
