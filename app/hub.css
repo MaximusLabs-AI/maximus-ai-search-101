@@ -45,11 +45,19 @@ a{color:var(--accent);text-decoration:none}
 .hubhero{padding:72px 0 40px;text-align:center}
 .hubhero h1{font-size:clamp(2.6rem,1.6rem + 4vw,4.5rem);font-weight:300;letter-spacing:-0.03em;line-height:1.02;color:var(--navy)}
 .hubhero .sub{font-size:clamp(1.05rem,1rem + 0.4vw,1.25rem);color:var(--slate-strong);font-weight:400;max-width:60ch;margin:18px auto 30px}
-.searchbar{display:flex;align-items:center;gap:10px;max-width:640px;margin:0 auto;background:var(--field);border:1px solid transparent;border-radius:40px;padding:0 20px;height:52px;transition:border-color .15s}
+.search-wrap{position:relative;max-width:640px;margin:0 auto;text-align:left}
+.searchbar{display:flex;align-items:center;gap:10px;width:100%;background:var(--field);border:1px solid transparent;border-radius:40px;padding:0 20px;height:52px;transition:border-color .15s}
 .searchbar:focus-within{border-color:var(--sky-50)}
 .searchbar svg{width:18px;height:18px;color:var(--slate);flex:none}
 .searchbar input{flex:1;border:none;background:transparent;outline:none;font:inherit;font-size:15.5px;color:var(--ink)}
 .searchbar input::placeholder{color:var(--slate)}
+.search-sugg{position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border:1px solid var(--bone);border-radius:16px;box-shadow:var(--shadow-pop);overflow:hidden;z-index:40;list-style:none;padding:6px}
+.search-sugg li a{display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:10px;color:var(--ink);font-size:15px;font-weight:500}
+.search-sugg li a:hover{background:var(--field)}
+.search-sugg li a .st{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--chip);padding:3px 8px;border-radius:5px;flex:none}
+.search-sugg li a .stx{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.search-sugg .sugg-all{border-top:1px solid var(--line);margin-top:4px;padding-top:2px}
+.search-sugg .sugg-all a{color:var(--accent);font-weight:700;font-size:14px}
 
 /* ---------- Section header ---------- */
 .section{padding:46px 0 8px}

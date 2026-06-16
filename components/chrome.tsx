@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { SearchBar } from './SearchBar'
+
+export { SearchBar }
 
 /** Inline logo sprite. Rendered once in the root layout body. */
 export function LogoSprite() {
@@ -10,15 +13,6 @@ export function LogoSprite() {
       <symbol id="ml-mark-w" viewBox="0 0 48 48">
         <path d="M37 23.9998H30.064C26.715 23.9998 24 26.7148 24 30.0638V47.4268C24 47.6458 24.26 47.7598 24.421 47.6108L37 35.9998V23.9998Z" fill="#ffffff" /><path d="M36.9995 24H30.0635C28.6275 24 27.3085 24.499 26.2695 25.333L36.9995 36V24Z" fill="#9fc3f5" /><path d="M11 24H17.936C21.285 24 24 21.285 24 17.936V0.574006C24 0.355006 23.74 0.241003 23.579 0.390004L11 12V24Z" fill="#ffffff" /><path d="M11 24H17.936C19.372 24 20.691 23.501 21.73 22.667L11 12V24Z" fill="#9fc3f5" /><path d="M23.9997 37V30.064C23.9997 26.715 21.2847 24 17.9357 24H0.572748C0.353748 24 0.239748 24.26 0.388748 24.421L11.9997 37H23.9997Z" fill="#ffffff" /><path d="M24 37V30.064C24 28.628 23.501 27.309 22.667 26.27L12 37H24Z" fill="#9fc3f5" /><path d="M24 11V17.936C24 21.285 26.715 24 30.064 24H47.426C47.645 24 47.759 23.74 47.61 23.579L36 11H24Z" fill="#ffffff" /><path d="M24 11V17.936C24 19.372 24.499 20.691 25.333 21.73L36 11H24Z" fill="#9fc3f5" />
       </symbol>
-    </svg>
-  )
-}
-
-function MagnifierIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-      <path d="M20 20l-3.2-3.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   )
 }
@@ -104,16 +98,6 @@ export function Breadcrumbs({ trail }: { trail: Crumb[] }) {
         </span>
       ))}
     </nav>
-  )
-}
-
-/** Search box. A GET form to /ai-search-101/search?q=... (no client JS needed). */
-export function SearchBar({ defaultValue }: { defaultValue?: string }) {
-  return (
-    <form className="searchbar" action="/ai-search-101/search">
-      <MagnifierIcon />
-      <input type="search" name="q" defaultValue={defaultValue} placeholder="Search a topic..." aria-label="Search AI Search 101" />
-    </form>
   )
 }
 

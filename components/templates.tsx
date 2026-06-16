@@ -312,7 +312,7 @@ export function SearchResults({ q, results }: { q: string; results: SearchResult
           {results.length ? (
             <CardGrid>
               {results.map((r) => (
-                <ArticleCard key={`${r._type}-${r.slug}`} href={searchHref(r)} label={TYPE_LABEL[r._type]} title={r.title} excerpt={r.summary} />
+                <ArticleCard key={`${r._type}-${r.pillarSlug || ''}-${r.clusterSlug || ''}-${r.slug}`} href={searchHref(r)} label={TYPE_LABEL[r._type]} title={r.title} excerpt={r.summary} />
               ))}
             </CardGrid>
           ) : q ? (
