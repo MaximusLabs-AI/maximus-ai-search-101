@@ -12,7 +12,7 @@ export default function NotFound() {
           <h1>That guide is not here</h1>
           <p className="dek">The page you are looking for does not exist or has moved.</p>
           <div style={{ marginTop: 24 }}>
-            <Link className="nav-cta" href="/ai-search-101" style={{ display: 'inline-block' }}>
+            <Link className="nav-cta" href="/" style={{ display: 'inline-block' }}>
               Back to AI Search 101
             </Link>
           </div>

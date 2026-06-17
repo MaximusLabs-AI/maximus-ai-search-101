@@ -79,8 +79,17 @@ export type ArticleData = {
   siblings?: ArticleLink[]
 }
 
-/** Shared path helper so every component builds the same canonical URLs. */
-export const base = '/ai-search-101'
+/**
+ * Path helpers. The app runs under Next's `basePath: '/ai-search-101'`, which
+ * auto-prepends that prefix to every <Link>/router href. So in-app paths here are
+ * basePath-RELATIVE (base = ''): pillarPath('geo') = '/geo' renders as
+ * '/ai-search-101/geo'. Do NOT put '/ai-search-101' in these or it doubles.
+ */
+export const base = ''
+/** The hub itself, as a <Link> href (basePath turns '/' into '/ai-search-101'). */
+export const hubPath = '/'
+/** For canonicals / sitemap-style refs that are NOT auto-prefixed by basePath. */
+export const canonicalPath = '/ai-search-101'
 export const pillarPath = (p: string) => `${base}/${p}`
 export const clusterPath = (p: string, c: string) => `${base}/${p}/${c}`
 export const articlePath = (p: string, c: string, a: string) => `${base}/${p}/${c}/${a}`

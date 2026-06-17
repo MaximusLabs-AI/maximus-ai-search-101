@@ -3,7 +3,8 @@ import { client } from '@/sanity/client'
 import { SEARCH_Q } from '@/sanity/queries'
 import type { SearchResult } from '@/components/types'
 
-const base = '/ai-search-101'
+// basePath-relative: these hrefs feed <Link>, which prepends Next's basePath.
+const base = ''
 const LABEL: Record<SearchResult['_type'], string> = { pillar: 'Pillar', cluster: 'Cluster', article: 'Guide' }
 
 // Same-origin typeahead endpoint for the search box (avoids browser->Sanity CORS).

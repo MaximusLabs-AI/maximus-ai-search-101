@@ -8,7 +8,7 @@ import {
 } from '@/sanity/queries'
 import { Hub, Pillar, Cluster, Article, SearchResults } from '@/components/templates'
 import type { HubData, PillarData, ClusterData, ArticleData, SearchResult } from '@/components/types'
-import { base } from '@/components/types'
+import { canonicalPath } from '@/components/types'
 
 // New pillars/clusters/articles added in Sanity render on-demand and cache,
 // without needing a rebuild (legacy caching model, ISR via per-fetch revalidate).
@@ -32,7 +32,10 @@ export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params
   const seg = slug ?? []
-  const canonical = `${base}${seg.length ? '/' + seg.join('/') : ''}`
+  // Relative canonical including the public hub prefix. basePath is NOT applied to
+  // metadata, so we add /ai-search-101 here; being relative, it resolves to the
+  // proxy domain (maximuslabs.ai/ai-search-101/...) where the indexable page lives.
+  const canonical = `${canonicalPath}${seg.length ? '/' + seg.join('/') : ''}`
 
   if (seg.length === 1 && seg[0] === 'search') {
     return { title: 'Search', description: 'Search pillars, clusters, and guides across AI Search 101.', alternates: { canonical } }

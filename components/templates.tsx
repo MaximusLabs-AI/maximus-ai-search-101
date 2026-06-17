@@ -5,10 +5,11 @@ import {
 import { PortableBody, headingsFromBody } from '@/components/PortableBody'
 import {
   type HubData, type PillarData, type ClusterData, type ArticleData, type SearchResult,
-  base, pillarPath, clusterPath, articlePath,
+  hubPath, pillarPath, clusterPath, articlePath,
 } from '@/components/types'
 
-const PUBLIC = 'https://www.maximuslabs.ai'
+// Canonical/JSON-LD base = the PUBLIC hub URL (basePath is not auto-applied here).
+const PUBLIC = 'https://www.maximuslabs.ai/ai-search-101'
 
 const HUB_SECTIONS: { cat: string; sub: string }[] = [
   { cat: 'Core Disciplines', sub: 'Start with a core discipline. Each is a hub of clusters and guides.' },
@@ -95,7 +96,7 @@ export function Pillar({ data }: { data: PillarData }) {
     <>
       <SiteNav />
       <HeroDark>
-        <Breadcrumbs trail={[{ label: 'AI Search 101', href: base }, { label }]} />
+        <Breadcrumbs trail={[{ label: 'AI Search 101', href: hubPath }, { label }]} />
         <h1>{data.title}</h1>
         {data.summary && <p className="sub">{data.summary}</p>}
         <div className="ameta"><b>{clusters.length} clusters</b><span className="sep">&middot;</span><span>{guideCount} guides</span></div>
@@ -136,7 +137,7 @@ export function Cluster({ data }: { data: ClusterData }) {
       <SiteNav />
       <HeroDark>
         <Breadcrumbs trail={[
-          { label: 'AI Search 101', href: base },
+          { label: 'AI Search 101', href: hubPath },
           { label: pillarLabel, href: pillarPath(data.pillar.slug) },
           { label: data.title },
         ]} />
@@ -219,7 +220,7 @@ export function Article({ data }: { data: ArticleData }) {
 
       <HeroDark>
         <Breadcrumbs trail={[
-          { label: 'AI Search 101', href: base },
+          { label: 'AI Search 101', href: hubPath },
           { label: pillarLabel, href: pillarPath(data.pillar.slug) },
           { label: data.cluster.title, href: clusterPath(data.pillar.slug, data.cluster.slug) },
           { label: data.title },
@@ -229,7 +230,7 @@ export function Article({ data }: { data: ArticleData }) {
         {data.excerpt && <p className="sub">{data.excerpt}</p>}
         <div className="ameta">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="avatar-photo" src="/team/krishna-kaanth.png" alt="Krishna Kaanth" width={38} height={38} />
+          <img className="avatar-photo" src="/ai-search-101/team/krishna-kaanth.png" alt="Krishna Kaanth" width={38} height={38} />
           <b>Krishna Kaanth</b>
           {dateLabel && <><span className="sep">&middot;</span><span>{dateLabel}</span></>}
           {data.readingTime ? <><span className="sep">&middot;</span><span>{data.readingTime} min read</span></> : null}

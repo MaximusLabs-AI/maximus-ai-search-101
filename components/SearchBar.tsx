@@ -27,7 +27,8 @@ export function SearchBar({ defaultValue = '' }: { defaultValue?: string }) {
     const ctl = new AbortController()
     const t = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(term)}`, { signal: ctl.signal })
+        // fetch() does NOT get basePath auto-applied, so include it explicitly.
+        const res = await fetch(`/ai-search-101/api/search?q=${encodeURIComponent(term)}`, { signal: ctl.signal })
         const data = await res.json()
         setItems(data.results || [])
         setOpen(true)
@@ -72,7 +73,7 @@ export function SearchBar({ defaultValue = '' }: { defaultValue?: string }) {
             </li>
           ))}
           <li className="sugg-all">
-            <Link href={`/ai-search-101/search?q=${encodeURIComponent(q.trim())}`} onClick={() => setOpen(false)}>
+            <Link href={`/search?q=${encodeURIComponent(q.trim())}`} onClick={() => setOpen(false)}>
               See all results for &ldquo;{q.trim()}&rdquo; &rarr;
             </Link>
           </li>

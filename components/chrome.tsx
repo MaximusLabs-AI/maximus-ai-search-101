@@ -19,7 +19,8 @@ export function LogoSprite() {
 
 // ---- Maximus Labs site shell (matches the live nav + footer) ----
 const SITE = 'https://www.maximuslabs.ai'
-const ASL = '/ai-search-101' // internal: keeps in-app navigation within the hub
+const ASL = '/' // internal hub link; Next basePath turns '/' into '/ai-search-101'
+const ASSET = '/ai-search-101' // public-asset prefix (plain <img src> bypasses basePath)
 
 function Caret() {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -196,7 +197,7 @@ export function SiteFooter() {
         <div className="mf-top">
           <div className="mf-brand">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <a className="brand" href={`${SITE}/`}><img className="brand-logo" src="/brand/maximus-wordmark.svg" alt="Maximus Labs" width={210} height={38} /></a>
+            <a className="brand" href={`${SITE}/`}><img className="brand-logo" src={`${ASSET}/brand/maximus-wordmark.svg`} alt="Maximus Labs" width={210} height={38} /></a>
             <p className="mf-intro">
               Maximus Labs helps you rank on Google, ChatGPT, and beyond. Reach out today to build
               your AI-first, SEO-strong growth engine.
@@ -330,7 +331,7 @@ export function AuthorRail() {
     <aside className="author-rail">
       <div className="author-card">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="au-photo" src="/team/krishna-kaanth.png" alt="Krishna Kaanth" width={96} height={96} />
+        <img className="au-photo" src={`${ASSET}/team/krishna-kaanth.png`} alt="Krishna Kaanth" width={96} height={96} />
         <div className="au-name">
           <span>Krishna Kaanth</span>
           <a className="au-li" href="https://www.linkedin.com/in/krishna-kaanth-kk/" aria-label="Krishna Kaanth on LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>

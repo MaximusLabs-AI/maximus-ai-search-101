@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'AI Search 101',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'bict0s25',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  basePath: '/studio', // must match app/studio/[[...tool]]
+  basePath: '/ai-search-101/studio', // Next basePath (/ai-search-101) + the /studio route
   plugins: [structureTool(), visionTool()],
   schema: { types: schemaTypes },
 })
