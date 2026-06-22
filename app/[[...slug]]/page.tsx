@@ -2,12 +2,12 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { sanityFetch } from '@/sanity/client'
 import {
-  HUB_Q, PILLAR_Q, CLUSTER_Q, ARTICLE_Q, SEARCH_Q,
+  HUB_Q, PILLAR_Q, CLUSTER_Q, ARTICLE_Q,
   ALL_PILLARS_Q, ALL_CLUSTERS_Q, ALL_ARTICLES_Q,
   META_PILLAR_Q, META_CLUSTER_Q, META_ARTICLE_Q,
 } from '@/sanity/queries'
-import { Hub, Pillar, Cluster, Article, SearchResults } from '@/components/templates'
-import type { HubData, PillarData, ClusterData, ArticleData, SearchResult } from '@/components/types'
+import { Hub, Pillar, Cluster, Article } from '@/components/templates'
+import type { HubData, PillarData, ClusterData, ArticleData } from '@/components/types'
 import { canonicalPath } from '@/components/types'
 
 // New pillars/clusters/articles added in Sanity render on-demand and cache,
@@ -36,10 +36,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   // metadata, so we add /ai-search-101 here; being relative, it resolves to the
   // proxy domain (maximuslabs.ai/ai-search-101/...) where the indexable page lives.
   const canonical = `${canonicalPath}${seg.length ? '/' + seg.join('/') : ''}`
-
-  if (seg.length === 1 && seg[0] === 'search') {
-    return { title: 'Search', description: 'Search pillars, clusters, and guides across AI Search 101.', alternates: { canonical } }
-  }
 
   let title = 'AI Search 101'
   let description =
@@ -81,18 +77,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 type Seo = { metaTitle?: string; metaDescription?: string; schemaType?: string }
 
-export default async function Page({ params, searchParams }: { params: Promise<Params>; searchParams: Promise<{ q?: string }> }) {
+export default async function Page({ params }: { params: Promise<Params> }) {
   const { slug } = await params
   const seg = slug ?? []
-
-  if (seg.length === 1 && seg[0] === 'search') {
-    const { q } = await searchParams
-    const term = (q || '').trim()
-    const results = term
-      ? await sanityFetch<SearchResult[]>(SEARCH_Q, { term: term.split(/\s+/).map((w) => `${w}*`).join(' ') }, ['pillar', 'cluster', 'article'])
-      : []
-    return <SearchResults q={term} results={results} />
-  }
 
   if (seg.length === 0) {
     const data = await sanityFetch<HubData>(HUB_Q, {}, ['pillar', 'cluster'])
