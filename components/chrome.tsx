@@ -326,18 +326,25 @@ export function CategoryCard({
 
 /** Sticky author-perspective rail shown on the right of article pages. */
 const AUTHOR_BIO = "I'm KK. Over the years, I've experimented and built systems that drive growth through AEO and GEO. Today, I help brands turn AI search into revenue engines, not vanity metrics, delivering AI visibility and getting brands cited and chosen across ChatGPT, Perplexity, and Google, where real buying decisions happen. Let's talk."
-export function AuthorRail() {
+export function AuthorRail({ author }: { author?: { name?: string; designation?: string; avatarUrl?: string; bio?: string } }) {
+  const name = author?.name || 'Krishna Kaanth'
+  const role = author?.designation || 'Founder, MaximusLabs'
+  const bio = author?.bio || AUTHOR_BIO
+  const photo = author?.avatarUrl || `${ASSET}/team/krishna-kaanth.png`
+  const isDefault = !author?.name
   return (
     <aside className="author-rail">
       <div className="author-card">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="au-photo" src={`${ASSET}/team/krishna-kaanth.png`} alt="Krishna Kaanth" width={96} height={96} />
+        <img className="au-photo" src={photo} alt={name} width={96} height={96} />
         <div className="au-name">
-          <span>Krishna Kaanth</span>
-          <a className="au-li" href="https://www.linkedin.com/in/krishna-kaanth-kk/" aria-label="Krishna Kaanth on LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>
+          <span>{name}</span>
+          {isDefault && (
+            <a className="au-li" href="https://www.linkedin.com/in/krishna-kaanth-kk/" aria-label="Krishna Kaanth on LinkedIn" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></a>
+          )}
         </div>
-        <span className="au-role">Founder, MaximusLabs</span>
-        <p className="au-bio">{AUTHOR_BIO}</p>
+        <span className="au-role">{role}</span>
+        <p className="au-bio">{bio}</p>
         <a className="au-cta" href={`${SITE}/contact-us`}>Book a 15 min Chat &rarr;</a>
       </div>
     </aside>

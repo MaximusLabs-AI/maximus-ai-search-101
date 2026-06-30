@@ -64,7 +64,13 @@ if (process.argv.includes('--inspect')) {
 }
 
 const now = new Date().toISOString()
-let ok = 0, skipped = 0
+
+// Already-synced docs (draft OR published) -> skip blogs that have not changed.
+const syncedDocs = await sanity.fetch('*[defined(maxintId)]{maxintId, maxintUpdatedAt}')
+const seen = {}
+for (const d of syncedDocs) { (seen[d.maxintId] ||= new Set()).add(d.maxintUpdatedAt || '') }
+
+let drafted = 0, unchanged = 0, skipped = 0
 for (const b0 of list) {
   const slug = slugOf(b0.slug)
   const { data: b } = await mxl(`/blogs/${slug}?include=author,category,subcategories,faqs,images`)
@@ -78,8 +84,13 @@ for (const b0 of list) {
   if (!clusterSlug || !clusterIds.has(clusterRef)) {
     console.warn(`  ! skip "${slug}": subcategory "${clusterSlug}" is not a known cluster (pick a cluster sub-category in Maxint)`); skipped++; continue
   }
+
+  const updatedAt = b.updated_at || b.published_at || ''
+  if (seen[b.id]?.has(updatedAt)) { unchanged++; continue } // already synced at this version
+
+  // Write a DRAFT (drafts.<id>) so it lands in Sanity for review/scheduling, NOT live.
   await sanity.createOrReplace({
-    _id: `article-maxint-${b.id}`,
+    _id: `drafts.article-maxint-${b.id}`,
     _type: 'article',
     title: b.name || b.meta_title || slug,
     slug: { _type: 'slug', current: slug },
@@ -87,10 +98,17 @@ for (const b0 of list) {
     cluster: { _type: 'reference', _ref: clusterRef },
     excerpt: b.post_summary || undefined,
     bodyHtml: b.body_html || '',
+    tldrHtml: b.tldr_html || undefined,
+    author: b.author ? {
+      name: b.author.name || undefined,
+      designation: b.author.designation || undefined,
+      avatarUrl: b.author.avatar_url || undefined,
+      bio: b.author.bio || undefined,
+    } : undefined,
     faq: (b.faqs || []).map((f, i) => ({ _type: 'qa', _key: f.id || `f${i}`, question: f.question, answer: stripHtml(f.answer_html) })),
     readingTime: typeof b.minute_read === 'number' ? b.minute_read : undefined,
     datePublished: b.published_at || now,
-    dateModified: b.updated_at || b.published_at || now,
+    dateModified: updatedAt || now,
     seo: {
       metaTitle: b.meta_title || b.name || undefined,
       metaDescription: b.meta_description || undefined,
@@ -98,9 +116,11 @@ for (const b0 of list) {
       schemaType: 'Article',
     },
     maxintId: String(b.id),
+    maxintUpdatedAt: updatedAt,
     order: 1,
   })
-  ok++
-  console.log(`  · ${pillarSlug}/${clusterSlug}/${slug}`)
+  drafted++
+  console.log(`  · draft: ${pillarSlug}/${clusterSlug}/${slug}`)
 }
-console.log(`\nSynced ${ok} blog(s) into the article collection. ${skipped} skipped.`)
+console.log(`\nDrafted ${drafted} new/changed blog(s) as Sanity drafts. ${unchanged} unchanged, ${skipped} skipped.`)
+console.log('Review + Publish them in the Studio to go live.')

@@ -230,8 +230,8 @@ export function Article({ data }: { data: ArticleData }) {
         {data.excerpt && <p className="sub">{data.excerpt}</p>}
         <div className="ameta">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="avatar-photo" src="/ai-search-101/team/krishna-kaanth.png" alt="Krishna Kaanth" width={38} height={38} />
-          <b>Krishna Kaanth</b>
+          <img className="avatar-photo" src={data.author?.avatarUrl || '/ai-search-101/team/krishna-kaanth.png'} alt={data.author?.name || 'Krishna Kaanth'} width={38} height={38} />
+          <b>{data.author?.name || 'Krishna Kaanth'}</b>
           {dateLabel && <><span className="sep">&middot;</span><span>{dateLabel}</span></>}
           {data.readingTime ? <><span className="sep">&middot;</span><span>{data.readingTime} min read</span></> : null}
         </div>
@@ -249,6 +249,13 @@ export function Article({ data }: { data: ArticleData }) {
               <div className="answer">
                 <span className="lab">Answer</span>
                 <p>{data.answer}</p>
+              </div>
+            )}
+
+            {data.tldrHtml && (
+              <div className="tldr">
+                <span className="lab">TL;DR</span>
+                <div dangerouslySetInnerHTML={{ __html: data.tldrHtml }} />
               </div>
             )}
 
@@ -270,7 +277,7 @@ export function Article({ data }: { data: ArticleData }) {
               </>
             ) : null}
           </article>
-          <AuthorRail />
+          <AuthorRail author={data.author} />
         </div>
       </div>
 

@@ -201,6 +201,11 @@ a{color:var(--accent);text-decoration:none}
 .prose .answer{background:linear-gradient(135deg,#f4f8ff,#eaf1fc);border:1px solid var(--sky-50);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
 .prose .answer .lab{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:block}
 .prose .answer p{font-size:17px;line-height:1.6;color:var(--ink);font-weight:500;margin:0}
+.prose .tldr{background:var(--subtle);border:1px solid var(--bone);border-radius:12px;padding:18px 22px;margin:0 0 28px}
+.prose .tldr .lab{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;display:block}
+.prose .tldr ul,.prose .tldr ol{margin:0 0 0 18px}
+.prose .tldr li{font-size:15.5px;line-height:1.65;margin-bottom:6px;color:var(--text)}
+.prose .tldr p{font-size:15.5px;line-height:1.65;margin:0 0 8px;color:var(--text)}
 .prose h2{font-size:28px;font-weight:600;letter-spacing:-0.02em;color:var(--navy);margin:40px 0 12px;scroll-margin-top:90px}
 .prose h3{font-size:19px;font-weight:700;color:var(--ink);margin:26px 0 8px}
 .prose p{font-size:16.5px;line-height:1.75;color:var(--text);margin-bottom:16px}

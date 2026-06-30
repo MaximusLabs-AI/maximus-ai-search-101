@@ -50,7 +50,27 @@ export default defineType({
       title: 'Body (HTML — synced from Maximus CMS)',
       type: 'text',
       rows: 12,
-      description: 'Set by the Maxint blog sync. When present it renders instead of the Portable Text body. Do not hand-edit; overwritten on the next sync.',
+      description: 'Maxint body_html. When present it renders instead of the Portable Text body. Tables/images/headings inside render as-is.',
+    }),
+    defineField({
+      name: 'tldrHtml',
+      title: 'TL;DR (HTML — synced from Maximus CMS)',
+      type: 'text',
+      rows: 5,
+      description: 'Maxint tldr_html. Rendered in a TL;DR box at the top of the article.',
+    }),
+    defineField({
+      name: 'author',
+      title: 'Author (synced from Maximus CMS)',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        {name: 'name', type: 'string'},
+        {name: 'designation', type: 'string'},
+        {name: 'avatarUrl', title: 'Avatar URL', type: 'url'},
+        {name: 'bio', type: 'text', rows: 2},
+      ],
+      description: 'Maxint blog author. Falls back to the default MaximusLabs author when empty.',
     }),
     defineField({
       name: 'faq',
@@ -84,6 +104,13 @@ export default defineType({
       type: 'string',
       readOnly: true,
       description: 'Set when this article is synced from a Maximus CMS blog (stable upsert key).',
+    }),
+    defineField({
+      name: 'maxintUpdatedAt',
+      title: 'Maximus CMS updated_at',
+      type: 'string',
+      readOnly: true,
+      description: 'Source updated_at; the sync skips a blog when this is unchanged.',
     }),
     defineField({
       name: 'seo',
