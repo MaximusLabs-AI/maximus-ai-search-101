@@ -11,7 +11,7 @@ import { useEffect } from 'react'
  */
 const CAL_NAMESPACE = 'exploring-aeo-geo'
 const CAL_LINK = 'krishna-kaanth/exploring-aeo-geo'
-const CAL_CONFIG = '{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+const CAL_CONFIG = '{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'
 
 export function CalBookingScript() {
   useEffect(() => {
@@ -22,6 +22,7 @@ export function CalBookingScript() {
     const Cal = (window as any).Cal
     Cal('init', CAL_NAMESPACE, { origin: 'https://app.cal.com' })
     Cal.ns[CAL_NAMESPACE]('ui', {
+      theme: 'light', // force the white (light) popup regardless of the visitor's OS dark mode
       cssVarsPerTheme: { light: { 'cal-brand': '#013087' }, dark: { 'cal-brand': '#449afb' } },
       hideEventTypeDetails: false,
       layout: 'month_view',
