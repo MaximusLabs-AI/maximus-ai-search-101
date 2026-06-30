@@ -68,6 +68,7 @@ export type ArticleData = {
   answer?: string
   excerpt?: string
   body?: PortableTextBlock[]
+  bodyHtml?: string
   faq?: FaqItem[]
   readingTime?: number
   datePublished?: string

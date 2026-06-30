@@ -2,7 +2,7 @@ import {
   SiteNav, SiteFooter, Breadcrumbs, HubHero, SectionHeader, HeroDark,
   CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard, AuthorRail,
 } from '@/components/chrome'
-import { PortableBody, headingsFromBody } from '@/components/PortableBody'
+import { PortableBody, headingsFromBody, headingsFromHtml, ensureH2Ids } from '@/components/PortableBody'
 import {
   type HubData, type PillarData, type ClusterData, type ArticleData, type SearchResult,
   hubPath, pillarPath, clusterPath, articlePath,
@@ -188,7 +188,7 @@ const TAG_STYLE: React.CSSProperties = {
 export function Article({ data }: { data: ArticleData }) {
   const pillarLabel = data.pillar.shortLabel || data.pillar.title
   const canonical = `${PUBLIC}${articlePath(data.pillar.slug, data.cluster.slug, data.slug)}`
-  const headings = headingsFromBody(data.body)
+  const headings = data.bodyHtml ? headingsFromHtml(data.bodyHtml) : headingsFromBody(data.body)
   const dateLabel = data.datePublished
     ? new Date(data.datePublished).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     : null
@@ -252,7 +252,9 @@ export function Article({ data }: { data: ArticleData }) {
               </div>
             )}
 
-            <PortableBody value={data.body} />
+            {data.bodyHtml
+              ? <div dangerouslySetInnerHTML={{ __html: ensureH2Ids(data.bodyHtml) }} />
+              : <PortableBody value={data.body} />}
 
             {data.faq?.length ? (
               <>

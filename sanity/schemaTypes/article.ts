@@ -46,6 +46,13 @@ export default defineType({
     defineField({name: 'excerpt', title: 'Excerpt / dek', type: 'text', rows: 2}),
     defineField({name: 'body', title: 'Body', type: 'blockContent'}),
     defineField({
+      name: 'bodyHtml',
+      title: 'Body (HTML — synced from Maximus CMS)',
+      type: 'text',
+      rows: 12,
+      description: 'Set by the Maxint blog sync. When present it renders instead of the Portable Text body. Do not hand-edit; overwritten on the next sync.',
+    }),
+    defineField({
       name: 'faq',
       title: 'FAQ',
       type: 'array',
@@ -72,6 +79,13 @@ export default defineType({
     defineField({name: 'dateModified', title: 'Date modified', type: 'datetime'}),
     defineField({name: 'order', title: 'Order in cluster', type: 'number', initialValue: 0}),
     defineField({
+      name: 'maxintId',
+      title: 'Maximus CMS blog id',
+      type: 'string',
+      readOnly: true,
+      description: 'Set when this article is synced from a Maximus CMS blog (stable upsert key).',
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'object',
@@ -79,6 +93,7 @@ export default defineType({
       fields: [
         {name: 'metaTitle', type: 'string'},
         {name: 'metaDescription', type: 'text', rows: 2},
+        {name: 'focusKeyword', type: 'string'},
         {
           name: 'schemaType',
           title: 'Schema.org type',

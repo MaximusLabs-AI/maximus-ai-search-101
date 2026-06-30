@@ -1,14 +1,40 @@
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react'
 import { urlFor } from '@/sanity/client'
 
-/** Slugify heading text so the article TOC anchors line up with the H2 ids. */
-export function slugifyHeading(value: { children?: { text?: string }[] }): string {
-  const text = (value?.children ?? []).map((c) => c?.text ?? '').join('')
-  return text
+/** Slugify a plain string for heading anchor ids. */
+export function slugifyText(text: string): string {
+  return (text || '')
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
     .trim()
     .replace(/\s+/g, '-')
+}
+
+/** Slugify heading text so the article TOC anchors line up with the H2 ids. */
+export function slugifyHeading(value: { children?: { text?: string }[] }): string {
+  return slugifyText((value?.children ?? []).map((c) => c?.text ?? '').join(''))
+}
+
+/** Extract H2s (text + anchor id) from an HTML body for the TOC (synced blogs). */
+export function headingsFromHtml(html?: string): { id: string; text: string }[] {
+  if (!html) return []
+  const out: { id: string; text: string }[] = []
+  const re = /<h2[^>]*>([\s\S]*?)<\/h2>/gi
+  let m: RegExpExecArray | null
+  while ((m = re.exec(html))) {
+    const text = m[1].replace(/<[^>]+>/g, '').trim()
+    if (text) out.push({ id: slugifyText(text), text })
+  }
+  return out
+}
+
+/** Inject id attributes into H2s of an HTML body so the TOC anchors resolve. */
+export function ensureH2Ids(html: string): string {
+  return (html || '').replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (full, attrs, inner) => {
+    if (/\bid=/.test(attrs)) return full
+    const text = inner.replace(/<[^>]+>/g, '').trim()
+    return `<h2${attrs} id="${slugifyText(text)}">${inner}</h2>`
+  })
 }
 
 /** Extract H2 headings (text + anchor id) from a Portable Text body for the TOC. */
