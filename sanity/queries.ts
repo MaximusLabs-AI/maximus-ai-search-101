@@ -42,7 +42,7 @@ export const ARTICLE_Q = groq`*[_type=="article"
   && slug.current==$article
   && cluster->slug.current==$cluster
   && pillar->slug.current==$pillar][0]{
-  title, "slug": slug.current, answer, excerpt, body, bodyHtml, tldrHtml, author, faq, readingTime, datePublished, dateModified, seo,
+  title, "slug": slug.current, answer, excerpt, body, bodyHtml, tldrHtml, author, heroImage, thumbnailImage, faq, readingTime, datePublished, dateModified, seo,
   "pillar": pillar->{title, shortLabel, "slug": slug.current},
   "cluster": cluster->{title, "slug": slug.current},
   "related": relatedArticles[]->{

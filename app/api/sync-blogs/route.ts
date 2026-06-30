@@ -18,6 +18,14 @@ const MXL_BASE = (process.env.MXL_API_BASE || 'https://content.maximuslabs.ai/ap
 const slugOf = (s: unknown): string =>
   s && typeof s === 'object' ? ((s as { current?: string; slug?: string }).current || (s as { slug?: string }).slug || '') : ((s as string) || '')
 const stripHtml = (s?: string) => (s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+function pickImg(b: Record<string, unknown>, idKey: string, objKey: string): { url: string; alt: string } | undefined {
+  const o = b[objKey] as { url?: string; alt?: string; alt_text?: string } | undefined
+  if (o && o.url) return { url: o.url, alt: o.alt || o.alt_text || '' }
+  const id = b[idKey]
+  const imgs = b.images as { id?: unknown; url?: string; alt?: string; alt_text?: string }[] | undefined
+  const m = id && Array.isArray(imgs) ? imgs.find((i) => i.id === id) : undefined
+  return m && m.url ? { url: m.url, alt: m.alt || m.alt_text || '' } : undefined
+}
 
 async function mxl(path: string, key: string): Promise<{ data: unknown; pagination?: { next_cursor?: string; has_more?: boolean } }> {
   for (let a = 0; ; a++) {
@@ -87,6 +95,8 @@ async function handle(req: NextRequest) {
       bodyHtml: (b.body_html as string) || '',
       tldrHtml: (b.tldr_html as string) || undefined,
       author: b.author ? { name: b.author.name, designation: b.author.designation, avatarUrl: b.author.avatar_url, bio: b.author.bio } : undefined,
+      heroImage: pickImg(b, 'main_image_id', 'main_image'),
+      thumbnailImage: pickImg(b, 'thumbnail_image_id', 'thumbnail_image'),
       faq: (b.faqs || []).map((f, i) => ({ _type: 'qa', _key: f.id || `f${i}`, question: f.question, answer: stripHtml(f.answer_html) })),
       readingTime: typeof b.minute_read === 'number' ? b.minute_read : undefined,
       datePublished: (b.published_at as string) || now,

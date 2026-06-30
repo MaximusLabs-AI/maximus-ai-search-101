@@ -220,6 +220,7 @@ a{color:var(--accent);text-decoration:none}
 .post-figure{margin:28px 0;display:flex;flex-direction:column;gap:10px}
 .post-figure img{width:100%;height:auto;display:block;border:1px solid var(--bone);border-radius:12px;background:#fff;box-shadow:var(--shadow-card)}
 .post-figure figcaption{font-size:13.5px;line-height:1.5;color:var(--slate);font-style:italic;text-align:center}
+.prose .post-hero{display:block;width:100%;height:auto;border:1px solid var(--bone);border-radius:14px;margin:0 0 28px;background:#fff;box-shadow:var(--shadow-card)}
 .callout{display:flex;gap:14px;background:#fff;border:1px solid var(--bone);border-radius:12px;padding:18px 20px;margin:24px 0;box-shadow:var(--shadow-card)}
 .callout .ml-mark{width:30px;height:30px;flex:none}
 .callout .co-body .lab{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px;display:block}

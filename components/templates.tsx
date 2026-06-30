@@ -245,6 +245,10 @@ export function Article({ data }: { data: ArticleData }) {
             {data.faq?.length ? <a href="#faq">FAQ</a> : null}
           </aside>
           <article className="prose">
+            {data.heroImage?.url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="post-hero" src={data.heroImage.url} alt={data.heroImage.alt || data.title} />
+            )}
             {data.answer && (
               <div className="answer">
                 <span className="lab">Answer</span>

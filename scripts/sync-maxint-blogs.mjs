@@ -29,6 +29,14 @@ const sanity = createClient({
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 const slugOf = (s) => (s && typeof s === 'object' ? (s.current || s.slug || '') : (s || ''))
 const stripHtml = (s) => (s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+// Maxint serves images as hosted URLs; pick hero/thumbnail by id from the included images[].
+const pickImg = (b, idKey, objKey) => {
+  const o = b[objKey]
+  if (o && o.url) return { url: o.url, alt: o.alt || o.alt_text || '' }
+  const id = b[idKey]
+  const m = id && Array.isArray(b.images) ? b.images.find((i) => i.id === id) : null
+  return m && m.url ? { url: m.url, alt: m.alt || m.alt_text || '' } : undefined
+}
 
 async function mxl(path) {
   for (let a = 0; ; a++) {
@@ -105,6 +113,8 @@ for (const b0 of list) {
       avatarUrl: b.author.avatar_url || undefined,
       bio: b.author.bio || undefined,
     } : undefined,
+    heroImage: pickImg(b, 'main_image_id', 'main_image'),
+    thumbnailImage: pickImg(b, 'thumbnail_image_id', 'thumbnail_image'),
     faq: (b.faqs || []).map((f, i) => ({ _type: 'qa', _key: f.id || `f${i}`, question: f.question, answer: stripHtml(f.answer_html) })),
     readingTime: typeof b.minute_read === 'number' ? b.minute_read : undefined,
     datePublished: b.published_at || now,

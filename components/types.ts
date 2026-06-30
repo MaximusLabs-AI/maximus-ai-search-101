@@ -71,11 +71,13 @@ export type ArticleData = {
   bodyHtml?: string
   tldrHtml?: string
   author?: { name?: string; designation?: string; avatarUrl?: string; bio?: string }
+  heroImage?: { url?: string; alt?: string }
+  thumbnailImage?: { url?: string; alt?: string }
   faq?: FaqItem[]
   readingTime?: number
   datePublished?: string
   dateModified?: string
-  seo?: { metaTitle?: string; metaDescription?: string; schemaType?: string }
+  seo?: { metaTitle?: string; metaDescription?: string; focusKeyword?: string; schemaType?: string }
   pillar: PillarRef
   cluster: { title: string; slug: string }
   related?: ArticleLink[]

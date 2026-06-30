@@ -73,6 +73,28 @@ export default defineType({
       description: 'Maxint blog author. Falls back to the default MaximusLabs author when empty.',
     }),
     defineField({
+      name: 'heroImage',
+      title: 'Hero / featured image (synced from Maximus CMS)',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        {name: 'url', title: 'Image URL', type: 'url'},
+        {name: 'alt', title: 'Alt text', type: 'string'},
+      ],
+      description: 'Maxint main_image. Shown at the top of the article when present.',
+    }),
+    defineField({
+      name: 'thumbnailImage',
+      title: 'Thumbnail / card image (synced from Maximus CMS)',
+      type: 'object',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        {name: 'url', title: 'Image URL', type: 'url'},
+        {name: 'alt', title: 'Alt text', type: 'string'},
+      ],
+      description: 'Maxint thumbnail_image. Used for cards/listings.',
+    }),
+    defineField({
       name: 'faq',
       title: 'FAQ',
       type: 'array',
