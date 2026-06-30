@@ -1,7 +1,8 @@
 import {
   SiteNav, SiteFooter, Breadcrumbs, HubHero, SectionHeader, HeroDark,
-  CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard, AuthorRail,
+  CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard, AuthorRail, AuthorPerspectiveInline,
 } from '@/components/chrome'
+import { CalBookingScript } from '@/components/CalBooking'
 import { PortableBody, headingsFromBody, headingsFromHtml, ensureH2Ids } from '@/components/PortableBody'
 import {
   type HubData, type PillarData, type ClusterData, type ArticleData, type SearchResult,
@@ -215,6 +216,7 @@ export function Article({ data }: { data: ArticleData }) {
   return (
     <>
       <SiteNav />
+      <CalBookingScript />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
 
@@ -284,6 +286,8 @@ export function Article({ data }: { data: ArticleData }) {
           <AuthorRail author={data.author} />
         </div>
       </div>
+
+      <AuthorPerspectiveInline author={data.author} />
 
       {more.length ? (
         <section className="section">

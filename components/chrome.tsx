@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { SearchBar } from './SearchBar'
+import { CalBookButton } from './CalBooking'
 
 export { SearchBar }
 
@@ -345,9 +346,33 @@ export function AuthorRail({ author }: { author?: { name?: string; designation?:
         </div>
         <span className="au-role">{role}</span>
         <p className="au-bio">{bio}</p>
-        <a className="au-cta" href={`${SITE}/contact-us`}>Book a 15 min Chat &rarr;</a>
+        <CalBookButton className="au-cta">Book a 15 min Chat &rarr;</CalBookButton>
       </div>
     </aside>
+  )
+}
+
+/** Mobile/tablet counterpart of the author rail (the rail hides below 1180px).
+ *  Same 15-min booking popup so the author-perspective CTA is on EVERY article. */
+export function AuthorPerspectiveInline({ author }: { author?: { name?: string; designation?: string; avatarUrl?: string; bio?: string } }) {
+  const name = author?.name || 'Krishna Kaanth'
+  const role = author?.designation || 'Founder, MaximusLabs'
+  const photo = author?.avatarUrl || `${ASSET}/team/krishna-kaanth.png`
+  return (
+    <section className="author-inline-sec">
+      <div className="wrap">
+        <div className="author-inline">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ai-photo" src={photo} alt={name} width={56} height={56} />
+          <div className="ai-meta">
+            <span className="ai-lab">Author perspective</span>
+            <strong>{name}</strong>
+            <span className="ai-role">{role}</span>
+          </div>
+          <CalBookButton className="au-cta">Book a 15 min Chat &rarr;</CalBookButton>
+        </div>
+      </div>
+    </section>
   )
 }
 
