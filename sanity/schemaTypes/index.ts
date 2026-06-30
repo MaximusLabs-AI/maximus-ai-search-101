@@ -2,6 +2,9 @@ import blockContent from './blockContent'
 import pillar from './pillar'
 import cluster from './cluster'
 import article from './article'
+import blog from './blog'
+import blogAuthor from './blogAuthor'
+import blogCategory from './blogCategory'
 
 /**
  * Register these in sanity.config.ts:
@@ -14,4 +17,4 @@ import article from './article'
  *   article.pillar  -> pillar    (denormalized for fast path/breadcrumb)
  * Level 1 (the hub) is the static index route; it lists all pillars.
  */
-export const schemaTypes = [pillar, cluster, article, blockContent]
+export const schemaTypes = [pillar, cluster, article, blog, blogAuthor, blogCategory, blockContent]
