@@ -56,14 +56,25 @@ export const ARTICLE_Q = groq`*[_type=="article"
     }
 }`
 
-/** For generateStaticParams + sitemap: every renderable path component. */
-export const ALL_PILLARS_Q = groq`*[_type=="pillar" && defined(slug.current)]{
+/**
+ * For generateStaticParams + sitemap: only path components that HAVE published
+ * content. Empty pillars/clusters and body-less stub articles are excluded, so
+ * they never appear in the sitemap or get pre-rendered (they also 404, see page.tsx).
+ * "Has content" mirrors the site's hide-empty rule: an article counts when it has
+ * a Portable Text body OR a synced bodyHtml; a cluster/pillar counts when it has
+ * at least one such article. (Cluster/pillar "summary" bodies are generic one-line
+ * stubs from the taxonomy seed, so they do NOT by themselves qualify a page.)
+ */
+export const ALL_PILLARS_Q = groq`*[_type=="pillar" && defined(slug.current)
+  && count(*[_type=="article" && references(^._id) && (count(body) > 0 || defined(bodyHtml))]) > 0]{
   "p": slug.current, "ts": coalesce(_updatedAt, _createdAt)
 }`
-export const ALL_CLUSTERS_Q = groq`*[_type=="cluster" && defined(slug.current) && defined(pillar->slug.current)]{
+export const ALL_CLUSTERS_Q = groq`*[_type=="cluster" && defined(slug.current) && defined(pillar->slug.current)
+  && count(*[_type=="article" && references(^._id) && (count(body) > 0 || defined(bodyHtml))]) > 0]{
   "p": pillar->slug.current, "c": slug.current, "ts": coalesce(_updatedAt, _createdAt)
 }`
-export const ALL_ARTICLES_Q = groq`*[_type=="article" && defined(slug.current) && defined(cluster->slug.current) && defined(pillar->slug.current)]{
+export const ALL_ARTICLES_Q = groq`*[_type=="article" && defined(slug.current) && defined(cluster->slug.current) && defined(pillar->slug.current)
+  && (count(body) > 0 || defined(bodyHtml))]{
   "p": pillar->slug.current, "c": cluster->slug.current, "a": slug.current,
   "ts": coalesce(dateModified, datePublished, _updatedAt, _createdAt)
 }`

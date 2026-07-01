@@ -16,6 +16,12 @@ export const dynamicParams = true
 
 type Params = { slug?: string[] }
 
+// A page is "empty" (no published content) when it has no renderable body and,
+// for pillars/clusters, no content articles. Empty pages 404 so they stay out of
+// Google (the proxy setup rules out a noindex meta, see generateMetadata) and out
+// of the sitemap. They auto-return 200 the moment real content is published.
+const hasBlocks = (b?: unknown[]) => Array.isArray(b) && b.length > 0
+
 export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
   const [pillars, clusters, articles] = await Promise.all([
     sanityFetch<{ p: string }[]>(ALL_PILLARS_Q, {}, ['pillar']),
@@ -87,17 +93,20 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   }
   if (seg.length === 1) {
     const data = await sanityFetch<PillarData | null>(PILLAR_Q, { pillar: seg[0] }, ['pillar', 'cluster', 'article'])
-    if (!data) notFound()
+    // Empty pillar (no cluster has a content article) -> 404, keep it out of the index.
+    if (!data || !data.clusters.some((c) => (c.articles?.length ?? 0) > 0)) notFound()
     return <Pillar data={data} />
   }
   if (seg.length === 2) {
     const data = await sanityFetch<ClusterData | null>(CLUSTER_Q, { pillar: seg[0], cluster: seg[1] }, ['cluster', 'article'])
-    if (!data) notFound()
+    // Empty cluster (no content articles; the generic 1-line summary body doesn't count) -> 404.
+    if (!data || data.articles.length === 0) notFound()
     return <Cluster data={data} />
   }
   if (seg.length === 3) {
     const data = await sanityFetch<ArticleData | null>(ARTICLE_Q, { pillar: seg[0], cluster: seg[1], article: seg[2] }, ['article'])
-    if (!data) notFound()
+    // Body-less stub article -> 404 until it actually has content.
+    if (!data || (!hasBlocks(data.body) && !data.bodyHtml)) notFound()
     return <Article data={data} />
   }
   notFound()
