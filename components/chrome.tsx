@@ -411,10 +411,13 @@ export function FeatureCard({
 
 /** Bordered, whole-card-clickable article card with a clamped excerpt. */
 export function ArticleCard({
-  href, label, title, excerpt,
+  href, label, title, excerpt, date,
 }: {
-  href: string; label?: string; title: string; excerpt?: string
+  href: string; label?: string; title: string; excerpt?: string; date?: string
 }) {
+  const dateLabel = date
+    ? new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : null
   return (
     <div className="acard">
       <Link className="ov" href={href} aria-label={title} />
@@ -423,7 +426,10 @@ export function ArticleCard({
       )}
       <h3>{title}</h3>
       {excerpt && <p className="ex">{excerpt}</p>}
-      <span className="more">Read More <span className="arr">&rarr;</span></span>
+      <div className="more-row">
+        <span className="more">Read More <span className="arr">&rarr;</span></span>
+        {dateLabel && <time className="more-date" dateTime={date}>{dateLabel}</time>}
+      </div>
     </div>
   )
 }

@@ -119,7 +119,9 @@ a{color:var(--accent);text-decoration:none}
 .acard .label svg{width:18px;height:18px}
 .acard h3{font-size:21px;font-weight:500;letter-spacing:-0.01em;line-height:1.25;color:var(--ink)}
 .acard .ex{margin-top:10px;font-size:14.5px;color:var(--slate);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.acard .more{margin-top:18px;display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:700;font-size:14px}
+.acard .more-row{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.acard .more{display:inline-flex;align-items:center;gap:7px;flex:none;white-space:nowrap;color:var(--accent);font-weight:700;font-size:14px}
+.acard .more-date{flex:none;white-space:nowrap;font-size:13px;color:var(--slate);font-weight:500}
 .acard:hover .more .arr{transform:translateX(4px)}
 .acard .more .arr{transition:transform .18s ease}
 

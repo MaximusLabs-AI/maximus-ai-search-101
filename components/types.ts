@@ -10,6 +10,7 @@ export type ArticleLink = {
   pillar: string
   cluster: string
   label?: string
+  date?: string
 }
 
 export type HubData = {
@@ -35,6 +36,7 @@ export type SearchResult = {
   pillarSlug?: string
   clusterSlug?: string | null
   summary?: string
+  date?: string
 }
 
 export type PillarData = {
@@ -59,7 +61,7 @@ export type ClusterData = {
   body?: PortableTextBlock[]
   level?: string
   pillar: PillarRef
-  articles: { title: string; excerpt?: string; readingTime?: number; slug: string }[]
+  articles: { title: string; excerpt?: string; readingTime?: number; slug: string; date?: string }[]
 }
 
 export type ArticleData = {

@@ -2,7 +2,7 @@ import { groq } from 'next-sanity'
 
 /** L1 — Hub: list all pillars with their cluster counts. */
 const ARTICLE_LINK = `title, excerpt, "slug": slug.current,
-  "pillar": pillar->slug.current, "cluster": cluster->slug.current, "label": pillar->shortLabel`
+  "pillar": pillar->slug.current, "cluster": cluster->slug.current, "label": pillar->shortLabel, "date": datePublished`
 
 export const HUB_Q = groq`{
   "pillars": *[_type=="pillar"] | order(order asc){
@@ -33,7 +33,7 @@ export const CLUSTER_Q = groq`*[_type=="cluster"
   title, "slug": slug.current, summary, body, level,
   "pillar": pillar->{title, shortLabel, "slug": slug.current},
   "articles": *[_type=="article" && references(^._id) && (count(body) > 0 || defined(bodyHtml))] | order(order asc){
-    title, excerpt, readingTime, "slug": slug.current
+    title, excerpt, readingTime, "slug": slug.current, "date": datePublished
   }
 }`
 
@@ -47,12 +47,12 @@ export const ARTICLE_Q = groq`*[_type=="article"
   "cluster": cluster->{title, "slug": slug.current},
   "related": relatedArticles[]->{
     title, excerpt, "slug": slug.current,
-    "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel
+    "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel, "date": datePublished
   },
   "siblings": *[_type=="article" && cluster->slug.current==$cluster && pillar->slug.current==$pillar && slug.current != $article && (count(body) > 0 || defined(bodyHtml))]
     | order(order asc)[0...3]{
       title, excerpt, "slug": slug.current,
-      "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel
+      "cluster": cluster->slug.current, "pillar": pillar->slug.current, "label": pillar->shortLabel, "date": datePublished
     }
 }`
 
@@ -87,7 +87,7 @@ export const SEARCH_Q = groq`*[
   _type, title, "slug": slug.current,
   "pillarSlug": select(_type=="pillar" => slug.current, pillar->slug.current),
   "clusterSlug": select(_type=="cluster" => slug.current, _type=="article" => cluster->slug.current, null),
-  "summary": coalesce(summary, excerpt)
+  "summary": coalesce(summary, excerpt), "date": datePublished
 } | order(_type asc)[0...60]`
 
 /* Lightweight metadata-only queries (no body) for generateMetadata. */

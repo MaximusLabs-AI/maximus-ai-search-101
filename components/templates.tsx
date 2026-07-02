@@ -58,7 +58,7 @@ export function Hub({ data }: { data: HubData }) {
             <SectionHeader title="Newest guides" sub="Fresh from the MaximusLabs research desk." />
             <CardGrid>
               {data.latest.map((a) => (
-                <ArticleCard key={`n-${a.pillar}-${a.cluster}-${a.slug}`} href={articlePath(a.pillar, a.cluster, a.slug)} label={a.label} title={a.title} excerpt={a.excerpt} />
+                <ArticleCard key={`n-${a.pillar}-${a.cluster}-${a.slug}`} href={articlePath(a.pillar, a.cluster, a.slug)} label={a.label} title={a.title} excerpt={a.excerpt} date={a.date} />
               ))}
             </CardGrid>
           </div>
@@ -71,7 +71,7 @@ export function Hub({ data }: { data: HubData }) {
             <SectionHeader title="Most read" sub="The guides teams reference most." />
             <CardGrid>
               {data.popular.map((a) => (
-                <ArticleCard key={`p-${a.pillar}-${a.cluster}-${a.slug}`} href={articlePath(a.pillar, a.cluster, a.slug)} label={a.label} title={a.title} excerpt={a.excerpt} />
+                <ArticleCard key={`p-${a.pillar}-${a.cluster}-${a.slug}`} href={articlePath(a.pillar, a.cluster, a.slug)} label={a.label} title={a.title} excerpt={a.excerpt} date={a.date} />
               ))}
             </CardGrid>
           </div>
@@ -164,6 +164,7 @@ export function Cluster({ data }: { data: ClusterData }) {
                     label={data.title}
                     title={a.title}
                     excerpt={a.excerpt}
+                    date={a.date}
                   />
                 ))}
               </CardGrid>
@@ -295,7 +296,7 @@ export function Article({ data }: { data: ArticleData }) {
             <SectionHeader title={`Discover more in ${data.cluster.title}`} />
             <CardGrid>
               {more.map((r) => (
-                <ArticleCard key={r.slug} href={articlePath(r.pillar, r.cluster, r.slug)} label={r.label} title={r.title} excerpt={r.excerpt} />
+                <ArticleCard key={r.slug} href={articlePath(r.pillar, r.cluster, r.slug)} label={r.label} title={r.title} excerpt={r.excerpt} date={r.date} />
               ))}
             </CardGrid>
           </div>
@@ -331,7 +332,7 @@ export function SearchResults({ q, results }: { q: string; results: SearchResult
           {results.length ? (
             <CardGrid>
               {results.map((r) => (
-                <ArticleCard key={`${r._type}-${r.pillarSlug || ''}-${r.clusterSlug || ''}-${r.slug}`} href={searchHref(r)} label={TYPE_LABEL[r._type]} title={r.title} excerpt={r.summary} />
+                <ArticleCard key={`${r._type}-${r.pillarSlug || ''}-${r.clusterSlug || ''}-${r.slug}`} href={searchHref(r)} label={TYPE_LABEL[r._type]} title={r.title} excerpt={r.summary} date={r.date} />
               ))}
             </CardGrid>
           ) : q ? (
