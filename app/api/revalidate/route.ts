@@ -7,7 +7,9 @@ import { NextResponse, type NextRequest } from 'next/server'
  *
  * All site reads are tagged 'ai-search-101', so revalidating that tag refreshes
  * the whole hub on the next request. Without the webhook, content still updates
- * automatically within the hour via ISR (revalidate: 3600).
+ * automatically within ~60s via ISR (revalidate: 60 in sanity/client.ts).
+ * Configure the webhook to fire on create + update + DELETE so unpublishes and
+ * deletions clear instantly, not just publishes.
  */
 export async function POST(req: NextRequest) {
   const secret = req.nextUrl.searchParams.get('secret')

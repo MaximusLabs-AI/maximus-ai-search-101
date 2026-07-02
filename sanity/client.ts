@@ -21,10 +21,10 @@ export function urlFor(source: Parameters<typeof builder.image>[0]) {
 const isProd = process.env.NODE_ENV === 'production'
 
 /**
- * Fetch helper. In production: legacy ISR (time-based revalidate + tags for
- * on-demand revalidation via a Sanity publish webhook). In development: always
- * fresh (no-store), so newly imported/edited content shows immediately instead
- * of being pinned by the 1-hour cache.
+ * Fetch helper. In production: legacy ISR with a short 60s revalidate + tags, so
+ * an unpublish / delete / edit in Sanity clears from the live site within ~1 minute
+ * automatically. A Sanity webhook -> /api/revalidate (revalidateTag) makes it
+ * instant. In development: always fresh (no-store) so edits show immediately.
  */
 export async function sanityFetch<T>(
   query: string,
@@ -33,7 +33,7 @@ export async function sanityFetch<T>(
 ): Promise<T> {
   if (isProd) {
     return client.fetch<T>(query, params, {
-      next: { revalidate: 3600, tags: ['ai-search-101', ...tags] },
+      next: { revalidate: 60, tags: ['ai-search-101', ...tags] },
     })
   }
   return client.fetch<T>(query, params, { cache: 'no-store' })
