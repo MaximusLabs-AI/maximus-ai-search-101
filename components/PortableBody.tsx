@@ -67,6 +67,33 @@ export function stripInlineStyles(html?: string): string {
 }
 
 /**
+ * Normalize Maxint's alternate (tiptap) table format into the clean styled table.
+ * That editor emits a flat <tbody> of <td><p>..</p></td> with NO <thead>/<caption>
+ * (the title sits in a lone-filled first row, the real headers in the next row),
+ * which renders broken. Rebuild it as: .article-table-wrapper > table with a
+ * <caption> (from the lone-title row), a <thead> (next row), and a <tbody>.
+ * Tables that already have <thead>/<caption> (the clean format) are left untouched.
+ */
+export function normalizeTables(html?: string): string {
+  return (html || '').replace(/<table[^>]*>([\s\S]*?)<\/table>/gi, (full, inner) => {
+    if (/<thead/i.test(inner) || /<caption/i.test(inner)) return full
+    const body = inner.replace(/<colgroup[\s\S]*?<\/colgroup>/gi, '')
+    const rowMatches = [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)]
+    if (rowMatches.length < 2) return full
+    const cell = (h: string) => h.replace(/^\s*<p>([\s\S]*?)<\/p>\s*$/i, '$1').trim()
+    const plain = (c: string) => c.replace(/<[^>]+>/g, '').trim()
+    const rows = rowMatches.map((rm) => [...rm[1].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)].map((c) => cell(c[1])))
+    let caption = '', hi = 0
+    const filled = rows[0].filter((c) => plain(c))
+    if (filled.length === 1 && rows[0].length > 1) { caption = plain(filled[0]); hi = 1 }
+    const header = rows[hi] || []
+    const thead = '<thead><tr>' + header.map((c) => `<th>${c}</th>`).join('') + '</tr></thead>'
+    const tbody = '<tbody>' + rows.slice(hi + 1).map((r) => '<tr>' + r.map((c) => `<td>${c}</td>`).join('') + '</tr>').join('') + '</tbody>'
+    return `<div class="article-table-wrapper"><table>${caption ? `<caption>${caption}</caption>` : ''}${thead}${tbody}</table></div>`
+  })
+}
+
+/**
  * Turn a "[maxview]...[/maxview]" marker in synced HTML into the MaximusLabs-view
  * callout (the same styled insight block the Portable Text articles use). Authors
  * drop the marker into their Maxint content wherever an opinionated MaximusLabs

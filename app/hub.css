@@ -224,6 +224,8 @@ a{color:var(--accent);text-decoration:none}
 /* Column headers: light-blue row, dark text — distinct from the title banner and the data */
 .prose thead th{background:#eaf1fc;color:var(--navy);text-align:left;padding:12px 14px;font-weight:800;font-size:12.5px;letter-spacing:.02em}
 .prose td.highlight{font-weight:700;color:var(--ink)}
+.prose td p,.prose th p{margin:0}
+.prose td p+p{margin-top:6px}
 .prose tbody td{border-bottom:1px solid var(--bone);padding:11px 14px;vertical-align:top;color:var(--text)}
 .prose tbody tr:nth-child(even){background:#f7f9fe}
 .post-figure{margin:28px 0;display:flex;flex-direction:column;gap:10px}
