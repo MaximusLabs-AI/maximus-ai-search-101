@@ -77,6 +77,7 @@ export type ArticleData = {
   thumbnailImage?: { url?: string; alt?: string }
   faq?: FaqItem[]
   readingTime?: number
+  toc?: string[]
   datePublished?: string
   dateModified?: string
   seo?: { metaTitle?: string; metaDescription?: string; focusKeyword?: string; schemaType?: string }

@@ -112,6 +112,13 @@ export default defineType({
     }),
     defineField({name: 'readingTime', title: 'Reading time (min)', type: 'number'}),
     defineField({
+      name: 'toc',
+      title: 'TOC keyword labels',
+      type: 'array',
+      of: [{type: 'string'}],
+      description: 'Short keyword shown in the "On this page" sidebar for each H2, in order (overrides the H2 text in the sidebar only; the heading and its anchor are unchanged). Synced HTML articles use [toc=...] markers instead.',
+    }),
+    defineField({
       name: 'relatedArticles',
       title: 'Related articles',
       type: 'array',

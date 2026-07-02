@@ -85,14 +85,16 @@ export function renderMaximusViews(html?: string): string {
 /** Extract H2 headings (text + anchor id) from a Portable Text body for the TOC. */
 export function headingsFromBody(
   body?: PortableTextBlock[],
+  toc?: string[],
 ): { id: string; text: string }[] {
   if (!body) return []
   return body
     .filter((b) => (b as { _type?: string; style?: string })._type === 'block' && (b as { style?: string }).style === 'h2')
-    .map((b) => {
+    .map((b, i) => {
       const value = b as unknown as { children?: { text?: string }[] }
       const text = (value.children ?? []).map((c) => c?.text ?? '').join('')
-      return { id: slugifyHeading(value), text }
+      // Sidebar shows the short keyword (toc[i]) when provided; the anchor id stays from the heading text.
+      return { id: slugifyHeading(value), text: (toc && toc[i]) || text }
     })
 }
 

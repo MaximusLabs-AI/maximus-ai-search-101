@@ -191,7 +191,7 @@ const TAG_STYLE: React.CSSProperties = {
 export function Article({ data }: { data: ArticleData }) {
   const pillarLabel = data.pillar.shortLabel || data.pillar.title
   const canonical = `${PUBLIC}${articlePath(data.pillar.slug, data.cluster.slug, data.slug)}`
-  const headings = data.bodyHtml ? headingsFromHtml(data.bodyHtml) : headingsFromBody(data.body)
+  const headings = data.bodyHtml ? headingsFromHtml(data.bodyHtml) : headingsFromBody(data.body, data.toc)
   const dateLabel = data.datePublished
     ? new Date(data.datePublished).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     : null
