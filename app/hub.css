@@ -216,7 +216,9 @@ a{color:var(--accent);text-decoration:none}
 .prose blockquote{border-left:3px solid var(--sky);background:var(--subtle);padding:14px 20px;border-radius:0 10px 10px 0;margin:22px 0;color:var(--ink);font-weight:500}
 .prose strong{font-weight:700;color:var(--ink)}
 .prose table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+.prose caption{caption-side:top;text-align:left;font-weight:800;font-size:15px;color:var(--ink);padding:0 0 10px;letter-spacing:-.01em}
 .prose thead th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-weight:700;font-size:12.5px}
+.prose td.highlight{font-weight:700;color:var(--ink)}
 .prose tbody td{border-bottom:1px solid var(--bone);padding:11px 14px;vertical-align:top;color:var(--text)}
 .prose tbody tr:nth-child(even){background:#f7f9fe}
 .post-figure{margin:28px 0;display:flex;flex-direction:column;gap:10px}
@@ -233,8 +235,8 @@ a{color:var(--accent);text-decoration:none}
 .prose figure:not(.post-figure) figcaption{margin-top:10px;font-size:13.5px;line-height:1.5;color:var(--slate);font-style:italic;text-align:center}
 /* Click-to-zoom */
 .prose img{cursor:zoom-in}
-.lightbox{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(9,20,44,.86);cursor:zoom-out;animation:lbfade .16s ease}
-.lightbox img{max-width:min(1180px,95vw);max-height:92vh;width:auto;height:auto;border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.lightbox{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(9,20,44,.92);cursor:zoom-out;animation:lbfade .16s ease}
+.lightbox img{max-width:min(1180px,95vw);max-height:92vh;width:auto;height:auto;box-sizing:border-box;background:#fff;padding:16px;border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
 .lightbox-close{position:absolute;top:16px;right:24px;font-size:36px;line-height:1;color:#fff;opacity:.8;cursor:pointer}
 @keyframes lbfade{from{opacity:0}to{opacity:1}}
 .toc{position:sticky;top:90px;border-right:2px solid var(--bone);padding-right:20px}
