@@ -61,6 +61,18 @@ export default defineType({
         select: {title: 'label', subtitle: 'text'},
       },
     }),
+    // Inline SVG diagram/infographic (authored graphic) with alt + caption
+    defineArrayMember({
+      type: 'object',
+      name: 'svgFigure',
+      title: 'Diagram (SVG)',
+      fields: [
+        {name: 'svg', type: 'text', title: 'SVG markup', rows: 6},
+        {name: 'alt', type: 'string', title: 'Alt text'},
+        {name: 'caption', type: 'string', title: 'Caption'},
+      ],
+      preview: {select: {title: 'alt', subtitle: 'caption'}, prepare: ({title, subtitle}) => ({title: title || 'Diagram', subtitle})},
+    }),
     // Comparison / data table
     defineArrayMember({
       type: 'object',

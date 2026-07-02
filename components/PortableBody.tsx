@@ -119,6 +119,15 @@ const components: PortableTextComponents = {
         </figure>
       )
     },
+    svgFigure: ({ value }: { value: { svg?: string; alt?: string; caption?: string } }) => {
+      if (!value?.svg) return null
+      return (
+        <figure className="post-figure">
+          <div className="svg-embed" role="img" aria-label={value.alt || ''} dangerouslySetInnerHTML={{ __html: value.svg }} />
+          {value.caption ? <figcaption>{value.caption}</figcaption> : null}
+        </figure>
+      )
+    },
     callout: ({ value }: { value: { label?: string; text?: string } }) => (
       <div className="callout">
         <svg className="ml-mark" viewBox="0 0 48 48"><use href="#ml-mark" /></svg>
