@@ -216,8 +216,13 @@ a{color:var(--accent);text-decoration:none}
 .prose blockquote{border-left:3px solid var(--sky);background:var(--subtle);padding:14px 20px;border-radius:0 10px 10px 0;margin:22px 0;color:var(--ink);font-weight:500}
 .prose strong{font-weight:700;color:var(--ink)}
 .prose table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
-.prose caption{caption-side:top;background:var(--navy);color:#fff;text-align:center;font-weight:800;font-size:15.5px;letter-spacing:-.01em;padding:14px 16px;border-radius:10px 10px 0 0;border-bottom:1px solid rgba(255,255,255,.16)}
-.prose thead th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-weight:700;font-size:12.5px}
+/* Maxint wraps every table in .article-table-wrapper — use it to make a rounded, bordered card */
+.prose .article-table-wrapper{margin:22px 0;border:1px solid #dbe6f8;border-radius:12px;overflow:hidden}
+.prose .article-table-wrapper table{margin:0}
+/* Title banner (the <caption>): navy bar spanning the whole table */
+.prose caption{caption-side:top;background:var(--navy);color:#fff;text-align:center;font-weight:800;font-size:15.5px;letter-spacing:-.01em;padding:14px 16px}
+/* Column headers: light-blue row, dark text — distinct from the title banner and the data */
+.prose thead th{background:#eaf1fc;color:var(--navy);text-align:left;padding:12px 14px;font-weight:800;font-size:12.5px;letter-spacing:.02em}
 .prose td.highlight{font-weight:700;color:var(--ink)}
 .prose tbody td{border-bottom:1px solid var(--bone);padding:11px 14px;vertical-align:top;color:var(--text)}
 .prose tbody tr:nth-child(even){background:#f7f9fe}
