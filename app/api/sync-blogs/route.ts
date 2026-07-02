@@ -56,8 +56,10 @@ async function handle(req: NextRequest) {
     apiVersion: '2024-10-01', token, useCdn: false,
   })
 
-  const pillarIds = new Set<string>(await sanity.fetch('*[_type=="pillar"]._id'))
-  const clusterIds = new Set<string>(await sanity.fetch('*[_type=="cluster"]._id'))
+  // clusterId -> parent pillarId. Resolve placement from ANY category/subcategory
+  // slug (tolerates a cluster-level category in the primary slot); pillar from the cluster.
+  const clusterToPillar: Record<string, string> = {}
+  for (const c of (await sanity.fetch('*[_type=="cluster"]{_id, "pid": pillar._ref}')) as { _id: string; pid: string }[]) clusterToPillar[c._id] = c.pid
   const syncedDocs: { maxintId: string; maxintUpdatedAt?: string }[] = await sanity.fetch('*[defined(maxintId)]{maxintId, maxintUpdatedAt}')
   const seen: Record<string, Set<string>> = {}
   for (const d of syncedDocs) { (seen[d.maxintId] ||= new Set()).add(d.maxintUpdatedAt || '') }
@@ -77,11 +79,10 @@ async function handle(req: NextRequest) {
     const b = (await mxl(`/blogs/${slug}?include=author,category,subcategories,faqs,images`, MXL_KEY)).data as Record<string, unknown> & {
       id: string; category?: { slug?: string }; subcategories?: { slug?: string }[]; author?: Record<string, string>; faqs?: { id?: string; question?: string; answer_html?: string }[]
     }
-    const pillarSlug = slugOf(b.category?.slug)
-    const clusterSlug = slugOf(b.subcategories?.[0]?.slug)
-    const pillarRef = `pillar-${pillarSlug}`
-    const clusterRef = `cluster-${clusterSlug}`
-    if (!pillarIds.has(pillarRef) || !clusterIds.has(clusterRef)) { skipped++; continue }
+    const candidates = [slugOf(b.category?.slug), ...((b.subcategories || []).map((x) => slugOf(x.slug)))].filter(Boolean)
+    let clusterRef = '', pillarRef = ''
+    for (const c of candidates) { const cid = `cluster-${c}`; if (clusterToPillar[cid]) { clusterRef = cid; pillarRef = clusterToPillar[cid]; break } }
+    if (!clusterRef) { skipped++; continue }
     const updatedAt = (b.updated_at as string) || (b.published_at as string) || ''
     if (seen[b.id]?.has(updatedAt)) { unchanged++; continue }
     await sanity.createOrReplace({

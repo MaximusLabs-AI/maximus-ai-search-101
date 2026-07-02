@@ -58,9 +58,22 @@ async function listAll(path) {
   return out
 }
 
-// Valid Sanity pillar/cluster ids — used to validate the category mapping.
-const pillarIds = new Set(await sanity.fetch('*[_type=="pillar"]._id'))
-const clusterIds = new Set(await sanity.fetch('*[_type=="cluster"]._id'))
+// Map each Sanity cluster id -> its parent pillar id. The article is placed by
+// resolving a cluster from ANY of its Maxint category/subcategory slugs (so it
+// works whether the cluster is set as the primary category OR the subcategory),
+// and the pillar is taken from that cluster's parent. This tolerates the common
+// mix-up of putting a cluster-level category (e.g. "aeo-fundamentals") in the
+// primary-category slot.
+const clusterToPillar = {}
+for (const c of await sanity.fetch('*[_type=="cluster"]{_id, "pid": pillar._ref}')) clusterToPillar[c._id] = c.pid
+const resolvePlacement = (b) => {
+  const candidates = [slugOf(b.category?.slug), ...((b.subcategories || []).map((x) => slugOf(x.slug)))].filter(Boolean)
+  for (const c of candidates) {
+    const cid = `cluster-${c}`
+    if (clusterToPillar[cid]) return { clusterRef: cid, pillarRef: clusterToPillar[cid], candidates }
+  }
+  return { clusterRef: null, pillarRef: null, candidates }
+}
 
 const list = await listAll('/blogs?status=ready')
 
@@ -82,15 +95,9 @@ let drafted = 0, unchanged = 0, skipped = 0
 for (const b0 of list) {
   const slug = slugOf(b0.slug)
   const { data: b } = await mxl(`/blogs/${slug}?include=author,category,subcategories,faqs,images`)
-  const pillarSlug = slugOf(b.category?.slug)
-  const clusterSlug = slugOf(b.subcategories?.[0]?.slug)
-  const pillarRef = `pillar-${pillarSlug}`
-  const clusterRef = `cluster-${clusterSlug}`
-  if (!pillarSlug || !pillarIds.has(pillarRef)) {
-    console.warn(`  ! skip "${slug}": primary category "${pillarSlug}" is not a known pillar`); skipped++; continue
-  }
-  if (!clusterSlug || !clusterIds.has(clusterRef)) {
-    console.warn(`  ! skip "${slug}": subcategory "${clusterSlug}" is not a known cluster (pick a cluster sub-category in Maxint)`); skipped++; continue
+  const { clusterRef, pillarRef, candidates } = resolvePlacement(b)
+  if (!clusterRef) {
+    console.warn(`  ! skip "${slug}": none of [${candidates.join(', ') || '(no category set)'}] is a known cluster. In Maxint set the article's category or subcategory to a cluster like "aeo-fundamentals".`); skipped++; continue
   }
 
   const updatedAt = b.updated_at || b.published_at || ''
@@ -130,7 +137,7 @@ for (const b0 of list) {
     order: 1,
   })
   drafted++
-  console.log(`  · draft: ${pillarSlug}/${clusterSlug}/${slug}`)
+  console.log(`  · draft: ${pillarRef}/${clusterRef}/${slug}`)
 }
 console.log(`\nDrafted ${drafted} new/changed blog(s) as Sanity drafts. ${unchanged} unchanged, ${skipped} skipped.`)
 console.log('Review + Publish them in the Studio to go live.')
