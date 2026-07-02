@@ -216,7 +216,7 @@ a{color:var(--accent);text-decoration:none}
 .prose blockquote{border-left:3px solid var(--sky);background:var(--subtle);padding:14px 20px;border-radius:0 10px 10px 0;margin:22px 0;color:var(--ink);font-weight:500}
 .prose strong{font-weight:700;color:var(--ink)}
 .prose table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
-.prose caption{caption-side:top;text-align:left;font-weight:800;font-size:15px;color:var(--ink);padding:0 0 10px;letter-spacing:-.01em}
+.prose caption{caption-side:top;background:var(--navy);color:#fff;text-align:center;font-weight:800;font-size:15.5px;letter-spacing:-.01em;padding:14px 16px;border-radius:10px 10px 0 0;border-bottom:1px solid rgba(255,255,255,.16)}
 .prose thead th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-weight:700;font-size:12.5px}
 .prose td.highlight{font-weight:700;color:var(--ink)}
 .prose tbody td{border-bottom:1px solid var(--bone);padding:11px 14px;vertical-align:top;color:var(--text)}
