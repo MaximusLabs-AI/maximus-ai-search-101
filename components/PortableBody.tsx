@@ -59,6 +59,13 @@ export function cleanSyncedHtml(html?: string): string {
   return (html || '').replace(/&lt;\/?(?:li|ul|ol)\s*&gt;/gi, '')
 }
 
+/** Strip inline style="" attributes from synced HTML so the global hub.css is the
+ *  single source of truth for styling (Sanity stores structure/content only, and
+ *  any table/color/heading change made in hub.css applies to every article). */
+export function stripInlineStyles(html?: string): string {
+  return (html || '').replace(/\sstyle="[^"]*"/gi, '')
+}
+
 /**
  * Turn a "[maxview]...[/maxview]" marker in synced HTML into the MaximusLabs-view
  * callout (the same styled insight block the Portable Text articles use). Authors
@@ -119,23 +126,26 @@ const components: PortableTextComponents = {
         </div>
       </div>
     ),
-    table: ({ value }: { value: { rows?: { cells?: string[] }[]; hasHeader?: boolean } }) => {
+    table: ({ value }: { value: { caption?: string; rows?: { cells?: string[] }[]; hasHeader?: boolean } }) => {
       const rows = value.rows || []
       if (!rows.length) return null
       const useHeader = value.hasHeader !== false
       const header = useHeader ? rows[0] : null
       const bodyRows = useHeader ? rows.slice(1) : rows
       return (
-        <table>
-          {header && (
-            <thead><tr>{(header.cells || []).map((c, i) => <th key={i}>{c}</th>)}</tr></thead>
-          )}
-          <tbody>
-            {bodyRows.map((r, ri) => (
-              <tr key={ri}>{(r.cells || []).map((c, ci) => <td key={ci}>{c}</td>)}</tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="article-table-wrapper">
+          <table>
+            {value.caption ? <caption>{value.caption}</caption> : null}
+            {header && (
+              <thead><tr>{(header.cells || []).map((c, i) => <th key={i}>{c}</th>)}</tr></thead>
+            )}
+            <tbody>
+              {bodyRows.map((r, ri) => (
+                <tr key={ri}>{(r.cells || []).map((c, ci) => <td key={ci}>{c}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )
     },
   },

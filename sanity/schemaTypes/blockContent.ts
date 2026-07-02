@@ -67,6 +67,7 @@ export default defineType({
       name: 'table',
       title: 'Table',
       fields: [
+        {name: 'caption', type: 'string', title: 'Table heading / title', description: 'Shown as the navy banner across the top of the table.'},
         {name: 'hasHeader', type: 'boolean', title: 'First row is a header', initialValue: true},
         {
           name: 'rows',
