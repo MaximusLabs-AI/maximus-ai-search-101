@@ -3,7 +3,7 @@ import {
   CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard, AuthorRail, AuthorPerspectiveInline,
 } from '@/components/chrome'
 import { CalBookingScript } from '@/components/CalBooking'
-import { PortableBody, headingsFromBody, headingsFromHtml, ensureH2Ids } from '@/components/PortableBody'
+import { PortableBody, headingsFromBody, headingsFromHtml, ensureH2Ids, cleanSyncedHtml } from '@/components/PortableBody'
 import {
   type HubData, type PillarData, type ClusterData, type ArticleData, type SearchResult,
   hubPath, pillarPath, clusterPath, articlePath,
@@ -261,7 +261,7 @@ export function Article({ data }: { data: ArticleData }) {
             {data.tldrHtml && (
               <div className="tldr">
                 <span className="lab">TL;DR</span>
-                <div dangerouslySetInnerHTML={{ __html: data.tldrHtml }} />
+                <div dangerouslySetInnerHTML={{ __html: cleanSyncedHtml(data.tldrHtml) }} />
               </div>
             )}
 

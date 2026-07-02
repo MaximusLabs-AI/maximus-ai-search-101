@@ -15,26 +15,48 @@ export function slugifyHeading(value: { children?: { text?: string }[] }): strin
   return slugifyText((value?.children ?? []).map((c) => c?.text ?? '').join(''))
 }
 
-/** Extract H2s (text + anchor id) from an HTML body for the TOC (synced blogs). */
+/**
+ * Maxint headings can carry a "[toc=Short Label]" marker, e.g.
+ *   <h2>Q1. What is AI search? [toc=1. AI Search Defined]</h2>
+ * The label after `toc=` is what the sidebar TOC should show; the whole marker
+ * must be stripped from the heading shown in the body.
+ */
+const TOC_MARKER = /\[toc=([^\]]*)\]/i
+/** Plain text of a heading's inner HTML, with the [toc=...] marker removed. */
+function cleanHeadingText(innerHtml: string): string {
+  return innerHtml.replace(/<[^>]+>/g, '').replace(/\s*\[toc=[^\]]*\]\s*/i, ' ').replace(/\s+/g, ' ').trim()
+}
+
+/** Extract H2s (TOC label + anchor id) from an HTML body for the TOC (synced blogs).
+ *  Prefers the [toc=Label] marker; falls back to the cleaned heading text. */
 export function headingsFromHtml(html?: string): { id: string; text: string }[] {
   if (!html) return []
   const out: { id: string; text: string }[] = []
   const re = /<h2[^>]*>([\s\S]*?)<\/h2>/gi
   let m: RegExpExecArray | null
   while ((m = re.exec(html))) {
-    const text = m[1].replace(/<[^>]+>/g, '').trim()
-    if (text) out.push({ id: slugifyText(text), text })
+    const display = cleanHeadingText(m[1])
+    const marker = m[1].replace(/<[^>]+>/g, '').match(TOC_MARKER)
+    const label = marker && marker[1].trim() ? marker[1].trim() : display
+    if (label) out.push({ id: slugifyText(display), text: label })
   }
   return out
 }
 
-/** Inject id attributes into H2s of an HTML body so the TOC anchors resolve. */
+/** Give each H2 a stable id (from the cleaned heading) for TOC anchors, and strip
+ *  every [toc=...] marker so it never shows in the rendered body. */
 export function ensureH2Ids(html: string): string {
-  return (html || '').replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (full, attrs, inner) => {
-    if (/\bid=/.test(attrs)) return full
-    const text = inner.replace(/<[^>]+>/g, '').trim()
-    return `<h2${attrs} id="${slugifyText(text)}">${inner}</h2>`
-  })
+  return (html || '')
+    .replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (full, attrs, inner) =>
+      /\bid=/.test(attrs) ? full : `<h2${attrs} id="${slugifyText(cleanHeadingText(inner))}">${inner}</h2>`)
+    .replace(/\s*\[toc=[^\]]*\]\s*/gi, ' ')
+}
+
+/** Maxint sometimes double-encodes a list (the TL;DR arrives as
+ *  "<li>&lt;li&gt;text&lt;/li&gt;</li>"). Strip the escaped list tags that would
+ *  otherwise render as literal "<li>" text, leaving the real bullets clean. */
+export function cleanSyncedHtml(html?: string): string {
+  return (html || '').replace(/&lt;\/?(?:li|ul|ol)\s*&gt;/gi, '')
 }
 
 /** Extract H2 headings (text + anchor id) from a Portable Text body for the TOC. */
