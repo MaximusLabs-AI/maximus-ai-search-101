@@ -59,6 +59,22 @@ export function cleanSyncedHtml(html?: string): string {
   return (html || '').replace(/&lt;\/?(?:li|ul|ol)\s*&gt;/gi, '')
 }
 
+/**
+ * Turn a "[maxview]...[/maxview]" marker in synced HTML into the MaximusLabs-view
+ * callout (the same styled insight block the Portable Text articles use). Authors
+ * drop the marker into their Maxint content wherever an opinionated MaximusLabs
+ * take belongs; because it lives in Maxint it survives every re-sync. Any wrapping
+ * <p> around the marker is absorbed so we never nest a <div> inside a <p>.
+ */
+export function renderMaximusViews(html?: string): string {
+  return (html || '').replace(
+    /(?:<p>)?\s*\[maxview\]([\s\S]*?)\[\/maxview\]\s*(?:<\/p>)?/gi,
+    (_m, text) =>
+      `<div class="callout"><svg class="ml-mark" viewBox="0 0 48 48"><use href="#ml-mark"></use></svg>` +
+      `<div class="co-body"><span class="lab">The MaximusLabs view</span><p>${String(text).trim()}</p></div></div>`,
+  )
+}
+
 /** Extract H2 headings (text + anchor id) from a Portable Text body for the TOC. */
 export function headingsFromBody(
   body?: PortableTextBlock[],

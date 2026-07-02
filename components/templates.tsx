@@ -3,7 +3,8 @@ import {
   CardGrid, CategoryCard, ArticleCard, CtaBanner, SearchBar, FeatureCard, AuthorRail, AuthorPerspectiveInline,
 } from '@/components/chrome'
 import { CalBookingScript } from '@/components/CalBooking'
-import { PortableBody, headingsFromBody, headingsFromHtml, ensureH2Ids, cleanSyncedHtml } from '@/components/PortableBody'
+import { PortableBody, headingsFromBody, headingsFromHtml, ensureH2Ids, cleanSyncedHtml, renderMaximusViews } from '@/components/PortableBody'
+import { ArticleLightbox } from '@/components/Lightbox'
 import {
   type HubData, type PillarData, type ClusterData, type ArticleData, type SearchResult,
   hubPath, pillarPath, clusterPath, articlePath,
@@ -218,6 +219,7 @@ export function Article({ data }: { data: ArticleData }) {
     <>
       <SiteNav />
       <CalBookingScript />
+      <ArticleLightbox />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
       {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
 
@@ -267,7 +269,7 @@ export function Article({ data }: { data: ArticleData }) {
             )}
 
             {data.bodyHtml
-              ? <div dangerouslySetInnerHTML={{ __html: ensureH2Ids(data.bodyHtml) }} />
+              ? <div dangerouslySetInnerHTML={{ __html: ensureH2Ids(renderMaximusViews(data.bodyHtml)) }} />
               : <PortableBody value={data.body} />}
 
             {data.faq?.length ? (
